@@ -24,11 +24,9 @@ public class Motorhome {
     public Motorhome(){
 
     }
-
-    public Motorhome(String brand, String model, String licensePlate, float price, String imageURL)  {
-        this.brand = brand;
-    public Motorhome(int ID, String brand, String model, String licensePlate, Float price) throws MalformedURLException {
-        this.ID = ID;
+    public Motorhome(int ID, String brand, String model, String licensePlate, Float price)
+        {
+        this.id = ID;
         this.model = model;
         this.brand = brand;
         this.licensePlate = licensePlate;
@@ -41,9 +39,7 @@ public class Motorhome {
     /**************************************
       GETTERS AND SETTERS BELOW
      **************************************/
-    public int getID() { return ID; }
-
-    public void setID(int ID) { this.ID = ID; }
+    public int getID() { return id; }
 
     public String getBrand() {
         return brand;
