@@ -17,7 +17,7 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo {
         }catch(ClassNotFoundException e){System.out.println(e);}
     }
 
-    /*
+
 
         @Override
         public boolean create(Motorhome item) {
@@ -30,7 +30,7 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo {
                 statement.setString(1, motorhome.getModel());
                 statement.setString(2, motorhome.getBrand());
                 statement.setString(3, motorhome.getImageURL());
-                statement.setBigDecimal(4, motorhome.getPrice());
+                statement.setFloat(4, motorhome.getPrice());
 
                 statement.executeUpdate();
                 flag = true;
@@ -43,8 +43,7 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo {
                 return flag;
             }
         }
-    */
-    /*
+
 
     @Override
     public Motorhome read(int id)
@@ -64,7 +63,7 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo {
                 motorhome.setModel(rs.getString(2));
                 motorhome.setBrand(rs.getString(3));
                 motorhome.setImageURL(rs.getString(4));
-                motorhome.setPrice(rs.getBigDecimal(5));
+                motorhome.setPrice(rs.getFloat(5));
             }
         }
         catch (Exception e)
@@ -75,7 +74,7 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo {
             return motorhome;
         }
     }
-*/
+
     @Override
     public List<Motorhome> readAll() {
         List<Motorhome> motorhomes = new ArrayList<Motorhome>();
@@ -106,19 +105,8 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo {
             return motorhomes;
         }
     }
-/*
-    @Override
-    public boolean update(Motorhome item) {
-        return false;
-    }
 
-    @Override
-    public boolean delete(int id) {
-        return false;
-    }
-    */
 
-/*
     @Override
     public boolean update(Motorhome item) {
         boolean flag = false;
@@ -129,7 +117,7 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo {
             statement.setString(1, item.getModel());
             statement.setString(2, item.getBrand());
             statement.setString(3, item.getImageURL());
-            statement.setBigDecimal(4, item.getPrice());
+            statement.setFloat(4, item.getPrice());
             //statement.setInt(5, item.getId());
 
 
@@ -144,14 +132,14 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo {
             return flag;
         }
     }
-*/
-    /*
+
+
     @Override
     public boolean delete(int id) {
         boolean flag = false;
         try
         {
-            PreparedStatement statement = conn.prepareStatement("DELETE FROM motorhome WHERE id=?");
+            PreparedStatement statement = conn.prepareStatement("DELETE FROM motorhomes WHERE id=?");
             statement.setInt(1, id);
             statement.executeUpdate();
             flag = true;
@@ -164,7 +152,9 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo {
             return flag;
         }
     }
-*/
+
+
+
 
     @Override
     public int Search(int id) {

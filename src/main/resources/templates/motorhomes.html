@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+<p th:each="motorhome :${motorhomes}">
+<h1 th:text="${motorhome.getModel()}"></h1>
+</p>
+-->
+<div class="container">
+    <div class="row">
+        <div class="col-sm p-3 mb-2 bg-light text-white">
+            <p th:each="motorhome :${motorhomes}">
+                <span style="color: red" th:text="${motorhome.model}"/>
+            </p>
+        </div>
+        <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
+            <p th:each="motorhome :${motorhomes}">
+                <span style="color: red" th:text="${motorhome.brand}"/>
+            </p>
+        </div>
+        <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
+            <p th:each="motorhome :${motorhomes}">
+                <span style="color: red" th:text="${motorhome.price}"/>
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -15,7 +15,7 @@ import java.util.List;
  * @author Mikkel Åxman
  */
 
-@Entity
+
 public class Motorhome{
 
     @Id
@@ -93,7 +93,7 @@ public class Motorhome{
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
-
+    /*
     public List<Reservation> getReservations() {
         return reservations;
     }
@@ -109,4 +109,7 @@ public class Motorhome{
     public void setAccessories(List<Accessory> accessories) {
         this.accessories = accessories;
     }
+
+
+     */
 }
