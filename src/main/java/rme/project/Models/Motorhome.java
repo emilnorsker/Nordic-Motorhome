@@ -1,7 +1,6 @@
 package rme.project.Models;
 
 import org.springframework.data.annotation.Id;
-
 import java.util.List;
 
 /**
@@ -28,15 +27,24 @@ public class Motorhome {
 
     public Motorhome(String brand, String model, String licensePlate, float price, String imageURL)  {
         this.brand = brand;
+    public Motorhome(int ID, String brand, String model, String licensePlate, Float price) throws MalformedURLException {
+        this.ID = ID;
         this.model = model;
+        this.brand = brand;
         this.licensePlate = licensePlate;
         this.price = price;
         this.imageURL = imageURL;
     }
 
+
+
     /**************************************
       GETTERS AND SETTERS BELOW
      **************************************/
+    public int getID() { return ID; }
+
+    public void setID(int ID) { this.ID = ID; }
+
     public String getBrand() {
         return brand;
     }
@@ -91,10 +99,6 @@ public class Motorhome {
 
     public void setAccessories(List<Accessory> accessories) {
         this.accessories = accessories;
-    }
-
-    public int getId() {
-        return id;
     }
 
 }

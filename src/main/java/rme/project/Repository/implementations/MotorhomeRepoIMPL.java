@@ -3,6 +3,7 @@ package rme.project.Repository.implementations;
 import rme.project.Connection.DBConnection;
 import rme.project.Models.Motorhome;
 import rme.project.Repository.interfaces.MotorhomeRepo;
+import rme.project.Repository.interfaces.CRUD;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -90,12 +91,12 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo
             while (rs.next())
             {
                 Motorhome mh = new Motorhome();
-                //mh.setID(rs.getInt(1));
+                mh.setID(rs.getInt(1));
                 mh.setModel(rs.getString(2));
                 mh.setBrand(rs.getString(3));
                 mh.setImageURL(rs.getString(4));
                 mh.setPrice(rs.getFloat(5));
-                motorhomes.add( mh);
+                motorhomes.add(mh);
             }
         }
         catch (Exception e)
