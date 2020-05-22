@@ -1,7 +1,9 @@
 /**
  * @author Rasmus Wedelheim
  */
-package rme.demo.Repository.interfaces;
+package rme.project.Repository.interfaces;
+import rme.project.Models.Motorhome;
+
 import java.util.List;
 public interface CRUD {
     //TODO Vi skal lige gå det her igennem med interfaces, jeg forstår ikke helt hvad det er vi vil
