@@ -20,7 +20,7 @@ public class Motorhome {
     String licensePlate; //Unique ID
     BigDecimal price;
 
-    URL imageURL;
+    String imageURL;
     // Only image URL should be stored in database. Should throw MalformedURLException.
 
     List<Reservation> reservations;
@@ -30,7 +30,7 @@ public class Motorhome {
 
     }
 
-    public Motorhome(String brand, String model, String licensePlate, BigDecimal price, URL imageURL) throws MalformedURLException {
+    public Motorhome(String brand, String model, String licensePlate, BigDecimal price, String imageURL) throws MalformedURLException {
         this.brand = brand;
         this.model = model;
         this.licensePlate = licensePlate;
@@ -73,11 +73,11 @@ public class Motorhome {
         this.price = price;
     }
 
-    public URL getImageURL() {
+    public String getImageURL() {
         return imageURL;
     }
 
-    public void setImageURL(URL imageURL) {
+    public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
 

@@ -1,7 +1,7 @@
 /**
  * @author Rasmus Wedelheim
  */
-package rme.demo.Repository.interfaces;
+package rme.project.Repository.interfaces;
 
 public interface SalesRepo {
 }
