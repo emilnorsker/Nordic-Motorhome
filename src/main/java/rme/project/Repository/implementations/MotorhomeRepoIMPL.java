@@ -1,5 +1,6 @@
 package rme.project.Repository.implementations;
 
+import rme.project.Connection.DBConnection;
 import rme.project.Models.Motorhome;
 import rme.project.Repository.interfaces.MotorhomeRepo;
 
@@ -11,7 +12,13 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo
 {
 
     Connection conn;
-
+    {
+        try {
+            conn = DBConnection.getDatabaseConnection();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @Override

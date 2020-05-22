@@ -10,8 +10,6 @@ import java.util.List;
  */
 public class Motorhome {
 
-
-
     int id;
     String brand;
     String model;
@@ -98,4 +96,5 @@ public class Motorhome {
     public int getId() {
         return id;
     }
+
 }
