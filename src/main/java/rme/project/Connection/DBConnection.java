@@ -1,4 +1,4 @@
-package rme.demo.Connection;
+package rme.project.Connection;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

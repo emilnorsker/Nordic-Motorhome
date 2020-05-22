@@ -25,7 +25,7 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo
             statement.setString(1, motorhome.getModel());
             statement.setString(2, motorhome.getBrand());
             statement.setString(3, motorhome.getImageURL());
-            statement.setBigDecimal(4, motorhome.getPrice());
+            statement.setFloat(4, motorhome.getPrice());
 
             statement.executeUpdate();
             flag = true;
@@ -58,7 +58,7 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo
                 motorhome.setModel(rs.getString(2));
                 motorhome.setBrand(rs.getString(3));
                 motorhome.setImageURL(rs.getString(4));
-                motorhome.setPrice(rs.getBigDecimal(5));
+                motorhome.setPrice(rs.getFloat(5));
             }
         }
         catch (Exception e)
@@ -87,7 +87,7 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo
                 mh.setModel(rs.getString(2));
                 mh.setBrand(rs.getString(3));
                 mh.setImageURL(rs.getString(4));
-                mh.setPrice(rs.getBigDecimal(5));
+                mh.setPrice(rs.getFloat(5));
                 motorhomes.add( mh);
             }
         }
@@ -110,7 +110,7 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo
             statement.setString(1, item.getModel());
             statement.setString(2, item.getBrand());
             statement.setString(3, item.getImageURL());
-            statement.setBigDecimal(4, item.getPrice());
+            statement.setFloat(4, item.getPrice());
             //statement.setInt(5, item.getId());
 
 

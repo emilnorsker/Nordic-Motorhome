@@ -1,12 +1,7 @@
 package rme.project.Models;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.format.annotation.DateTimeFormat;
-import rme.project.Models.Accessory;
 
-import java.math.BigDecimal;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 /**
@@ -14,11 +9,14 @@ import java.util.List;
  * @author Mikkel Åxman
  */
 public class Motorhome {
+
+
+
+    int id;
     String brand;
     String model;
-    @Id // todo nødvendigt?
     String licensePlate; //Unique ID
-    BigDecimal price;
+    float price;
 
     String imageURL;
     // Only image URL should be stored in database. Should throw MalformedURLException.
@@ -26,11 +24,11 @@ public class Motorhome {
     List<Reservation> reservations;
     List<Accessory> accessories;
 
-    public Motorhome() throws MalformedURLException {
+    public Motorhome(){
 
     }
 
-    public Motorhome(String brand, String model, String licensePlate, BigDecimal price, String imageURL) throws MalformedURLException {
+    public Motorhome(String brand, String model, String licensePlate, float price, String imageURL)  {
         this.brand = brand;
         this.model = model;
         this.licensePlate = licensePlate;
@@ -65,11 +63,11 @@ public class Motorhome {
         this.licensePlate = licensePlate;
     }
 
-    public BigDecimal getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -95,5 +93,9 @@ public class Motorhome {
 
     public void setAccessories(List<Accessory> accessories) {
         this.accessories = accessories;
+    }
+
+    public int getId() {
+        return id;
     }
 }
