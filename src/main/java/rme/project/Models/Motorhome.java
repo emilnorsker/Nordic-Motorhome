@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 import rme.project.Models.Accessory;
 
+import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -13,34 +14,46 @@ import java.util.List;
  * Private class, motorhome object
  * @author Mikkel Åxman
  */
-public class Motorhome {
+
+@Entity
+public class Motorhome{
+
+    @Id
+    int ID;
     String brand;
     String model;
-    @Id // todo nødvendigt?
+    // todo nødvendigt?
     String licensePlate; //Unique ID
-    BigDecimal price;
+    Float price;
 
     String imageURL;
     // Only image URL should be stored in database. Should throw MalformedURLException.
 
-    List<Reservation> reservations;
+    /*List<Reservation> reservations;
     List<Accessory> accessories;
-
+*/
     public Motorhome() throws MalformedURLException {
 
     }
 
-    public Motorhome(String brand, String model, String licensePlate, BigDecimal price, String imageURL) throws MalformedURLException {
-        this.brand = brand;
+    public Motorhome(int ID, String brand, String model, String licensePlate, Float price) throws MalformedURLException {
+        this.ID = ID;
         this.model = model;
-        this.licensePlate = licensePlate;
+        this.brand = brand;
         this.price = price;
-        this.imageURL = imageURL;
+        this.licensePlate = licensePlate;
+        //this.imageURL = imageURL;
     }
+
+
 
     /**************************************
       GETTERS AND SETTERS BELOW
      **************************************/
+    public int getID() { return ID; }
+
+    public void setID(int ID) { this.ID = ID; }
+
     public String getBrand() {
         return brand;
     }
@@ -65,11 +78,11 @@ public class Motorhome {
         this.licensePlate = licensePlate;
     }
 
-    public BigDecimal getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 

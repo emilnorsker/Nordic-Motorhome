@@ -1,4 +1,7 @@
-package rme.demo.Connection;
+/**
+ * @author Rasmus Wedelheim
+ */
+package rme.project.Util;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

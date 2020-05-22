@@ -2,43 +2,49 @@ package rme.project.Repository.implementations;
 
 import rme.project.Models.Motorhome;
 import rme.project.Repository.interfaces.MotorhomeRepo;
+import rme.project.Repository.interfaces.CRUD;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MotorhomeRepoIMPL implements MotorhomeRepo
-{
+public class MotorhomeRepoIMPL implements MotorhomeRepo {
 
-    Connection conn;
-
-
-
-    @Override
-    public boolean create(Motorhome item) {
-        boolean flag = false;
-        try
-        {
-            Motorhome motorhome = new Motorhome();
-            PreparedStatement statement = conn.prepareStatement("INSERT INTO motorhomes (model, brand, image_file, price) VALUES (?,?,?,?)");
-
-            statement.setString(1, motorhome.getModel());
-            statement.setString(2, motorhome.getBrand());
-            statement.setString(3, motorhome.getImageURL());
-            statement.setBigDecimal(4, motorhome.getPrice());
-
-            statement.executeUpdate();
-            flag = true;
-        }
-        catch (Exception e)
-        {
-            System.out.println(e);
-        }
-        finally {
-            return flag;
-        }
+    private Connection conn;
+    public MotorhomeRepoIMPL() throws ClassNotFoundException {
+        try {
+            this.conn = rme.project.Util.DBConnection.getDatabaseConnection();
+        }catch(ClassNotFoundException e){System.out.println(e);}
     }
 
+    /*
+
+        @Override
+        public boolean create(Motorhome item) {
+            boolean flag = false;
+            try
+            {
+                Motorhome motorhome = new Motorhome();
+                PreparedStatement statement = conn.prepareStatement("INSERT INTO motorhomes (model, brand, image_file, price) VALUES (?,?,?,?)");
+
+                statement.setString(1, motorhome.getModel());
+                statement.setString(2, motorhome.getBrand());
+                statement.setString(3, motorhome.getImageURL());
+                statement.setBigDecimal(4, motorhome.getPrice());
+
+                statement.executeUpdate();
+                flag = true;
+            }
+            catch (Exception e)
+            {
+                System.out.println(e);
+            }
+            finally {
+                return flag;
+            }
+        }
+    */
+    /*
 
     @Override
     public Motorhome read(int id)
@@ -69,26 +75,27 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo
             return motorhome;
         }
     }
-
+*/
     @Override
     public List<Motorhome> readAll() {
-        List<Motorhome> motorhomes = null;
+        List<Motorhome> motorhomes = new ArrayList<Motorhome>();
         try
         {
-            motorhomes = new ArrayList<Motorhome>();
-            PreparedStatement statement = conn.prepareStatement("SELECT * FROM motorhomes");
+            //motorhomes = new ArrayList<Motorhome>();
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM motorhomedb.motorhomes");
 
 
             ResultSet rs = statement.executeQuery();
             while (rs.next())
             {
                 Motorhome mh = new Motorhome();
-                //mh.setID(rs.getInt(1));
+                mh.setID(rs.getInt(1));
                 mh.setModel(rs.getString(2));
                 mh.setBrand(rs.getString(3));
-                mh.setImageURL(rs.getString(4));
-                mh.setPrice(rs.getBigDecimal(5));
-                motorhomes.add( mh);
+                //mh.setImageURL(rs.getString(4));
+                mh.setPrice(rs.getFloat(4));
+                mh.setLicensePlate(rs.getString(5));
+                motorhomes.add(mh);
             }
         }
         catch (Exception e)
@@ -99,7 +106,19 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo
             return motorhomes;
         }
     }
+/*
+    @Override
+    public boolean update(Motorhome item) {
+        return false;
+    }
 
+    @Override
+    public boolean delete(int id) {
+        return false;
+    }
+    */
+
+/*
     @Override
     public boolean update(Motorhome item) {
         boolean flag = false;
@@ -125,7 +144,8 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo
             return flag;
         }
     }
-
+*/
+    /*
     @Override
     public boolean delete(int id) {
         boolean flag = false;
@@ -144,7 +164,7 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo
             return flag;
         }
     }
-
+*/
 
     @Override
     public int Search(int id) {
