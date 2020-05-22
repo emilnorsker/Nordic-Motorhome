@@ -1,10 +1,12 @@
 package rme.project.Repository.implementations;
 
 import rme.project.Models.Motorhome;
+import rme.project.Repository.interfaces.MotorhomeRepo;
 
 import java.sql.*;
+import java.util.List;
 
-public class MotorhomeRepoIMPL
+public class MotorhomeRepoIMPL implements MotorhomeRepo
 {
 
     Connection conn;
@@ -33,6 +35,11 @@ public class MotorhomeRepoIMPL
         finally {
             return flag;
         }
+    }
+
+    @Override
+    public boolean create(Motorhome item) {
+        return false;
     }
 
     public Motorhome read(int id)
@@ -64,9 +71,24 @@ public class MotorhomeRepoIMPL
         }
     }
 
+    @Override
+    public List<Motorhome> readAll() {
+        return null;
+    }
+
+    @Override
+    public boolean update(Motorhome item) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(int id) {
+        return false;
+    }
 
 
-
-
-
+    @Override
+    public int Search(int id) {
+        return 0;
+    }
 }
