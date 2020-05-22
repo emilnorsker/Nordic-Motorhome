@@ -1,13 +1,13 @@
 /**
  * @author Rasmus Wedelheim
  */
-package rme.demo.Repository.interfaces;
+package rme.project.Repository.interfaces;
 
-import rme.demo.Connection.DBConnection;
 
-import java.sql.Connection;
+import rme.project.Models.Motorhome;
 
-public interface MotorhomeRepo {
+public interface MotorhomeRepo extends CRUD<Motorhome>
+{
 
     int Search (int id);
 
