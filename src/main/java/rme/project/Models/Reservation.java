@@ -1,4 +1,4 @@
-package rme.demo.Models;
+package rme.project.Models;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author Mikkel Åxman
  */
-class Reservation {
+public class Reservation {
     @Id
     int id;
     String location;

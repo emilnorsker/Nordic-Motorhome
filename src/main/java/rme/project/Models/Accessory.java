@@ -1,4 +1,4 @@
-package rme.demo.Models;
+package rme.project.Models;
 
 import java.math.BigDecimal;
 import java.net.URL;
@@ -8,14 +8,14 @@ public class Accessory {
     int id;
     String name;
     BigDecimal price;
-    List<Motorhome> motorhomesList; //TODO make Junction table?
+    List<rme.demo.Models.Motorhome> motorhomesList; //TODO make Junction table?
     URL imageURL;
 
     //TODO Skal accessories have startDate og endDate så de ikke bliver double booket?
     //TODO Er det nødvendigt at lave throws MalformedURLException på constructor?
     //TODO Er tom constructor nødvendig?
 
-    public Accessory(String name, BigDecimal price, List<Motorhome> motorhomesList, URL imageURL) {
+    public Accessory(String name, BigDecimal price, List<rme.demo.Models.Motorhome> motorhomesList, URL imageURL) {
         this.name = name;
         this.price = price;
         this.motorhomesList = motorhomesList;
@@ -43,11 +43,11 @@ public class Accessory {
         this.price = price;
     }
 
-    public List<Motorhome> getMotorhomesList() {
+    public List<rme.demo.Models.Motorhome> getMotorhomesList() {
         return motorhomesList;
     }
 
-    public void setMotorhomesList(List<Motorhome> motorhomesList) {
+    public void setMotorhomesList(List<rme.demo.Models.Motorhome> motorhomesList) {
         this.motorhomesList = motorhomesList;
     }
 

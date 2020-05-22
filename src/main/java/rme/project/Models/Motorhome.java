@@ -1,7 +1,8 @@
-package rme.demo.Models;
+package rme.project.Models;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.format.annotation.DateTimeFormat;
+import rme.project.Models.Accessory;
 
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
@@ -12,10 +13,10 @@ import java.util.List;
  * Private class, motorhome object
  * @author Mikkel Åxman
  */
-class Motorhome {
+public class Motorhome {
     String brand;
     String model;
-    @Id
+    @Id // todo nødvendigt?
     String licensePlate; //Unique ID
     BigDecimal price;
 

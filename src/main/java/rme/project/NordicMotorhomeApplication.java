@@ -1,13 +1,13 @@
-package rme.demo;
+package rme.project;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NordicMoterhomeApplication {
+public class NordicMotorhomeApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(NordicMoterhomeApplication.class, args);
+        SpringApplication.run(NordicMotorhomeApplication.class, args);
     }
 
 }
