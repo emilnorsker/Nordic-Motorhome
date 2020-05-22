@@ -9,9 +9,9 @@ public interface CRUD <T>
 {
     //TODO Vi skal lige gå det her igennem med interfaces, jeg forstår ikke helt hvad det er vi vil
 
-        boolean create(Motorhome motorhome);
+        boolean create(T object);
 
-        public <T> T read(int id);
+        public T read(int id);
 
         public List<T> readAll();
 
