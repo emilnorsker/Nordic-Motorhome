@@ -9,19 +9,21 @@ import rme.project.Repository.implementations.MotorhomeRepoIMPL;
 public class MainController {
     private MotorhomeRepoIMPL motorRepo;
 
+    {
+        motorRepo = new MotorhomeRepoIMPL();
+    }
+
     @GetMapping("/")
     public String index(){
 
         return "index";
     }
-    /*
-    @GetMapping("/motorhomes")
-    public String index(Model model){
-        model.addAttribute("motorhomes", motorRepo.readAll());
 
+    @GetMapping("/motorhomes")
+    public String motorhomes(Model model){
+        model.addAttribute("motorhomes", motorRepo.readAll());
         return "motorhomes";
     }
 
-     */
-}
 
+}
