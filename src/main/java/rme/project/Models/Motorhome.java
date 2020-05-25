@@ -9,10 +9,10 @@ import java.util.List;
  */
 public class Motorhome {
 
-    int id;
+    int ID;
     String brand;
     String model;
-    String licensePlate; //Unique ID
+    String licensePlate;
     float price;
 
     String imageURL;
@@ -26,7 +26,7 @@ public class Motorhome {
     }
     public Motorhome(int ID, String brand, String model, String licensePlate, float price)
         {
-        this.id = ID;
+        this.ID = ID;
         this.model = model;
         this.brand = brand;
         this.licensePlate = licensePlate;
@@ -39,7 +39,14 @@ public class Motorhome {
     /**************************************
       GETTERS AND SETTERS BELOW
      **************************************/
-    public int getID() { return id; }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
     public String getBrand() {
         return brand;
