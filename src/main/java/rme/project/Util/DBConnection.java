@@ -1,4 +1,4 @@
-package rme.project.Connection;
+package rme.project.Util;
 /**
  * @author Rasmus Wedelheim
  */

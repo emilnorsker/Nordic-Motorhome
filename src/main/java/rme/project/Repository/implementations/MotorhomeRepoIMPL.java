@@ -1,12 +1,11 @@
 package rme.project.Repository.implementations;
 
 /**
- * @Author Emil Norsker
+ * @Responsibility Emil Norsker
  */
-
-import rme.project.Connection.DBConnection;
 import rme.project.Models.Motorhome;
 import rme.project.Repository.interfaces.IMotorhomeRepo;
+import rme.project.Util.DBConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
