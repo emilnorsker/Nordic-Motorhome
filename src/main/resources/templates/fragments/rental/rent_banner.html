@@ -1,0 +1,16 @@
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+
+
+<div class="jumbotron" th:fragment="rent_banner(list, bool)">
+    <div class="options">
+        <ul>
+            <li>
+               <div th:insert="fragments/elements/dropdown_selector :: dropdown_selector(${list}, ${bool})"></div>
+            </li>
+        </ul>
+    </div>
+    <div class="calender">
+    </div>
+    <div class="search">
+    </div>
+</div>
