@@ -1,25 +1,22 @@
 package rme.project.Models;
 
-import java.math.BigDecimal;
-import java.net.URL;
 import java.util.List;
 
 public class Accessory {
     int id;
     String name;
-    BigDecimal price;
+    float price;
     List<Motorhome> motorhomesList; //TODO make Junction table?
-    URL imageURL;
+    String imagePath;
 
-    //TODO Skal accessories have startDate og endDate så de ikke bliver double booket? ja
-    //TODO Er det nødvendigt at lave throws MalformedURLException på constructor? nej, som udgangspunkt håndtere vi alle fejl i metoden, ingen grund til at sende lorten videre :D
-    //TODO Er tom constructor nødvendig? nej, kun hvis vi bruger JPA og dens entity metoder
+    //TODO Skal accessories have startDate og endDate så de ikke bliver double booket? ja. Eller foreign key Reservation?
 
-    public Accessory(String name, BigDecimal price, List<Motorhome> motorhomesList, URL imageURL) {
+    public Accessory(String name, float price, List<Motorhome> motorhomesList, String imagePath) {
         this.name = name;
         this.price = price;
         this.motorhomesList = motorhomesList;
-        this.imageURL = imageURL;
+        this.imagePath = imagePath;
+
         //TODO Hvad gør vi med ID
     }
 
@@ -35,11 +32,11 @@ public class Accessory {
         this.name = name;
     }
 
-    public BigDecimal getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -51,11 +48,11 @@ public class Accessory {
         this.motorhomesList = motorhomesList;
     }
 
-    public URL getImageURL() {
-        return imageURL;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImageURL(URL imageURL) {
-        this.imageURL = imageURL;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }

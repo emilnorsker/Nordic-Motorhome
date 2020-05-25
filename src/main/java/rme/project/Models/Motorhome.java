@@ -1,10 +1,9 @@
 package rme.project.Models;
 
-import org.springframework.data.annotation.Id;
 import java.util.List;
 
 /**
- * Private class, motorhome object
+ *
  * @author Mikkel Åxman
  */
 public class Motorhome {
@@ -15,8 +14,8 @@ public class Motorhome {
     String licensePlate;
     float price;
 
-    String imageURL;
-    // Only image URL should be stored in database. Should throw MalformedURLException.
+    String imagePath;
+
 
     List<Reservation> reservations;
     List<Accessory> accessories;
@@ -24,16 +23,15 @@ public class Motorhome {
     public Motorhome(){
 
     }
-    public Motorhome(int ID, String brand, String model, String licensePlate, float price)
+    public Motorhome(int ID, String brand, String model, String licensePlate, float price, String imagePath)
         {
         this.ID = ID;
         this.model = model;
         this.brand = brand;
         this.licensePlate = licensePlate;
         this.price = price;
-        this.imageURL = imageURL;
+        this.imagePath = imagePath;
     }
-
 
 
     /**************************************
@@ -80,12 +78,12 @@ public class Motorhome {
         this.price = price;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public List<Reservation> getReservations() {

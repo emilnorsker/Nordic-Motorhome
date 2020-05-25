@@ -8,6 +8,7 @@ import rme.project.Util.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,11 +21,13 @@ public class ReservationRepoImpl implements IReservationRepo
         boolean flag = false;
         try
         {
-            Motorhome motorhome = new Motorhome();
-            PreparedStatement statement = conn.prepareStatement("INSERT INTO reservation (start_date, end_date, customer_id ,motorhomes_id) VALUES (?,?,?,?)");
 
-            statement.setString(1, item.getStartDate().toString());
-            statement.setString(2, item.getEndDate().toString());
+            PreparedStatement statement = conn.prepareStatement("INSERT INTO reservation (start_date, end_date, customer_id ,motorhomes_id) VALUES (?,?,?,?)");
+            statement.setDate(1, java.sql.Date.valueOf(item.getStartDate())); //Converting LocalDate to sql.Date
+            statement.setDate(2, java.sql.Date.valueOf(item.getEndDate())); //Converting LocalDate to sql.Date
+
+            //statement.setString(1, item.getStartDate().toString()); //TODO USE java.sql.Date.valueOf(dateToConvert); instead of string
+            //statement.setString(2, item.getEndDate().toString());
             //statement.setString(3, item.getCustomer_id()); todo
             statement.setFloat(4,  item.getMotorhomeId());
 
