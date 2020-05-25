@@ -1,7 +1,7 @@
 package rme.project.Repository.implementations;
 
-import rme.project.Repository.interfaces.SalesRepo;
+import rme.project.Repository.interfaces.ISalesRepo;
 
-public class SalesRepoImpl implements SalesRepo
+public class SalesRepoImpl implements ISalesRepo
 {
 }

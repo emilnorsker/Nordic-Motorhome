@@ -3,5 +3,5 @@
  */
 package rme.project.Repository.interfaces;
 
-public interface ReservationRepo {
+public interface ISalesRepo{
 }

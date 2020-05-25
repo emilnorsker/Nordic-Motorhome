@@ -2,7 +2,6 @@ package rme.project.Connection;
 /**
  * @author Rasmus Wedelheim
  */
-package rme.project.Util;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,7 +15,8 @@ public class DBConnection {
 
     private static Connection conn;
 
-    public static Connection getDatabaseConnection() throws ClassNotFoundException {
+    public static Connection getDatabaseConnection()
+    {
 
         if (conn != null) return conn;
 
