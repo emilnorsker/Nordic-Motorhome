@@ -32,6 +32,7 @@ public class MotorhomeRepoIMPL implements IMotorhomeRepo
             statement.setFloat(4, motorhome.getPrice());
 
             statement.executeUpdate();
+            item = motorhome;
             flag = true;
         }
         catch (Exception e)
