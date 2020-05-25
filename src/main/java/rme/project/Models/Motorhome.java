@@ -24,7 +24,7 @@ public class Motorhome {
     public Motorhome(){
 
     }
-    public Motorhome(int ID, String brand, String model, String licensePlate, Float price)
+    public Motorhome(int ID, String brand, String model, String licensePlate, float price)
         {
         this.id = ID;
         this.model = model;
