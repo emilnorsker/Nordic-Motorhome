@@ -1,0 +1,27 @@
+#noscroll {
+    overflow-y: hidden;
+}
+.indexjumbotron {
+    background: url('background.png') no-repeat center center;
+    background-size: auto;
+    height: 1080px;
+}
+
+.movedown {
+    padding-top: 10%;
+}
+#navbar {
+    position: absolute;
+    justify-content: center;
+    left: 500px;
+}
+
+.footy{
+    position: center;
+    padding-top: 2%;
+}
+
+#row {
+    padding-left: 2%;
+    padding-right: 2%;
+}

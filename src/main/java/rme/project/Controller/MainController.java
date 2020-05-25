@@ -25,5 +25,12 @@ public class MainController {
         return "motorhomes";
     }
 
+    @GetMapping("/home")
+    public String home(){
+
+        return "home";
+    }
+
+
 
 }
