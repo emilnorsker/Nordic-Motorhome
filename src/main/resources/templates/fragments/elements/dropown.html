@@ -1,0 +1,14 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml"> <!--@LINK   https://getbootstrap.com/docs/4.5/components/navs/-->
+
+<div th:fragment="dropdown_selector(list, selectable)"> <!-- constructor, use a map of name and item_id-->
+    <div class="dropdown">
+        <div th:each="entry : ${list}">
+            <input type="checkbox" th:id="${entry.value}" th:value="${entry.value} " th:name="${entry.value}" >
+            <label class="dropdown-item" th:for="${entry.value}"  th:text="${entry.key}" ></label>
+
+            <input type="checkbox" id="${entry.value}" value="${entry.value}" name="${entry.value}" >
+            <label class="dropdown-item" for="${entry.value}" >${entry.key}</label>
+
+        </div>
+    </div>
+</div>
