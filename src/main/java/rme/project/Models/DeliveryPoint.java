@@ -8,5 +8,5 @@ public class DeliveryPoint {
     String address;
     int reservation_id;
 
-    //Calculation of km from office could be implemented with Googles API for Distance Matrix https://developers.google.com/maps/documentation/distance-matrix/intro?hl=da
+    //Calculation of km from office could be implemented with Google's API for Distance Matrix https://developers.google.com/maps/documentation/distance-matrix/intro?hl=da
 }

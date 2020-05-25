@@ -7,12 +7,14 @@ public class Sale {
     int reservation_id;
     LocalDate date;
     float amount;
+    int user_id;
 
-    public Sale(int sale_id, int reservation_id, LocalDate date, float amount) {
+    public Sale(int sale_id, int reservation_id, LocalDate date, float amount, int user_id) {
         this.sale_id = sale_id;
         this.reservation_id = reservation_id;
         this.date = date;
         this.amount = amount;
+        this.user_id = user_id;
     }
 
     /**************************************
@@ -49,5 +51,13 @@ public class Sale {
 
     public void setAmount(float amount) {
         this.amount = amount;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 }
