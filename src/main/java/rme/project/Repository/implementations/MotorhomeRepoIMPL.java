@@ -29,7 +29,7 @@ public class MotorhomeRepoIMPL implements MotorhomeRepo {
 
                 statement.setString(1, motorhome.getModel());
                 statement.setString(2, motorhome.getBrand());
-                statement.setString(3, motorhome.getImageURL());
+                statement.setString(    3, motorhome.getImageURL());
                 statement.setFloat(4, motorhome.getPrice());
 
                 statement.executeUpdate();

@@ -26,7 +26,6 @@ public class MainController {
     @GetMapping("/motorhomes")
     public String motorhomes(Model model){
         model.addAttribute("motorhomes", motorRepo.readAll());
-        System.out.println(motorRepo.readAll().get(0).getModel());
         return "motorhomes";
     }
 
