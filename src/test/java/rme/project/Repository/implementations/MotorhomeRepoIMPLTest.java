@@ -13,7 +13,7 @@ class MotorhomeRepoIMPLTest {
     void create()
     {
         //assign
-        Motorhome expected = new Motorhome("brand","model", "abc12345678", 1f, "someLocation" );
+        Motorhome expected = new Motorhome(1, "brand","model", "abc12345678", 1f);
         Motorhome actual;
 
         MotorhomeRepoIMPL repo = new MotorhomeRepoIMPL();
