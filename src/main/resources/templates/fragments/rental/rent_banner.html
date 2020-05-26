@@ -1,11 +1,17 @@
+<style>
+    .jumbotron {
+        display: inline-flex;
+    }
+
+</style>
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 
 
 <div class="jumbotron" th:fragment="rent_banner(list, bool)">
     <div class="options">
-        <div th:insert="fragments/elements/dropdown :: dropdown_selector(${list}, ${bool}, ${list[0]})"></div>
+        <div th:insert="fragments/elements/dropdown :: selector(${list}, ${bool}, ${list[0]})"></div>
     </div>
-    <div class="calender">
+    <div class="calender"><!--th:replace="fragments/elements/calendar"-->
     </div>
     <div class="search">
     </div>
