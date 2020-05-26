@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Motorhome {
 
-    int ID; //Auto-incrementing
+    int motorhome_id; //Auto-incrementing
     String brand;
     String model;
     String licensePlate;    //UNIQUE useful for indexing, but has a small chance of being null. Chance of having spaces as well.
@@ -24,7 +24,7 @@ public class Motorhome {
     }
     public Motorhome(int ID, String brand, String model, String licensePlate, float price, String imagePath)
         {
-        this.ID = ID;
+        this.motorhome_id = ID;
         this.model = model;
         this.brand = brand;
         this.licensePlate = licensePlate;
@@ -37,12 +37,12 @@ public class Motorhome {
       GETTERS AND SETTERS BELOW
      **************************************/
 
-    public int getID() {
-        return ID;
+    public int getMotorhome_id() {
+        return motorhome_id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setMotorhome_id(int motorhome_id) {
+        this.motorhome_id = motorhome_id;
     }
 
     public String getBrand() {

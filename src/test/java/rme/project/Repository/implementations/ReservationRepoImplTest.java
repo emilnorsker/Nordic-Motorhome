@@ -1,9 +1,7 @@
 package rme.project.Repository.implementations;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.expression.spel.ast.Assign;
 import rme.project.Models.Accessory;
-import rme.project.Models.Motorhome;
 import rme.project.Models.Reservation;
 
 import java.time.LocalDate;
@@ -143,7 +141,7 @@ class ReservationRepoImplTest {
 
         //act
         repo.create(expected);
-        actual = repo.read(expected.getId());
+        actual = repo.read(expected.getReservation_id());
 
         //assert
         assertEquals(expected.getStartDate(), actual.getStartDate());
