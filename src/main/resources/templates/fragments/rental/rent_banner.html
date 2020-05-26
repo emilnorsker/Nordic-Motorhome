@@ -3,11 +3,7 @@
 
 <div class="jumbotron" th:fragment="rent_banner(list, bool)">
     <div class="options">
-        <ul>
-            <li>
-               <div th:insert="fragments/elements/dropdown_selector :: dropdown_selector(${list}, ${bool})"></div>
-            </li>
-        </ul>
+        <div th:insert="fragments/elements/dropdown :: dropdown_selector(${list}, ${bool}, ${list[0]})"></div>
     </div>
     <div class="calender">
     </div>

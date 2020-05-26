@@ -1,0 +1,38 @@
+<!--
+<style>
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-item {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 12px 16px;
+        z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-item {
+        display: block;
+    }
+</style>
+*/
+-->
+<html lang="en"  xmlns:th="http://www.thymeleaf.org"> <!--@LINK   https://getbootstrap.com/docs/4.5/components/navs/ -->
+
+<div th:fragment="dropdown_selector(list, selectable, name)"> <!-- constructor, use a map of name and item_id-->
+    <div class="dropdown" th:text="${name}">
+        <div class="dropdown-item" th:each="item : ${list}">
+            <label class=dropdown-item th:for="${item}"  th:text="${item}" ></label>
+            <input class=dropdown-item type="checkbox" th:id="${item}" th:value="${item} " th:name="${item}" >
+        </div>
+    </div>
+</div>
+
+
+<!--
+
+-->
