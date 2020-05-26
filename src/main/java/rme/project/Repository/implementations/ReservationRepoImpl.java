@@ -14,11 +14,10 @@ import java.util.List;
 
 public class ReservationRepoImpl implements IReservationRepo
 {
-
+    boolean flag = false;
     Connection conn = DBConnection.getDatabaseConnection();
     @Override
     public boolean create(Reservation item) {
-        boolean flag = false;
         try
         {
 
@@ -106,13 +105,15 @@ public class ReservationRepoImpl implements IReservationRepo
     @Override
     public boolean update(Reservation item)
     {
-        boolean flag = false;
         try
         {
             PreparedStatement statement = conn.prepareStatement("UPDATE reservation SET start_date = ?, end_date = ?, customer_id =?, motorhomes_id =? WHERE id = ?");
 
-            statement.setString(1, item.getStartDate().toString());
-            statement.setString(2, item.getEndDate().toString());
+            statement.setDate(1, java.sql.Date.valueOf(item.getStartDate())); //Converting LocalDate to sql.Date
+            statement.setDate(1, java.sql.Date.valueOf(item.getEndDate())); //Converting LocalDate to sql.Date
+
+            //statement.setString(1, item.getStartDate().toString());
+            //statement.setString(2, item.getEndDate().toString());
             //statement.setString(3, item.getCustomer_id()); todo
             statement.setFloat(4,  item.getMotorhomeId());
             //statement.setInt(5, item.getId());
@@ -133,10 +134,10 @@ public class ReservationRepoImpl implements IReservationRepo
     @Override
     public boolean delete(int id)
     {
-        boolean flag = false;
+
         try
         {
-            PreparedStatement statement = conn.prepareStatement("DELETE FROM motorhome WHERE id=?");
+            PreparedStatement statement = conn.prepareStatement("DELETE FROM reservation WHERE id=?");
             statement.setInt(1, id);
             statement.executeUpdate();
             flag = true;

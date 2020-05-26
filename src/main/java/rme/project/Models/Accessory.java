@@ -3,7 +3,7 @@ package rme.project.Models;
 import java.util.List;
 
 public class Accessory {
-    int id;
+    int accessory_id;
     String name;
     float price;
     List<Motorhome> motorhomesList; //TODO make Junction table?
@@ -11,13 +11,13 @@ public class Accessory {
 
     //TODO Skal accessories have startDate og endDate så de ikke bliver double booket? ja. Eller foreign key Reservation?
 
-    public Accessory(String name, float price, List<Motorhome> motorhomesList, String imagePath) {
+
+    public Accessory(int accessory_id, String name, float price, List<Motorhome> motorhomesList, String imagePath) {
+        this.accessory_id = accessory_id;
         this.name = name;
         this.price = price;
         this.motorhomesList = motorhomesList;
         this.imagePath = imagePath;
-
-        //TODO Hvad gør vi med ID
     }
 
     /**************************************
@@ -54,5 +54,13 @@ public class Accessory {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public int getAccessory_id() {
+        return accessory_id;
+    }
+
+    public void setAccessory_id(int accessory_id) {
+        this.accessory_id = accessory_id;
     }
 }

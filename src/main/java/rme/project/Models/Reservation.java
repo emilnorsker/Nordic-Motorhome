@@ -27,7 +27,7 @@ public class Reservation {
     }
 
     /**
-     *
+     *  TODO Skal vi checke her om motorhome og accessory ikke allerede er booket i den periode?
      * @param location String Address for pickup/delivery point
      * @param kmFromOffice Pickup kilometers away from office. (It's 0,70€ per kilometer.)
      * @param userId ID of user making reservation

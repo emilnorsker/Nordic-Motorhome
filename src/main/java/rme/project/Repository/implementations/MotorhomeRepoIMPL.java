@@ -43,7 +43,6 @@ public class MotorhomeRepoIMPL implements IMotorhomeRepo
         }
     }
 
-
     @Override
     public Motorhome read(int id)
     {
