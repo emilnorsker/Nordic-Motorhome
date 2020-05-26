@@ -24,13 +24,13 @@ public class Motorhome {
     public Motorhome(){
 
     }
-    public Motorhome(int ID, String brand, String model, String licensePlate, float price)
+    public Motorhome(int ID, String brand, String model, float price, String licensePlate)
         {
         this.ID = ID;
         this.model = model;
         this.brand = brand;
-        this.licensePlate = licensePlate;
         this.price = price;
+        this.licensePlate = licensePlate;
         this.imageURL = imageURL;
     }
 

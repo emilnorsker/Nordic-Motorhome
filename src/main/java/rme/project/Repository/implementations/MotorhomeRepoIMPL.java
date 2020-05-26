@@ -17,31 +17,25 @@ public class MotorhomeRepoIMPL implements IMotorhomeRepo
 
     Connection conn = DBConnection.getDatabaseConnection();
 
-
     @Override
-    public boolean create(Motorhome item) {
-        boolean flag = false;
-        try
-        {
-            Motorhome motorhome = new Motorhome();
-            PreparedStatement statement = conn.prepareStatement("INSERT INTO motorhomes (model, brand, image_file, price) VALUES (?,?,?,?)");
+    public Motorhome create(Motorhome motorhome) {
+        Motorhome motorhomeToCreate = new Motorhome();
+        try {
+            PreparedStatement createMotorhome = conn.prepareStatement("INSERT INTO motorhomes (ID,model, brand, price, licensePLate) VALUES (?,?,?,?,?)");
 
-            statement.setString(1, motorhome.getModel());
-            statement.setString(2, motorhome.getBrand());
-            statement.setString(3, motorhome.getImageURL());
-            statement.setFloat(4, motorhome.getPrice());
 
-            statement.executeUpdate();
-            item = motorhome;
-            flag = true;
+            createMotorhome.setInt(1, motorhome.getID());
+            createMotorhome.setString(2, motorhome.getModel());
+            createMotorhome.setString(3, motorhome.getBrand());
+            createMotorhome.setFloat(4, motorhome.getPrice());
+            createMotorhome.setString(5, motorhome.getLicensePlate());
+
+            createMotorhome.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        catch (Exception e)
-        {
-            System.out.println(e);
-        }
-        finally {
-            return flag;
-        }
+        return motorhomeToCreate;
     }
 
 
@@ -116,7 +110,7 @@ public class MotorhomeRepoIMPL implements IMotorhomeRepo
 
             statement.setString(1, item.getModel());
             statement.setString(2, item.getBrand());
-            statement.setString(3, item.getImageURL());
+            //statement.setString(3, item.getImageURL());
             statement.setFloat(4, item.getPrice());
             //statement.setInt(5, item.getId());
 

@@ -9,7 +9,7 @@ public interface CRUD <T>
 {
     //TODO Vi skal lige gå det her igennem med interfaces, jeg forstår ikke helt hvad det er vi vil
 
-        boolean create(T item);
+        Motorhome create(T item);
 
         T read(int id);
 
