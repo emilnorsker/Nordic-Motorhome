@@ -87,7 +87,7 @@ public class MotorhomeRepoIMPL implements IMotorhomeRepo
             {
                 Motorhome mh = new Motorhome();
                 // todo assign ID:
-                mh.setID(rs.getInt(1));
+                mh.setMotorhome_id(rs.getInt(1));
                 mh.setModel(rs.getString(2));
                 mh.setBrand(rs.getString(3));
                 //mh.setImageURL(rs.getString(4));

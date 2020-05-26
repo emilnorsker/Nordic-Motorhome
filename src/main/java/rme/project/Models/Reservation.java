@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class Reservation {
     @Id
-    int id;
+    int reservation_id;
     String location;
     double kmFromOffice;
     int userId;
@@ -45,7 +45,7 @@ public class Reservation {
         this.accessoryList = accessoryList;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.id = userId + motorhomeId + startDate.getMonthValue(); //TODO hvad siger i til sådan en unique composite ID?
+        this.reservation_id = userId + motorhomeId + startDate.getMonthValue(); //TODO hvad siger i til sådan en unique composite ID?
         this.numberOfDays = ChronoUnit.DAYS.between(startDate, endDate); //Calculates days length of the reservation
     }
 
@@ -109,12 +109,12 @@ public class Reservation {
         this.endDate = endDate;
     }
 
-    public int getId() {
-        return id;
+    public int getReservation_id() {
+        return reservation_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setReservation_id(int reservation_id) {
+        this.reservation_id = reservation_id;
     }
 
     public Long getNumberOfDays() {
