@@ -1,0 +1,48 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:fragment="updateModal(model1,brand1,price1,licensePlate1,id)">
+
+    <p>
+        <a type="button" style="color: dodgerblue;" data-toggle="modal" th:attr="data-target='#update' + ${id}" th:href="@{'/update/' + ${motorhome.ID}}">Update</a>
+    </p>
+
+
+    <div class="modal fade" th:id="update+${id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 style="color: black" class="modal-title" id="exampleModalLabel">Update Motorhome</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+
+                        <form action="/update" method="post">
+                            <div class="form-group">
+                                <input type="text" name="model" class="form-control" th:value="${model1}" th:placeholder="${model1}" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="brand" class="form-control" th:value="${brand1}" th:placeholder="${brand1}" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="price" class="form-control" th:value="${price1}" th:placeholder="${price1}" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="licensePlate" class="form-control" th:value="${licensePlate1}" th:placeholder="${licensePlate1}" >
+                            </div>
+                            <input type="hidden" name="id" th:value="${id}">
+                            <div th:text = "${id1}"></div>
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

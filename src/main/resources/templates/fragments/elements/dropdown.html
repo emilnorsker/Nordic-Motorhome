@@ -1,0 +1,39 @@
+<!-- link to script http://jsfiddle.net/xQqbR/1022/ -->
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="selector(list, selectable, name)">
+    <select class="select-toggle" multiple="multiple">
+        <option class="option"
+                th:each="type : ${list}"
+                th:id="${type}"
+                th:value="${type}"
+                th:text="${'Option ' + type}">
+        </option>
+        <option>option</option>
+        <option>option</option>
+        <option>option</option>
+        <option>option</option>
+        <option>option</option>
+        <option>option</option>
+        <option>option</option>
+    </select>
+<!-------------------------------------SCRIPTS--------------------------------------------->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('option').mousedown(function(e) {
+                e.preventDefault();
+                var originalScrollTop = $(this).parent().scrollTop();
+                console.log(originalScrollTop);
+                $(this).prop('selected', $(this).prop('selected') ? false : true);
+                var self = this;
+                $(this).parent().focus();
+                setTimeout(function() {
+                    $(self).parent().scrollTop(originalScrollTop);
+                }, 0);
+
+                return false;
+            });
+        });
+    </script>
+</div>
+
