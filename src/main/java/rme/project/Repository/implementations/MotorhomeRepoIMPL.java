@@ -100,31 +100,23 @@ public class MotorhomeRepoIMPL implements IMotorhomeRepo
             return motorhomes;
         }
     }
-
     @Override
-    public boolean update(Motorhome item) {
-        boolean flag = false;
-        try
-        {
-            PreparedStatement statement = conn.prepareStatement("UPDATE motorhomes SET model = ?, brand = ?, image_file =?, price =? WHERE id = ?");
+    public Motorhome update(Motorhome motorhome) {
+        Motorhome motorhomeToUpdate = new Motorhome();
+        try {
+            PreparedStatement statement = conn.prepareStatement("UPDATE motorhomes SET model = ?, brand = ?, price =?, licensePlate = ? WHERE id = ?");
 
-            statement.setString(1, item.getModel());
-            statement.setString(2, item.getBrand());
-            //statement.setString(3, item.getImageURL());
-            statement.setFloat(4, item.getPrice());
-            //statement.setInt(5, item.getId());
-
-
+            statement.setString(1, motorhome.getModel());
+            statement.setString(2, motorhome.getBrand());
+            statement.setFloat(3, motorhome.getPrice());
+            statement.setString(4, motorhome.getLicensePlate());
+            statement.setInt(5, motorhome.getID());
             statement.executeUpdate();
-            flag = true;
         }
-        catch (Exception e)
-        {
+        catch (Exception e){
             System.out.println(e);
         }
-        finally {
-            return flag;
-        }
+        return motorhomeToUpdate;
     }
 
     @Override

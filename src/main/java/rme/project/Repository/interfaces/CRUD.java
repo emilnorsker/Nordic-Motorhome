@@ -15,7 +15,7 @@ public interface CRUD <T>
 
         List<T> readAll();
 
-        boolean update(T item);
+        Motorhome update(T item);
 
         boolean delete(int id);
 

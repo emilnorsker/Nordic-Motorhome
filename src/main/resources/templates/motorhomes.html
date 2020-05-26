@@ -25,14 +25,21 @@
             <div class="col-sm p-3 mb-2 bg-light text-black">
                 <h7 id="row">Model</h7>
             </div>
+
             <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
                 <h7 id="row">Brand</h7>
             </div>
+
             <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
                 <h7 id="row">Price</h7>
             </div>
+
             <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
                 <h7 id="row">License Plate</h7>
+            </div>
+
+            <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
+                <h7 id="row">Update</h7>
             </div>
 
         </div>
@@ -63,7 +70,13 @@
                 </p>
             </div>
 
-        </div>
+            <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
+                <div th:each="motorhome :${motorhomes}">
+                    <a th:insert="fragments/update_modal :: updateModal(${motorhome.model}, ${motorhome.brand},${motorhome.price}, ${motorhome.licensePlate},${motorhome.ID})"></a>
+                </div>
+            </div>
+
+                    </div>
                     <div th:replace="fragments/create_modal">
                     </div>
                 </div>

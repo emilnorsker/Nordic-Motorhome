@@ -22,12 +22,11 @@
 */
 -->
 <html lang="en"  xmlns:th="http://www.thymeleaf.org"> <!--@LINK   https://getbootstrap.com/docs/4.5/components/navs/ -->
-
 <div th:fragment="dropdown_selector(list, selectable, name)"> <!-- constructor, use a map of name and item_id-->
     <div class="dropdown" th:text="${name}">
         <div class="dropdown-item" th:each="item : ${list}">
             <label class=dropdown-item th:for="${item}"  th:text="${item}" ></label>
-            <input class=dropdown-item type="checkbox" th:id="${item}" th:value="${item} " th:name="${item}" >
+            <input class=dropdown-item type="checkbox" th:id="${item}" th:value="${item} " th:name="${item}">
         </div>
     </div>
 </div>

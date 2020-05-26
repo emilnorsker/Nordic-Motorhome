@@ -48,6 +48,18 @@ public class MainController {
         return "redirect:/motorhomes";
     }
 
+    @GetMapping("/update")
+    public String showUpdatePage(){
+
+        return "update";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute Motorhome motorhome) throws SQLException {
+        motorRepo.update(motorhome);
+        return "redirect:/motorhomes";
+    }
+
 
 
 }
