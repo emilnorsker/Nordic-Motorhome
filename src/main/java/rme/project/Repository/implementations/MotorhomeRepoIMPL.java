@@ -118,7 +118,7 @@ public class MotorhomeRepoIMPL implements IMotorhomeRepo
         }
         return motorhomeToUpdate;
     }
-
+/*
     @Override
     public boolean delete(int id) {
         boolean flag = false;
@@ -137,7 +137,20 @@ public class MotorhomeRepoIMPL implements IMotorhomeRepo
             return flag;
         }
     }
+    */
 
+    @Override
+    public Motorhome delete(int id) {
+        try {
+            PreparedStatement statement = conn.prepareStatement("DELETE FROM motorhomes WHERE id=?");
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        return new Motorhome();
+    }
 
     @Override
     public int Search(int id) {

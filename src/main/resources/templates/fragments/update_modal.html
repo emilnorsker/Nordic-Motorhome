@@ -6,7 +6,7 @@
     </p>
 
 
-    <div class="modal fade" th:id="update+${id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" th:ID="update+${ID}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -31,8 +31,8 @@
                             <div class="form-group">
                                 <input type="text" name="licensePlate" class="form-control" th:value="${licensePlate1}" th:placeholder="${licensePlate1}" >
                             </div>
-                            <input type="hidden" name="id" th:value="${id}">
-                            <div th:text = "${id}"></div>
+                            <input type="hidden" name="ID" th:value="${ID}">
+                            <div th:text = "${ID}"></div>
 
 
                             <div class="modal-footer">
