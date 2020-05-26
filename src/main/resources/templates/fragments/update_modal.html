@@ -1,8 +1,8 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<div th:fragment="updateModal(model1,brand1,price1,licensePlate1,id1)">
+<div th:fragment="updateModal(model1,brand1,price1,licensePlate1,id)">
 
     <p>
-        <a type="button" style="color: dodgerblue;" data-toggle="modal" th:attr="data-target='#update' + ${ID}" th:href="@{'/update/' + ${motorhome.ID}}">Update</a>
+        <a type="button" style="color: dodgerblue;" data-toggle="modal" th:attr="data-target='#update' + ${id}" th:href="@{'/update/' + ${motorhome.ID}}">Update</a>
     </p>
 
 
@@ -32,7 +32,7 @@
                                 <input type="text" name="licensePlate" class="form-control" th:value="${licensePlate1}" th:placeholder="${licensePlate1}" >
                             </div>
                             <input type="hidden" name="id" th:value="${id}">
-                            <div th:text = "${id}"></div>
+                            <div th:text = "${id1}"></div>
 
 
                             <div class="modal-footer">

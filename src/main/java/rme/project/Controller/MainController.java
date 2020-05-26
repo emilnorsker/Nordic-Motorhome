@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import rme.project.Models.Motorhome;
 import rme.project.Repository.implementations.MotorhomeRepoIMPL;
@@ -57,6 +58,12 @@ public class MainController {
     @PostMapping("/update")
     public String update(@ModelAttribute Motorhome motorhome) throws SQLException {
         motorRepo.update(motorhome);
+        return "redirect:/motorhomes";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") int id){
+        motorRepo.delete(id);
         return "redirect:/motorhomes";
     }
 

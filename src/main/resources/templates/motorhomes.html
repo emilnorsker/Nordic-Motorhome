@@ -5,11 +5,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../main.css">
 
+
     <title>Title</title>
 </head>
 <body>
-
-
 
     <div class="indexjumbotron">
         <div class="movedown">
@@ -40,6 +39,10 @@
 
             <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
                 <h7 id="row">Update</h7>
+            </div>
+
+            <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
+                <h7 id="row">Delete</h7>
             </div>
 
         </div>
@@ -74,6 +77,12 @@
                 <div th:each="motorhome :${motorhomes}">
                     <a th:insert="fragments/update_modal :: updateModal(${motorhome.model}, ${motorhome.brand},${motorhome.price}, ${motorhome.licensePlate},${motorhome.ID})"></a>
                 </div>
+            </div>
+
+            <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
+                <p th:each="motorhome :${motorhomes}">
+                    <a style="color: lightcoral;" th:href="@{'/delete/' + ${motorhome.ID}}">Delete</a>
+                </p>
             </div>
 
                     </div>

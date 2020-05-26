@@ -120,24 +120,17 @@ public class MotorhomeRepoIMPL implements IMotorhomeRepo
     }
 
     @Override
-    public boolean delete(int id) {
-        boolean flag = false;
-        try
-        {
-            PreparedStatement statement = conn.prepareStatement("DELETE FROM motorhome WHERE id=?");
+    public Motorhome delete(int id) {
+        try {
+            PreparedStatement statement = conn.prepareStatement("DELETE FROM motorhomes WHERE id=?");
             statement.setInt(1, id);
             statement.executeUpdate();
-            flag = true;
         }
-        catch (Exception e)
-        {
+        catch (Exception e){
             System.out.println(e);
         }
-        finally {
-            return flag;
-        }
+        return new Motorhome();
     }
-
 
     @Override
     public int Search(int id) {

@@ -17,7 +17,7 @@ public interface CRUD <T>
 
         Motorhome update(T item);
 
-        boolean delete(int id);
+        Motorhome delete(int id);
 
         //TODO Vi skal lige kigge på det her sammen, er ikke sikker på hvad parametre de skal tage
 
