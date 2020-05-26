@@ -1,0 +1,63 @@
+package rme.project.Models;
+
+import java.time.LocalDate;
+
+public class Sale {
+    int sale_id;
+    int reservation_id;
+    LocalDate date;
+    float amount;
+    int user_id;
+
+    public Sale(int sale_id, int reservation_id, LocalDate date, float amount, int user_id) {
+        this.sale_id = sale_id;
+        this.reservation_id = reservation_id;
+        this.date = date;
+        this.amount = amount;
+        this.user_id = user_id;
+    }
+
+    /**************************************
+     GETTERS AND SETTERS BELOW
+     **************************************/
+
+    public int getSale_id() {
+        return sale_id;
+    }
+
+    public void setSale_id(int sale_id) {
+        this.sale_id = sale_id;
+    }
+
+    public int getReservation_id() {
+        return reservation_id;
+    }
+
+    public void setReservation_id(int reservation_id) {
+        this.reservation_id = reservation_id;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public float getAmount() {
+        return amount;
+    }
+
+    public void setAmount(float amount) {
+        this.amount = amount;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+}

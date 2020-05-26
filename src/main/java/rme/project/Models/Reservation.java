@@ -27,8 +27,8 @@ public class Reservation {
     }
 
     /**
-     *
-     * @param location Address for pickup/delivery point
+     *  TODO Skal vi checke her om motorhome og accessory ikke allerede er booket i den periode?
+     * @param location String Address for pickup/delivery point
      * @param kmFromOffice Pickup kilometers away from office. (It's 0,70€ per kilometer.)
      * @param userId ID of user making reservation
      * @param motorhomeId
@@ -46,7 +46,7 @@ public class Reservation {
         this.startDate = startDate;
         this.endDate = endDate;
         this.id = userId + motorhomeId + startDate.getMonthValue(); //TODO hvad siger i til sådan en unique composite ID?
-        this.numberOfDays = ChronoUnit.DAYS.between(startDate, endDate);
+        this.numberOfDays = ChronoUnit.DAYS.between(startDate, endDate); //Calculates days length of the reservation
     }
 
     /**************************************
@@ -107,5 +107,21 @@ public class Reservation {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Long getNumberOfDays() {
+        return numberOfDays;
+    }
+
+    public void setNumberOfDays(Long numberOfDays) {
+        this.numberOfDays = numberOfDays;
     }
 }
