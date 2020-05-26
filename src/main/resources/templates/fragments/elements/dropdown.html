@@ -1,9 +1,10 @@
 
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="selector(list, selectable, name)">
-    <select >
-        <option th:each="type : ${list}"
+    <select  multiple="multiple">
+        <option th:each="type : ${list}" th:checked="false"
                 th:value="${type}"
-                th:text="${'option ' + type}">Wireframe</option>
+                th:text="${'Option ' + type}">
+        </option>
     </select>
 </div>
