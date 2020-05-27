@@ -3,9 +3,10 @@
 
 <div class="banner" th:fragment="rent_banner(motorhomes)">
     <div class="container">
-        <form>
             <div class="row">
+                <div class="choose-model" th:insert=" fragments/elements/dropdown.html ::selector(${motorhomes}, 'Choose Model', 'search-form')"></div>
                 <!-- replace by :     Motorhome model/brand
+
                 <input type="text" name="dep" class="textboxstyle" id="dep" placeholder="From City or airport">
            -->
             </div>
@@ -17,7 +18,6 @@
             <div class="row btn">
                 <input type="Submit" name="submit" value="search" class="btn btn-info cst-btn" id="srch">
             </div>
-        </form>
     </div>
 </div>
 
