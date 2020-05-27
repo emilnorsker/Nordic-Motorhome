@@ -2,32 +2,26 @@ package rme.project.Models;
 
 import java.time.LocalDate;
 
+//sale is a junction table with contact and reservation ids
 public class Sale {
-    int sale_id;
+    int contact_id;
     int reservation_id;
     LocalDate date;
     float amount;
-    int user_id;
 
-    public Sale(int sale_id, int reservation_id, LocalDate date, float amount, int user_id) {
-        this.sale_id = sale_id;
+
+    public Sale(int reservation_id, LocalDate date, float amount, int contact_id) {
+
         this.reservation_id = reservation_id;
         this.date = date;
         this.amount = amount;
-        this.user_id = user_id;
+        this.contact_id = contact_id;
     }
 
     /**************************************
      GETTERS AND SETTERS BELOW
      **************************************/
 
-    public int getSale_id() {
-        return sale_id;
-    }
-
-    public void setSale_id(int sale_id) {
-        this.sale_id = sale_id;
-    }
 
     public int getReservation_id() {
         return reservation_id;
@@ -53,11 +47,11 @@ public class Sale {
         this.amount = amount;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getContact_id() {
+        return contact_id;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setContact_id(int contact_id) {
+        this.contact_id = contact_id;
     }
 }
