@@ -13,6 +13,9 @@ import java.util.ListIterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @Author Mikkel
+ */
 class ReservationRepoImplTest {
     @Test
     void create() {
@@ -49,25 +52,4 @@ class ReservationRepoImplTest {
     @Test
     void delete() {
     }
-/**
-    @Test
-    void create() {
-        //assign
-        List<Accessory> accessoriesList = new List
-        Reservation expected = new Reservation("Randomvej 777", 22.2, 2, 0, accessoriesList, LocalDate.parse("1990-05-22"), LocalDate.parse("2020-05-22")
-        );
-        Reservation actual;
-
-        ReservationRepoImpl repo = new ReservationRepoImpl();
-
-        //act
-        repo.create(expected);
-        actual = repo.read(expected.getReservation_id());
-
-        //assert
-        assertEquals(expected.getStartDate(), actual.getStartDate());
-        assertEquals(expected.getNumberOfDays(), actual.getNumberOfDays());
-    }
-    **/
-
 }

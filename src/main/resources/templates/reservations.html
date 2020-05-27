@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../main.css">
 
 
-    <title>Title</title>
+    <title>Reservations</title>
 </head>
 <body>
 
@@ -58,7 +58,7 @@
                             <span id="row" style="color: black" th:text="${reservation.location}"/>
                         </p>
                     </div>
-<!--
+
                     <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
                         <p th:each="reservation :${reservations}">
                             <span id="row" style="color: black" th:text="${reservation.kmFromOffice}"/>
@@ -82,21 +82,22 @@
                             <span id="row" style="color: black" th:text="${reservation.numberOfDays}"/>
                         </p>
                     </div>
-
+<!--
+                    TODO I stedet for update måske en knap til accessories og pris? måske kaldet details
                     <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
                         <div th:each="reservation :${reservations}">
                             <a th:insert="fragments/update_modal :: updateModal(${reservation.location}, ${reservation.kmFromOffice},${reservation.endDate}, ${reservation.numberOfDays},${reservation.reservation_id})"></a>
                         </div>
                     </div>
-
+-->
                     <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
                         <p th:each="reservation :${reservations}">
                             <a style="color: lightcoral;" th:href="@{'/delete/' + ${reservation.reservation_id}}">Delete</a>
                         </p>
                     </div>
--->
+
                 </div>
-                <div th:replace="fragments/create_modal">
+<!--                <div th:replace="fragments/create_modal">   TODO add "create button" to link to /booking    -->
                 </div>
             </div>
         </div>
