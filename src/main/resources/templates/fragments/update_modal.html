@@ -2,7 +2,7 @@
 <div th:fragment="updateModal(model1,brand1,price1,licensePlate1,id)">
 
     <p>
-        <a type="button" style="color: dodgerblue;" data-toggle="modal" th:attr="data-target='#update' + ${id}" th:href="@{'/update/' + ${motorhome.ID}}">Update</a>
+        <a type="button" style="color: dodgerblue;" data-toggle="modal" th:attr="data-target='#update' + ${id}" th:href="@{'/update/' + ${motorhome.motorhome_id}}">Update</a>
     </p>
 
 
@@ -31,9 +31,8 @@
                             <div class="form-group">
                                 <input type="text" name="licensePlate" class="form-control" th:value="${licensePlate1}" th:placeholder="${licensePlate1}" >
                             </div>
-                            <input type="hidden" name="id" th:value="${id}">
+                            <input type="hidden" name="motorhome_id" th:value="${motorhome_id}">
                             <div th:text = "${id1}"></div>
-
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

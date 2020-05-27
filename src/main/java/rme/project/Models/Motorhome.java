@@ -9,12 +9,12 @@ import java.util.List;
 public class Motorhome {
 
     int motorhome_id; //Auto-incrementing
-    String brand;
     String model;
-    String licensePlate;    //UNIQUE useful for indexing, but has a small chance of being null. Chance of having spaces as well.
-    float price;    //Should be BigDecimal for precision
+    String brand;
+    String licensePlate; //UNIQUE useful for indexing, but has a small chance of being null. Chance of having spaces as well.
+    float price; //Should be BigDecimal for precision
 
-    String imagePath;
+    //String imagePath;
 
     List<Reservation> reservations;
     List<Accessory> accessories;
@@ -22,14 +22,14 @@ public class Motorhome {
     public Motorhome(){
 
     }
-    public Motorhome(int ID, String brand, String model, String licensePlate, float price, String imagePath)
+    public Motorhome(int id, String brand, String model, String licensePlate, float price)
         {
-        this.motorhome_id = ID;
+        this.motorhome_id = id;
         this.model = model;
         this.brand = brand;
-        this.licensePlate = licensePlate;
         this.price = price;
-        this.imagePath = imagePath;
+        this.licensePlate = licensePlate;
+
     }
 
 
@@ -77,13 +77,6 @@ public class Motorhome {
         this.price = price;
     }
 
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
 
     public List<Reservation> getReservations() {
         return reservations;
