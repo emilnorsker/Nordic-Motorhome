@@ -6,13 +6,15 @@
             <div class="row">
                 <div class="choose-model" th:insert=" fragments/elements/dropdown.html ::selector(${motorhomes}, 'Choose Model', 'search-form')"></div>
                 <!-- replace by :     Motorhome model/brand
-           -->
+
+
             </div>
             <div class="row">
-                <div class="choose-model" th:insert=" fragments/elements/dropdown.html ::selector(${locations}, 'Choose location', 'search-form')"></div>
-
+                <div class="choose-model" th:insert=" fragments/elements/selector.html ::selector(${locations}, 'Choose Model', 'search-form')"></div>
+                -->
 
                 <!--  replace vy :    PickupLocation
+                 <input type="text" name="dep" class="textboxstyle" id="arival" placeholder="To City or airport"
            -->
             </div>
             <div class="row btn">

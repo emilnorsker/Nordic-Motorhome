@@ -1,10 +1,8 @@
 package rme.project.Controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import rme.project.Models.Motorhome;
 import rme.project.Models.Reservation;
 import rme.project.Repository.implementations.MotorhomeRepoIMPL;
@@ -12,6 +10,8 @@ import rme.project.Repository.implementations.ReservationRepoImpl;
 
 import java.sql.SQLException;
 
+@Controller
+@RequestMapping("/reservations")
 public class ReservationController {
     private ReservationRepoImpl reservationRepo;
 
@@ -19,7 +19,7 @@ public class ReservationController {
         reservationRepo = new ReservationRepoImpl();
     }
 
-    @GetMapping("/reservations")
+    @GetMapping("")
     public String reservations(Model model){
         model.addAttribute("reservations", reservationRepo.readAll());
         return "reservations";
