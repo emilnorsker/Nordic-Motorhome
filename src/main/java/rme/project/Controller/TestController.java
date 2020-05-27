@@ -13,6 +13,7 @@ public class TestController
     public String test(Model model)
     {
         model.addAttribute("motorhomeList", new String[] {"1", "2", "3", "4"});
+        model.addAttribute("locations", new String[] {"vej 1", "vej 2", "vej 3", "vej 4"});
         return "test";
     }
 }

@@ -1,24 +1,15 @@
 <!-- link to script http://jsfiddle.net/xQqbR/1022/ -->
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="selector(list, name, formName)">
-    <form action="/action_page.php">
-        <label th:for="${name}"></label>
         <select th:name="${name}" th:id="${name}" class="select-toggle" multiple="multiple">
             <option class="option"
                     th:each="type : ${list}"
                     th:id="${type}"
                     th:value="${type}"
-                    th:text="${'Option ' + type}"> Wireframe
+                    th:text="${'Option ' + type}">wireframe
+
             </option>
-            <option>option</option>
-            <option>option</option>
-            <option>option</option>
-            <option>option</option>
-            <option>option</option>
-            <option>option</option>
-            <option>option</option>
         </select>
-    </form>
 
 <!-------------------------------------SCRIPTS--------------------------------------------->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -44,12 +35,7 @@
     <!-------------------------------------Style--------------------------------------------->
     <style>
     </style>
-    <select class="select-toggle" name="cars" id="cars">
-        <option class="option" value="volvo">Volvo</option>
-        <option class="option" value="saab">Saab</option>
-        <option class="option" value="opel">Opel</option>
-        <option class="option" value="audi">Audi</option>
-    </select>
+
 
 </div>
 
