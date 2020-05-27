@@ -10,33 +10,18 @@ import rme.project.Models.Motorhome;
 import rme.project.Repository.implementations.MotorhomeRepoIMPL;
 
 import java.sql.SQLException;
-
 @Controller
-public class MainController {
+public class MotorhomeController {
     private MotorhomeRepoIMPL motorRepo;
 
     {
         motorRepo = new MotorhomeRepoIMPL();
     }
-
-    @GetMapping("/")
-    public String index(){
-
-        return "index";
-    }
-
     @GetMapping("/motorhomes")
     public String motorhomes(Model model){
         model.addAttribute("motorhomes", motorRepo.readAll());
         return "motorhomes";
     }
-
-    @GetMapping("/home")
-    public String home(){
-
-        return "home";
-    }
-
     @GetMapping("/create")
     public String showCreatePage(){
 
@@ -66,7 +51,5 @@ public class MainController {
         motorRepo.delete(id);
         return "redirect:/motorhomes";
     }
-
-
 
 }

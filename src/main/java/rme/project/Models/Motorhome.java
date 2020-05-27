@@ -8,11 +8,11 @@ import java.util.List;
  */
 public class Motorhome {
 
-    int motorhome_id; //Auto-incrementing
-    String model;
-    String brand;
-    String licensePlate; //UNIQUE useful for indexing, but has a small chance of being null. Chance of having spaces as well.
-    float price; //Should be BigDecimal for precision
+    public int motorhome_id; //Auto-incrementing
+    public String model;
+    public String brand;
+    public String licensePlate; //UNIQUE useful for indexing, but has a small chance of being null. Chance of having spaces as well.
+    public float price; //Should be BigDecimal for precision
 
     //String imagePath;
 
