@@ -12,8 +12,7 @@ public class TestController
     @GetMapping("/test")
     public String test(Model model)
     {
-        model.addAttribute("map", new String[] {"1", "2", "3", "4"});
-        model.addAttribute("bool", false);
+        model.addAttribute("motorhomeList", new String[] {"1", "2", "3", "4"});
         return "test";
     }
 }
