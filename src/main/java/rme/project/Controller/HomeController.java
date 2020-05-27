@@ -16,4 +16,10 @@ public class HomeController {
 
         return "home";
     }
+
+    @GetMapping("/rent")
+    public String rent(){
+
+        return "rent";
+    }
 }
