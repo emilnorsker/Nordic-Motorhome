@@ -1,0 +1,36 @@
+#noscroll {
+    overflow-y: hidden;
+}
+.indexjumbotron {
+    background: url('background.png') no-repeat center center; /* Source: https://dwpfufk2krixz.cloudfront.net/sites/default/files/2019-03/small_motorhome_driving_on_a_road_as_sun_is_rising.jpg*/
+    background-size: auto;
+    height: 1080px;
+}
+
+.movedown {
+    padding-top: 10%;
+}
+#navbar {
+    position: absolute;
+    justify-content: center;
+    left: 500px;
+}
+
+.footy{
+    position: center;
+    padding-top: 2%;
+}
+
+#row {
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+#left{
+    padding-left: 3%;
+}
+
+#up{
+    top: 100px;
+}
+
