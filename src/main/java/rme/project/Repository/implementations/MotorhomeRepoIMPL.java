@@ -18,8 +18,8 @@ public class MotorhomeRepoIMPL implements IMotorhomeRepo
     Connection conn = DBConnection.getDatabaseConnection();
 
     @Override
-    public Motorhome create(Motorhome motorhome) {
-        Motorhome motorhomeToCreate = new Motorhome();
+    public void create(Motorhome motorhome) {
+
         try {
             PreparedStatement createMotorhome = conn.prepareStatement("INSERT INTO motorhomes (motorhome_id,model, brand, price, licensePLate) VALUES (?,?,?,?,?)");
 
@@ -35,7 +35,7 @@ public class MotorhomeRepoIMPL implements IMotorhomeRepo
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return motorhomeToCreate;
+
     }
 
 
@@ -101,8 +101,7 @@ public class MotorhomeRepoIMPL implements IMotorhomeRepo
         }
     }
     @Override
-    public Motorhome update(Motorhome motorhome) {
-        Motorhome motorhomeToUpdate = new Motorhome();
+    public void update(Motorhome motorhome) {
         try {
             PreparedStatement statement = conn.prepareStatement("UPDATE motorhomes SET model = ?, brand = ?, price =?, licensePlate = ? WHERE motorhome_id = ?");
 
@@ -116,11 +115,10 @@ public class MotorhomeRepoIMPL implements IMotorhomeRepo
         catch (Exception e){
             System.out.println(e);
         }
-        return motorhomeToUpdate;
     }
 
     @Override
-    public Motorhome delete(int id) {
+    public void delete(int id) {
         try {
             PreparedStatement statement = conn.prepareStatement("DELETE FROM motorhomes WHERE motorhome_id=?");
             statement.setInt(1, id);
@@ -129,7 +127,7 @@ public class MotorhomeRepoIMPL implements IMotorhomeRepo
         catch (Exception e){
             System.out.println(e);
         }
-        return new Motorhome();
+
     }
 
     @Override
