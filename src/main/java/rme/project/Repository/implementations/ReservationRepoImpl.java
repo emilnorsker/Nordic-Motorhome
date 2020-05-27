@@ -20,7 +20,7 @@ public class ReservationRepoImpl implements IReservationRepo
     public void create(Reservation item) {
         try
         {
-            PreparedStatement statement = conn.prepareStatement("INSERT INTO reservation (reservation_id, location, kmFromOffice, start_date, end_date, numberOfDays,motorhomes_id) VALUES (?,?,?,?,?,?,?)");
+            PreparedStatement statement = conn.prepareStatement("INSERT INTO reservations (reservation_id, location, kmFromOffice, startDate, endDate, numberOfDays,motorhome_id) VALUES (?,?,?,?,?,?,?)");
 
             statement.setInt(1, item.getReservation_id());
             statement.setString(2, item.getLocation());
@@ -45,7 +45,7 @@ public class ReservationRepoImpl implements IReservationRepo
         try
         {
             reservation = new Reservation();
-            PreparedStatement statement = conn.prepareStatement("SELECT * FROM reservation WHERE id=?");
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM reservations WHERE reservation_id=?");
 
             statement.setInt(1,id);
 
@@ -78,7 +78,7 @@ public class ReservationRepoImpl implements IReservationRepo
         List<Reservation> reservationsList = new ArrayList<>();
         try
         {
-            PreparedStatement statement = conn.prepareStatement("SELECT * FROM reservation");
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM reservations");
             ResultSet rs = statement.executeQuery();
 
             while (rs.next())
@@ -110,7 +110,7 @@ public class ReservationRepoImpl implements IReservationRepo
     {
         try
         {
-            PreparedStatement statement = conn.prepareStatement("UPDATE reservations SET location = ?, kmFromOffice = ?, startDate = ?, endDate = ?, numberOfDays = ?, motorhome_id =? WHERE id = ?");
+            PreparedStatement statement = conn.prepareStatement("UPDATE reservations SET location = ?, kmFromOffice = ?, startDate = ?, endDate = ?, numberOfDays = ?, motorhome_id =? WHERE reservation_id = ?");
 
             statement.setString(1, item.getLocation());
             statement.setDouble(2, item.getKmFromOffice());
@@ -134,7 +134,7 @@ public class ReservationRepoImpl implements IReservationRepo
     {
         try
         {
-            PreparedStatement statement = conn.prepareStatement("DELETE FROM reservation WHERE id=?");
+            PreparedStatement statement = conn.prepareStatement("DELETE FROM reservations WHERE reservation_id=?");
             statement.setInt(1, id);
             statement.executeUpdate();
 
