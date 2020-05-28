@@ -53,15 +53,15 @@ public class BookingController
     }
 
 
-    @GetMapping("/search/{model}{start}{end}")
-    public String learch(@PathVariable("model") String model, @PathVariable("start")String start,@PathVariable("end")String end)
+    @GetMapping("/search/{start}{end}{model}")
+    public String learch(@PathVariable("model") String model, @PathVariable("start")LocalDate start,@PathVariable("end")LocalDate end)
     {
 
         System.out.println(start);
         return "/booking";
     }
-    @PostMapping("/search/{model}{start}{end}")
-    public String search(@PathVariable("model") String model, @PathVariable("start")String start,@PathVariable("end")String end)
+    @PostMapping("/search/{start}{end}{model}")
+    public String search(@PathVariable("model") String model, @PathVariable("start")LocalDate start,@PathVariable("end")LocalDate end)
     {
 
         System.out.println(start);
