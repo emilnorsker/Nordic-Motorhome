@@ -1,19 +1,12 @@
 package rme.project.Controller;
 
-import org.apache.tomcat.jni.Error;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import rme.project.Models.Contact;
 import rme.project.Models.Motorhome;
-import rme.project.Models.Reservation;
 import rme.project.Repository.implementations.BookingRepoImpl;
 import rme.project.Repository.implementations.MotorhomeRepoIMPL;
-import rme.project.Repository.implementations.ReservationRepoImpl;
-import rme.project.Repository.interfaces.IMotorhomeRepo;
-import rme.project.Repository.interfaces.IReservationRepo;
-
-import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -79,31 +72,6 @@ public class BookingController
         return "redirect:/booking/contacts";
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public List<Motorhome> getModels()
     {
         List<String> models = new ArrayList<String>();
@@ -116,44 +84,12 @@ public class BookingController
                 typeModels.add(M);
             }
         }
-
         return typeModels;
-
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @GetMapping("/search/{start}{end}{model}")
-    public String learch(@PathVariable("model") String model, @PathVariable("start")LocalDate start,@PathVariable("end")LocalDate end)
-    {
-
-        System.out.println(start);
-        return "/booking";
-    }
     @PostMapping("/search/{start}{end}{model}")
-    public String search(@PathVariable("model") String model, @PathVariable("start")LocalDate start,@PathVariable("end")LocalDate end)
+    public String search(@PathVariable("start")LocalDate start,@PathVariable("end")LocalDate end, @PathVariable("model") String model)
     {
 
         System.out.println(start);

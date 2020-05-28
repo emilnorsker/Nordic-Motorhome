@@ -28,54 +28,48 @@
 <div class="indexjumbotron">
     <div class="movedown">
         <div class="container">
-            <div th:replace="fragments/Menu"/>
+            <div th:replace="fragments/Menu"/></div>
             <div class="jumbotron">
-                <h3>Rental</h3>
-                <hr class="my-4"/>
+                    <h3>Booking</h3>
+                    <hr class="my-4"/>
 
-                    <div id="pickup_date"><p>
+                <div id="pickup_date"><p>
                         <label class="form">Pickup Date:</label>
                         <input type="date" class="textbox" id="start" name="start"/></p>
+                </div>
+
+                <div id="dropoff_date"><p>
+                    <label class="form">Dropoff Date:</label>
+                    <input type="date" class="textbox" id="end" name="end" /></p>
+                </div>
+
+                <p>Please Choose a Vehicle</p>
+                <div th:replace="fragments/elements/dropdown :: dropdown(${motorhomes}, 'name', 'reserve_form')"></div>
+                <br>
+
+                <form action="/booking/create" method="post">
+
+                    <div class="form-group">
+                        <input type="text" name="firstName" class="form-control" placeholder="Please enter your Firstname">
                     </div>
 
-                    <div id="dropoff_date"><p>
-                        <label class="form">Dropoff Date:</label>
-                        <input type="date" class="textbox" id="end" name="end" /></p>
+                    <div class="form-group">
+                        <input type="text" name="lastName" class="form-control" placeholder="Please enter your Lastname">
                     </div>
 
-                    <p>Please Choose a Vehicle</p>
-                    <div th:replace="fragments/elements/dropdown :: dropdown(${motorhomes}, 'name', 'reserve_form')"></div>
+                    <div class="form-group">
+                        <input type="text" name="email" class="form-control" placeholder="Please enter your email">
+                    </div>
 
-                    <br>
+                    <div class="form-group">
+                        <input type="text" name="phone" class="form-control" placeholder="Please enter your phone number">
+                    </div>
 
-                    <form action="/booking/create" method="post">
-                        <div class="form-group">
-                            <input type="text" name="firstName" class="form-control" placeholder="Please enter your Firstname">
-                        </div>
-
-                        <div class="form-group">
-                            <input type="text" name="lastName" class="form-control" placeholder="Please enter your Lastname">
-                        </div>
-
-                        <div class="form-group">
-                            <input type="text" name="email" class="form-control" placeholder="Please enter your email">
-                        </div>
-
-                        <div class="form-group">
-                            <input type="text" name="phone" class="form-control" placeholder="Please enter your phone number">
-                        </div>
-
-
-                        <button type="submit" class="btn btn-primary">Add</button>
-
-               <!-- <input type="submit" form="reserve_form"> </input> -->
-
-
-                <!--<div th:replace="fragments/search_modal"/>-->
-                    </form>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                    <!-- <input type="submit" form="reserve_form"> </input> -->
+                    <!--<div th:replace="fragments/search_modal"/>-->
+                </form>
             </div>
-
-        </div>
     </div>
 </div>
 
