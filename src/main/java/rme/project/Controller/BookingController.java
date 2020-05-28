@@ -89,10 +89,10 @@ public class BookingController
 
 
     @GetMapping("/search")
-    public String search(@RequestParam(value="start")String start,@RequestParam(value="end")String end)
+    public String search(@RequestParam(value="start")String start,@RequestParam(value="end")String end, @RequestParam(value="model") String model)
     {
+        LocalDate startDate = LocalDate.parse(start);
 
-        System.out.println(start);
         return "redirect:/booking";
     }
 

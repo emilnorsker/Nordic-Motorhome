@@ -32,7 +32,7 @@
                 <h3>Booking</h3>
                 <hr class="my-4"/>
 
-                <form action="/booking/search/" method="get">
+                <form action="/booking/search/" method="get" id="search-form">
 
                 <div id="pickup_date"><p>
                         <label class="form">Pickup Date:</label>
@@ -45,7 +45,7 @@
                 </div>
 
                 <p>Please Choose a Vehicle</p>
-                    <!--<div th:replace="fragments/elements/dropdown :: dropdown(${motorhomes}, 'name', 'reserve_form')"></div> -->
+                    <div th:replace="fragments/elements/dropdown :: dropdown(${motorhomes}, 'name', 'search-form')"></div>
                     <br>
 
                     <input type="submit" > </input>
