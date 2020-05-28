@@ -70,13 +70,13 @@ public class BookingController
     @PostMapping("/update")
     public String update(@ModelAttribute Contact contact) throws SQLException {
         bookingRepo.update(contact);
-        return "redirect:/contacts";
+        return "redirect:/booking/contacts";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") int id){
         bookingRepo.delete(id);
-        return "redirect:/contacts";
+        return "redirect:/booking/contacts";
     }
 
 
