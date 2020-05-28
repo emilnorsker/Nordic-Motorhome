@@ -81,7 +81,7 @@
 
             <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
                 <p th:each="motorhome :${motorhomes}">
-                    <a style="color: lightcoral;" th:href="@{'/delete/' + ${motorhome.motorhome_id}}">Delete</a>
+                    <a style="color: lightcoral;" th:href="@{'/motorhomes/delete/' + ${motorhome.motorhome_id}}">Delete</a>
                 </p>
             </div>
 

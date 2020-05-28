@@ -52,8 +52,10 @@
                 </form>
 
                 <div th:replace="fragments/elements/dropdown :: dropdown(${motorhomes}, 'name', 'reserve_form')"></div>
-                <div th:replace="fragments/search_modal"/>
+
                 <input type="submit" form="reserve_form" th:href="@{'booking/search/'+${model}+'/'+${}+'/'+${}+ }"> </input>
+
+                <div th:replace="fragments/search_modal"/>
 
             </div>
 
