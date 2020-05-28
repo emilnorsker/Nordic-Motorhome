@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ReservationRepoImplTest {
     @Test
     void create() {
-        Reservation expected = new Reservation(666, "Hej Vej 77", 2.22, LocalDate.parse("1990-05-22"), LocalDate.parse("2020-05-22"), 0, 1);
+        Reservation expected = new Reservation(666, "Hej Vej 77", 2.22, LocalDate.parse("1990-05-22"), LocalDate.parse("2020-05-22"), 1);
         Reservation actual;
 
         ReservationRepoImpl repo = new ReservationRepoImpl();

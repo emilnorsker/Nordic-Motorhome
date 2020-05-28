@@ -1,6 +1,7 @@
 package rme.project.Models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 import java.time.LocalDate;
@@ -16,14 +17,16 @@ public class Reservation {
     String location;
     double kmFromOffice;
     int motorhome_id;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate endDate;
     Long numberOfDays;
 
     public Reservation() {
     }
 
-    public Reservation(int reservation_id, String location, double kmFromOffice, LocalDate startDate, LocalDate endDate, long numberOfDays, int motorhome_id) {
+    public Reservation(int reservation_id, String location, double kmFromOffice, LocalDate startDate, LocalDate endDate, int motorhome_id) {
         this.reservation_id = reservation_id;
         this.location = location;
         this.kmFromOffice = kmFromOffice;

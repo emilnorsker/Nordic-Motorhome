@@ -8,17 +8,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
-
+/**
 @Controller
 public class CustomErrorController implements ErrorController{
 
     @RequestMapping("/error")
-//TODO MAKE RETURN "/error" LATER FOR NICER VIEW. OR add @Responsebody
+//TODO MAKE RETURN "/error" LATER FOR NICER VIEW.
     public String handleError(HttpServletRequest request) {
-        Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
-        Exception exception = (Exception) request.getAttribute("javax.servlet.error.exception");
-        return String.format("<html><body><h2>Error Page</h2><div>Status code: <b>%s</b></div>"
-                        + "<div>Exception Message: <b>%s</b></div><body></html>", statusCode, exception==null? "N/A": exception.getMessage());
+
+
+        return "";
 //        return "/error";
     }
 
@@ -28,4 +27,4 @@ public class CustomErrorController implements ErrorController{
     }
 
 }
-
+**/

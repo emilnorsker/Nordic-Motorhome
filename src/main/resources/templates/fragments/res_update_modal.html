@@ -1,5 +1,5 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<div th:fragment="resUpdateModal(location1,kmFromOffice1,startDate1,endDate1,numberOfDays1,motorhome_id1, id)">
+<div th:fragment="resUpdateModal(location1,kmFromOffice1,startDate1,endDate1,motorhome_id1, id)">
 
     <p>
         <a type="button" style="color: dodgerblue;" data-toggle="modal" th:attr="data-target='#update' + ${id}" th:href="@{'reservations/update/' + ${reservation.reservation_id}}">Update</a>
@@ -20,24 +20,23 @@
 
                         <form action="/reservations/update" method="post">
                             <div class="form-group">
-                                <input type="text" name="location" class="form-control" th:value="${location}"
+                                <input type="text" name="location" class="form-control" th:value="${location1}"
                                        th:placeholder="${location1}">
-
-                                <input type="text" name="kmFromOffice" class="form-control" th:value="${kmFromOffice}"
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="kmFromOffice" class="form-control" th:value="${kmFromOffice1}"
                                        th:placeholder="${kmFromOffice1}">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="startDate" class="form-control" th:value="${startDate}" th:placeholder="${startDate1}" >
+                                <input type="date" name="startDate" class="form-control" th:value="${startDate1}" th:placeholder="${startDate1}" >
                             </div>
                             <div class="form-group">
-                                <input type="text" name="endDate" class="form-control" th:value="${endDate}" th:placeholder="${endDate1}" >
+                                <input type="date" name="endDate" class="form-control" th:value="${endDate1}" th:placeholder="${endDate1}" >
                             </div>
-                            <div class="form-group">
-                                <input type="text" name="numberOfDays" class="form-control" th:value="${numberOfDays}" th:placeholder="${numberOfDays1}" >
-                            </div>
+
 <!--                            <div class="form-group">
                                 <input type="text" name="motorhome_id" class="form-control" th:value="${motorhome_id}" th:placeholder="${motorhome_id1}" >
-                            </div>
+                            </div> TODO ADD MOTORHOME PICKER and accessories
 -->
                             <input type="hidden" name="motorhome_id" th:value="${reservation.motorhome_id}">
                             <div th:text = "${motorhome_id1}"></div>
