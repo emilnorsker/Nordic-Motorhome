@@ -167,22 +167,17 @@ public class ReservationRepoImpl implements IReservationRepo
                 PreparedStatement findModelId = conn.prepareStatement("SELECT motorhome_id FROM motorhomes where model = ?");
                 findModelId.setString(1, models[i]);
                 ResultSet rs = findModelId.executeQuery();
-
-                System.out.println("check 1");
                 //check if the motorhome i available
                 while (rs.next())
                 {
                     availableMotorhomes_id.add(rs.getInt(1));
                 }
-
-                System.out.println("check 2");
                 //subtract all motorhomes that are occupied in time period
                 for (int j: availableMotorhomes_id)
                 {
                     if(available(start, end, j));
                 {
-                result.add(motorhomes.read(j));
-                    System.out.println("check 3");
+                    result.add(motorhomes.read(j)); //todo fix error here
             }
         }
     }
@@ -195,11 +190,13 @@ public class ReservationRepoImpl implements IReservationRepo
 
     private boolean available(LocalDate start, LocalDate end, int id) // todo make test
     {
+        System.out.println("id  " +id);
         List<Reservation> reservationsList = new ArrayList<Reservation>();
         // reservations with that motorhome id
         try
         {
             PreparedStatement statement = conn.prepareStatement("SELECT * FROM reservations WHERE motorhome_id = ?");
+
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             while (rs.next())
@@ -214,12 +211,12 @@ public class ReservationRepoImpl implements IReservationRepo
                 reservation.setNumberOfDays();
                 reservation.setMotorhome_id(rs.getInt(7));
 
+
                 reservationsList.add(reservation);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
 
         boolean flag1;
         boolean flag2;
@@ -228,8 +225,9 @@ public class ReservationRepoImpl implements IReservationRepo
         {
             flag1 = R.getStartDate().isAfter(start) && R.getEndDate().isAfter(start);
             flag2 = R.getEndDate().isAfter(end) &&  R.getEndDate().isAfter(end);
-            if (flag1==flag2)
+            if (flag1==flag2) {
                 return true; // magic (made with a karnaugh map)
+            }
         }
         return false;
     }
