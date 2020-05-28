@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="../main.css">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+            <link rel="stylesheet" href="../main.css">
 
 
     <title>Title</title>
@@ -81,7 +81,7 @@
 
             <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
                 <p th:each="motorhome :${motorhomes}">
-                    <a style="color: lightcoral;" th:href="@{'/delete/' + ${motorhome.motorhome_id}}">Delete</a>
+                    <a style="color: lightcoral;" th:href="@{'/motorhomes/delete/' + ${motorhome.motorhome_id}}">Delete</a>
                 </p>
             </div>
 
