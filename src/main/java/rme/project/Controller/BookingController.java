@@ -53,11 +53,19 @@ public class BookingController
     }
 
 
-    @PostMapping("/search/{model}/{start}/{end}")
-    public String search(@PathVariable("model") String model, @PathVariable("start")LocalDate start,@PathVariable("end")LocalDate end)
+    @GetMapping("/search/{model}{start}{end}")
+    public String learch(@PathVariable("model") String model, @PathVariable("start")String start,@PathVariable("end")String end)
     {
 
-        return "redirect:booking";
+        System.out.println(start);
+        return "/booking";
+    }
+    @PostMapping("/search/{model}{start}{end}")
+    public String search(@PathVariable("model") String model, @PathVariable("start")String start,@PathVariable("end")String end)
+    {
+
+        System.out.println(start);
+        return "/booking";
     }
 
 }

@@ -1,16 +1,13 @@
 <!-- link to script http://jsfiddle.net/xQqbR/1022/ -->
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.springframework.org/tags/form">
 <div th:fragment="dropdown(list, name, formName)">
-    <form th:id="${formName}">
-    <select th:name="${name}" th:id="${name}" class="select-toggle">
+    <select th:name="model" th:id="${name}" th:form="${formName}" class="select-toggle">
         <option class="${name}"
                 th:each="type : ${list}"
                 th:value="${type.motorhome_id}"
                 th:text="${type.model}+'   '+${type.brand}">
         </option>
     </select>
-    </form>
-
-
 </div>
 
