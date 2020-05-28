@@ -1,13 +1,36 @@
 <!-- link to script http://jsfiddle.net/xQqbR/1022/ -->
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.springframework.org/tags/form">
 <div th:fragment="dropdown(list, name, formName)">
-    <select th:name="model" th:id="${name}" th:form="${formName}" class="select-toggle">
+    <select th:name="model" th:id="${name}" th:form="${formName}" class="select-toggle" th:multiple="multiple">
         <option class="${name}"
                 th:each="type : ${list}"
-                th:value="${type.motorhome_id}"
+                th:value="${type.model}"
                 th:text="${type.model}+'   '+${type.brand}">
         </option>
     </select>
+
+
+    <!-------------------------------------SCRIPTS--------------------------------------------->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('option').mousedown(function(e) {
+                e.preventDefault();
+                var originalScrollTop = $(this).parent().scrollTop();
+                console.log(originalScrollTop);
+                $(this).prop('selected', $(this).prop('selected') ? false : true);
+                var self = this;
+                $(this).parent().focus();
+                setTimeout(function() {
+                    $(self).parent().scrollTop(originalScrollTop);
+                }, 0);
+
+                return false;
+            });
+        });
+    </script>
+
+
+
 </div>
 

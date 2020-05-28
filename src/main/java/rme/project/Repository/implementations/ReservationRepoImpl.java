@@ -150,7 +150,8 @@ public class ReservationRepoImpl implements IReservationRepo
     }
 
     @Override
-    public List<Motorhome> findAvailableMotorhomes(LocalDate start, LocalDate end, String model) {
+    public List<Motorhome> findAvailableMotorhomes(LocalDate start, LocalDate end, String[] models) {
+
 
         //generate evaluation data
         List<Integer> availableMotorhomes_id = new ArrayList<Integer>();
@@ -158,24 +159,33 @@ public class ReservationRepoImpl implements IReservationRepo
         List<Motorhome> result = new ArrayList<Motorhome>();
 
         try {
-            //find all motorhomes where model == model
-            PreparedStatement findModelId = conn.prepareStatement("SELECT motorhome_id FROM motorhomes where model = ?");
-            findModelId.setString(1,model);
-            ResultSet rs = findModelId.executeQuery();
-            while (rs.next())
-            {
-                availableMotorhomes_id.add(rs.getInt(1));
-            }
-            //subtract all motorhomes that are occupied in time period
-            for (int i: availableMotorhomes_id)
-            {
-                if(available(start, end, i));
+            // for each model type in model
+            for (int i = 0; i < models.length; i++) {
+                System.out.println("#######################################");
+                System.out.println(models[i]);
+                //find all motorhomes where model == model
+                PreparedStatement findModelId = conn.prepareStatement("SELECT motorhome_id FROM motorhomes where model = ?");
+                findModelId.setString(1, models[i]);
+                ResultSet rs = findModelId.executeQuery();
+
+                System.out.println("check 1");
+                //check if the motorhome i available
+                while (rs.next())
                 {
-                    result.add(motorhomes.read(i));
+                    availableMotorhomes_id.add(rs.getInt(1));
                 }
+
+                System.out.println("check 2");
+                //subtract all motorhomes that are occupied in time period
+                for (int j: availableMotorhomes_id)
+                {
+                    if(available(start, end, j));
+                {
+                result.add(motorhomes.read(j));
+                    System.out.println("check 3");
             }
-
-
+        }
+    }
         }
         catch (Exception e){}
 

@@ -11,5 +11,5 @@ import java.util.List;
 
 public interface IReservationRepo extends CRUD<Reservation>
 {
-    public List<Motorhome> findAvailableMotorhomes(LocalDate start, LocalDate end, String model);
+    public List<Motorhome> findAvailableMotorhomes(LocalDate start, LocalDate end, String[] models);
 }

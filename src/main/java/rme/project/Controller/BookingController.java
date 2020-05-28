@@ -5,8 +5,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import rme.project.Models.Contact;
 import rme.project.Models.Motorhome;
+import rme.project.Models.Reservation;
 import rme.project.Repository.implementations.BookingRepoImpl;
 import rme.project.Repository.implementations.MotorhomeRepoIMPL;
+import rme.project.Repository.implementations.ReservationRepoImpl;
+import rme.project.Repository.interfaces.IBookingRepo;
+import rme.project.Repository.interfaces.IMotorhomeRepo;
+import rme.project.Repository.interfaces.IReservationRepo;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,16 +22,11 @@ import java.util.List;
 @RequestMapping("/booking")
 public class BookingController
 {
-    private BookingRepoImpl bookingRepo;
+    private IBookingRepo bookingRepo = new BookingRepoImpl();
+    private IMotorhomeRepo motorhomesRepo = new MotorhomeRepoIMPL();
+    private IReservationRepo reservationRepo = new ReservationRepoImpl();
 
-    {
-        bookingRepo = new BookingRepoImpl();
-    }
-    private MotorhomeRepoIMPL motorhomesRepo;
 
-    {
-        motorhomesRepo = new MotorhomeRepoIMPL();
-    }
 
     @GetMapping("")
     public String rent( Model model)
@@ -88,12 +89,21 @@ public class BookingController
     }
 
 
+    // step one pick date and model
     @GetMapping("/search")
-    public String search(@RequestParam(value="start")String start,@RequestParam(value="end")String end, @RequestParam(value="model") String model)
+    public String search(@RequestParam(value="start")String start,@RequestParam(value="end")String end, @RequestParam(value="model") String[] models, Model model)
     {
         LocalDate startDate = LocalDate.parse(start);
+        System.out.println(startDate);
+        LocalDate endDate = LocalDate.parse(end);
+        System.out.println(endDate);
+
+        model.addAttribute("availableMotorhomes",reservationRepo.findAvailableMotorhomes(startDate, endDate, models));
 
         return "redirect:/booking";
     }
+
+    //step two choose model
+
 
 }
