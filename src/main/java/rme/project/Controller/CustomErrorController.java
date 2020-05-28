@@ -13,30 +13,19 @@ import javax.servlet.http.HttpServletRequest;
 public class CustomErrorController implements ErrorController{
 
     @RequestMapping("/error")
+//TODO MAKE RETURN "/error" LATER FOR NICER VIEW. OR add @Responsebody
     public String handleError(HttpServletRequest request) {
-
-        Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-    //GIVER CHECK FOR NULL FØR PRINT    Exception exception = (Exception) request.getAttribute("javax.servlet.error.exception"); //TODO somehow print execption.getmessage() in view?
-
-        if (status != null) {
-            System.out.println("KOMMER HERTIL 1");
-
-            Integer statusCode = Integer.valueOf(status.toString());
-         //   System.out.println(statusCode + " Exception: " + exception.getMessage());
-            System.out.println("KOMMER HERTIL 2");
-
-            if(statusCode == HttpStatus.NOT_FOUND.value()) {
-                return "error-404";
-            }
-            else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
-                return "error-500";
-            }
-        }
-        return "error";
+        Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
+        Exception exception = (Exception) request.getAttribute("javax.servlet.error.exception");
+        return String.format("<html><body><h2>Error Page</h2><div>Status code: <b>%s</b></div>"
+                        + "<div>Exception Message: <b>%s</b></div><body></html>", statusCode, exception==null? "N/A": exception.getMessage());
+//        return "/error";
     }
+
     @Override
     public String getErrorPath() {
         return "/error";
     }
+
 }
 

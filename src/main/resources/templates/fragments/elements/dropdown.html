@@ -1,12 +1,28 @@
 <!-- link to script http://jsfiddle.net/xQqbR/1022/ -->
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="dropdown(list, name, formName)">
+    <form th:id="${formName}">
     <select th:name="${name}" th:id="${name}" class="select-toggle">
         <option class="${name}"
                 th:each="type : ${list}"
                 th:value="${type.motorhome_id}"
-                th:text="${type.model}+''+${type.brand}">wireframe
+                th:text="${type.model}+'   '+${type.brand}">
         </option>
     </select>
+    </form>
+    <script></script>
+    <script>
+        $(function() { //http://jsfiddle.net/pmrotule/w7aakdbb/
+            $('#chkveg').multiselect({
+                includeSelectAllOption: true
+            });
+            $('#btnget').click(function() {
+
+                alert($('#chkveg').val());
+            })
+        });
+    </script>
+
+
 </div>
 
