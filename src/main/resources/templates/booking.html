@@ -32,7 +32,6 @@
             <div class="jumbotron">
                 <h3>Rental</h3>
                 <hr class="my-4"/>
-                <form id="reserve_form" action="/booking/search/" >
 
                     <div id="pickup_date"><p>
                         <label class="form">Pickup Date:</label>
@@ -44,17 +43,36 @@
                         <input type="date" class="textbox" id="end" name="end" /></p>
                     </div>
 
+                    <p>Please Choose a Vehicle</p>
+                    <div th:replace="fragments/elements/dropdown :: dropdown(${motorhomes}, 'name', 'reserve_form')"></div>
+
+                    <br>
+
+                    <form action="/booking/create" method="post">
+                        <div class="form-group">
+                            <input type="text" name="firstName" class="form-control" placeholder="Please enter your Firstname">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="lastName" class="form-control" placeholder="Please enter your Lastname">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="email" class="form-control" placeholder="Please enter your email">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="phone" class="form-control" placeholder="Please enter your phone number">
+                        </div>
 
 
+                        <button type="submit" class="btn btn-primary">Add</button>
 
-                <div th:replace="fragments/elements/dropdown :: dropdown(${motorhomes}, 'name', 'reserve_form')"></div>
+               <!-- <input type="submit" form="reserve_form"> </input> -->
 
 
-                <input type="submit" form="reserve_form"> </input>
-
-                </form>
-                <div th:replace="fragments/search_modal"/>
-
+                <!--<div th:replace="fragments/search_modal"/>-->
+                    </form>
             </div>
 
         </div>

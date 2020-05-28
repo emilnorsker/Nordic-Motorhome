@@ -1,0 +1,48 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:fragment="conUpdateModal(first1,last1,email1,phone1,id)">
+
+    <p>
+        <a type="button" style="color: dodgerblue;" data-toggle="modal" th:attr="data-target='#update' + ${id}" th:href="@{'contact/update/' + ${contact.contact_id}}">Update</a>
+    </p>
+
+
+    <div class="modal fade" th:id="update+${id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 style="color: black" class="modal-title" id="exampleModalLabel">Update Contact</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+
+                        <form action="/booking/update" method="post">
+                            <div class="form-group">
+                                <input type="text" name="firstName" class="form-control" th:value="${first1}" th:placeholder="${first1}" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="lastName" class="form-control" th:value="${last1}" th:placeholder="${last1}" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="email" class="form-control" th:value="${email1}" th:placeholder="${email1}" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="phone" class="form-control" th:value="${phone1}" th:placeholder="${phone1}" >
+                            </div>
+                            <input type="hidden" name="contact_id" th:value="${contact.contact_id}">
+                            <div th:text = "${id}"></div>
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

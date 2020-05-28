@@ -3,18 +3,18 @@ package rme.project.Controller;
 import org.apache.tomcat.jni.Error;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import rme.project.Models.Contact;
 import rme.project.Models.Motorhome;
 import rme.project.Models.Reservation;
+import rme.project.Repository.implementations.BookingRepoImpl;
 import rme.project.Repository.implementations.MotorhomeRepoIMPL;
 import rme.project.Repository.implementations.ReservationRepoImpl;
 import rme.project.Repository.interfaces.IMotorhomeRepo;
 import rme.project.Repository.interfaces.IReservationRepo;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,17 +23,86 @@ import java.util.List;
 @RequestMapping("/booking")
 public class BookingController
 {
-    IReservationRepo reservationsRepo = new ReservationRepoImpl();
-    IMotorhomeRepo motorhomesRepo = new MotorhomeRepoIMPL();
+    private BookingRepoImpl bookingRepo;
+
+    {
+        bookingRepo = new BookingRepoImpl();
+    }
+    private MotorhomeRepoIMPL motorhomesRepo;
+
+    {
+        motorhomesRepo = new MotorhomeRepoIMPL();
+    }
+
     @GetMapping("")
     public String rent( Model model)
     {
         model.addAttribute("motorhomes", getModels());
 
-
-
         return "booking";
     }
+
+
+    @GetMapping("/contacts")
+    public String contacts(Model model){
+        model.addAttribute("contacts", bookingRepo.readAll());
+        return "contacts";
+    }
+
+
+    @GetMapping("/create")
+    public String showCreatePage(){
+
+        return "create";
+    }
+
+    @PostMapping("/create")
+    public String create(@ModelAttribute Contact contact) throws SQLException {
+        bookingRepo.create(contact);
+        return "redirect:/booking";
+    }
+    @GetMapping("/update")
+    public String showUpdatePage(){
+
+        return "update";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute Contact contact) throws SQLException {
+        bookingRepo.update(contact);
+        return "redirect:/contacts";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") int id){
+        bookingRepo.delete(id);
+        return "redirect:/contacts";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public List<Motorhome> getModels()
     {
@@ -51,6 +120,29 @@ public class BookingController
         return typeModels;
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     @GetMapping("/search/{start}{end}{model}")

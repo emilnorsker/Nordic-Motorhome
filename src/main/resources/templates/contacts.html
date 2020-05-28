@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../main.css">
 
 
-    <title>Reservations</title>
+    <title>Title</title>
 </head>
 <body>
 
@@ -18,27 +18,23 @@
 
             <div class="jumbotron">
 
-                <h3 >List of Reservations</h3>
+                <h3 >List of Contact</h3>
                 <hr class="my-4"/>
                 <div class="row">
                     <div class="col-sm p-3 mb-2 bg-light text-black">
-                        <h7 id="row">Drop-off Location</h7>
+                        <h7 id="row">Firstname</h7>
                     </div>
 
                     <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
-                        <h7 id="row">Km from Office</h7>
+                        <h7 id="row">Lastname</h7>
                     </div>
 
                     <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
-                        <h7 id="row">Start Date</h7>
+                        <h7 id="row">Email</h7>
                     </div>
 
                     <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
-                        <h7 id="row">End Date</h7>
-                    </div>
-
-                    <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
-                        <h7 id="row">Number of Days</h7>
+                        <h7 id="row">Phone</h7>
                     </div>
 
                     <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
@@ -52,50 +48,43 @@
                 </div>
 
                 <div class="row">
+
                     <div class="col-sm p-3 mb-2 bg-light text-white">
-                        <p th:each="reservation :${reservations}">
-                            <span id="row" style="color: black" th:text="${reservation.location}"/>
+                        <p th:each="contact :${contacts}">
+                            <span id="row" style="color: black" th:text="${contact.firstName}"/>
                         </p>
                     </div>
 
                     <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                        <p th:each="reservation :${reservations}">
-                            <span id="row" style="color: black" th:text="${reservation.kmFromOffice}"/>
+                        <p th:each="contact :${contacts}">
+                            <span id="row" style="color: black" th:text="${contact.lastName}"/>
                         </p>
                     </div>
 
                     <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                        <p th:each="reservation :${reservations}">
-                            <span id="row" style="color: black" th:text="${reservation.startDate}"/>
+                        <p th:each="contact :${contacts}">
+                            <span id="row" style="color: black" th:text="${contact.email}"/>
                         </p>
                     </div>
 
                     <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                        <p th:each="reservation :${reservations}">
-                            <span id="row" style="color: black" th:text="${reservation.endDate}"/>
+                        <p th:each="contact :${contacts}">
+                            <span id="row" style="color: black" th:text="${contact.phone}"/>
                         </p>
                     </div>
 
                     <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                    <p th:each="reservation :${reservations}">
-                        <span id="row" style="color: black" th:text="${reservation.numberOfDays}"/>
-                    </p>
-                </div>
-
-                    <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                        <div th:each="reservation :${reservations}">
-                            <a th:insert="fragments/res_update_modal :: resUpdateModal(${reservation.location}, ${reservation.kmFromOffice}, ${reservation.startDate}, ${reservation.endDate}, ${reservation.motorhome_id}, ${reservation.reservation_id})"></a>
+                        <div th:each="contact :${contacts}">
+                            <a th:insert="fragments/con_update_modal :: conUpdateModal(${contact.firstName}, ${contact.lastName}, ${contact.email}, ${contact.phone}, ${contact.contact_id})"></a>
                         </div>
                     </div>
 
                     <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                        <p th:each="reservation :${reservations}">
-                            <a style="color: lightcoral;" th:href="@{'reservations/delete/'+${reservation.reservation_id}}">Delete</a>
+                        <p th:each="contact :${contacts}">
+                            <a style="color: lightcoral;" th:href="@{'booking/delete/' + ${contact.contact_id}}">Delete</a>
                         </p>
                     </div>
 
-                </div>
-<!--                <div th:replace="fragments/create_modal">   TODO add "create button" to link to /booking    -->
                 </div>
             </div>
         </div>
