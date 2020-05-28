@@ -22,6 +22,7 @@ public class MotorhomeController {
         model.addAttribute("motorhomes", motorRepo.readAll());
         return "motorhomes";
     }
+
     @GetMapping("/create")
     public String showCreatePage(){
 
