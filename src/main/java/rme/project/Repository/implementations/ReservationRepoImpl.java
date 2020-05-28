@@ -32,7 +32,7 @@ public class ReservationRepoImpl implements IReservationRepo
             statement.setDate(4, java.sql.Date.valueOf(item.getStartDate())); //Converting LocalDate to sql.Date
             statement.setDate(5, java.sql.Date.valueOf(item.getEndDate())); //Converting LocalDate to sql.Date
             statement.setLong(6, item.getNumberOfDays());
-            statement.setInt(7, item.getMotorhomeId());
+            statement.setInt(7, item.getMotorhome_id());
 
             statement.executeUpdate();
         }
@@ -63,7 +63,7 @@ public class ReservationRepoImpl implements IReservationRepo
                 reservation.setStartDate(LocalDate.parse(rs.getString(4)));
                 reservation.setEndDate(LocalDate.parse(rs.getString(5)));
                 reservation.setNumberOfDays(rs.getLong(6));
-                reservation.setMotorhomeId(rs.getInt(7));
+                reservation.setMotorhome_id(rs.getInt(7));
 
             }
         }
@@ -95,7 +95,7 @@ public class ReservationRepoImpl implements IReservationRepo
                 reservation.setStartDate(LocalDate.parse(rs.getString(4)));
                 reservation.setEndDate(LocalDate.parse(rs.getString(5)));
                 reservation.setNumberOfDays(rs.getLong(6));
-                reservation.setMotorhomeId(rs.getInt(7));
+                reservation.setMotorhome_id(rs.getInt(7));
 
                 reservationsList.add(reservation);
             }
@@ -121,7 +121,7 @@ public class ReservationRepoImpl implements IReservationRepo
             statement.setDate(3, java.sql.Date.valueOf(item.getStartDate())); //Converting LocalDate to sql.Date
             statement.setDate(4, java.sql.Date.valueOf(item.getEndDate())); //Converting LocalDate to sql.Date
             statement.setLong(5, item.getNumberOfDays());
-            statement.setInt(6, item.getMotorhomeId());
+            statement.setInt(6, item.getMotorhome_id());
 
             statement.setInt(7, item.getReservation_id());
 
@@ -141,7 +141,6 @@ public class ReservationRepoImpl implements IReservationRepo
             PreparedStatement statement = conn.prepareStatement("DELETE FROM reservations WHERE reservation_id=?");
             statement.setInt(1, id);
             statement.executeUpdate();
-
         }
         catch (Exception e)
         {
@@ -202,7 +201,7 @@ public class ReservationRepoImpl implements IReservationRepo
                 reservation.setStartDate(LocalDate.parse(rs.getString(4)));
                 reservation.setEndDate(LocalDate.parse(rs.getString(5)));
                 reservation.setNumberOfDays(rs.getLong(6));
-                reservation.setMotorhomeId(rs.getInt(7));
+                reservation.setMotorhome_id(rs.getInt(7));
 
                 reservationsList.add(reservation);
             }
