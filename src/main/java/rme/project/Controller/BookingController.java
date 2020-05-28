@@ -88,12 +88,12 @@ public class BookingController
     }
 
 
-    @GetMapping("/search/{start}{end}")
-    public String search(@PathVariable("start")LocalDate start,@PathVariable("end")LocalDate end)
+    @GetMapping("/search")
+    public String search(@RequestParam(value="start")String start,@RequestParam(value="end")String end)
     {
 
-        //System.out.println(start);
-        return "/booking";
+        System.out.println(start);
+        return "redirect:/booking";
     }
 
 }

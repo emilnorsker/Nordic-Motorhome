@@ -27,12 +27,12 @@
 <div class="indexjumbotron">
     <div class="movedown">
         <div class="container">
-            <div th:replace="fragments/Menu"/></div>
+            <div th:replace="fragments/Menu"/>
             <div class="jumbotron">
                 <h3>Booking</h3>
                 <hr class="my-4"/>
 
-                <form action="/booking/search/" >
+                <form action="/booking/search/" method="get">
 
                 <div id="pickup_date"><p>
                         <label class="form">Pickup Date:</label>
@@ -74,6 +74,7 @@
                     <!--<div th:replace="fragments/search_modal"/>-->
                 </form>
             </div>
+        </div>
     </div>
 </div>
 
