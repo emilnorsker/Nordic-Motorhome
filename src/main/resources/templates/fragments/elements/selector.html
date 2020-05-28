@@ -2,12 +2,10 @@
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="selector(list, name, formName)">
         <select th:name="${name}" th:id="${name}" class="select-toggle" multiple="multiple">
-            <option class="${name}"
-                    th:each="type : ${list}"
-                    th:value="${type}"
-                    th:text="${'Option ' + type}">wireframe
+            <option class="${name}" th:each="type : ${list}" th:value="${type}" th:text="${'Option ' + type}">
+                <input type="checkbox" th:each="type : ${list}" th:value="${type}">
+                </input>wireframe  </option>
 
-            </option>
         </select>
 
 <!-------------------------------------SCRIPTS--------------------------------------------->

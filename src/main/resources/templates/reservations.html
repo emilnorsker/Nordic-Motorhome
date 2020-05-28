@@ -92,7 +92,7 @@
 -->
                     <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
                         <p th:each="reservation :${reservations}">
-                            <a style="color: lightcoral;" th:href="@{'/delete/' + ${reservation.reservation_id}}">Delete</a>
+                            <a style="color: lightcoral;" th:href="@{'reservations/delete/'+${reservation.reservation_id}}">Delete</a>
                         </p>
                     </div>
 

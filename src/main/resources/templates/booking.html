@@ -31,7 +31,7 @@
             <div class="jumbotron">
                 <h3>Rental</h3>
                 <hr class="my-4"/>
-                <div id="reserve_form">
+                <form id="reserve_form">
 
                     <div id="pickup_date"><p>
                         <label class="form">Pickup Date:</label>
@@ -49,9 +49,11 @@
                     </div>
 
 
-                </div>
+                </form>
 
-                <div th:replace="fragments/elements/dropdown :: dropdown(${motorhomes}, 'name', 'form')"></div>
+                <div th:replace="fragments/elements/dropdown :: dropdown(${motorhomes}, 'name', 'reserve_form')"></div>
+
+                <input type="submit" form="reserve_form"> </input>
 
             </div>
 
