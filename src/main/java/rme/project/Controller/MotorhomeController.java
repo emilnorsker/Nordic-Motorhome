@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import rme.project.Models.Motorhome;
 import rme.project.Repository.implementations.MotorhomeRepoIMPL;
-
 import java.sql.SQLException;
+
 @Controller
 public class MotorhomeController {
     private MotorhomeRepoIMPL motorRepo;

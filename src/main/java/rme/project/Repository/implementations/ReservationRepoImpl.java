@@ -1,6 +1,9 @@
 package rme.project.Repository.implementations;
 
+
+import rme.project.Models.Motorhome;
 import rme.project.Models.Reservation;
+import rme.project.Repository.interfaces.IMotorhomeRepo;
 import rme.project.Repository.interfaces.IReservationRepo;
 import rme.project.Util.DBConnection;
 
@@ -8,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -144,6 +148,83 @@ public class ReservationRepoImpl implements IReservationRepo
             System.out.println(e);
         }
     }
+
+    @Override
+    public List<Motorhome> findAvailableMotorhomes(LocalDate start, LocalDate end, String model) {
+
+        //generate evaluation data
+        List<Integer> availableMotorhomes_id = new ArrayList<Integer>();
+        IMotorhomeRepo motorhomes = new MotorhomeRepoIMPL();
+        List<Motorhome> result = new ArrayList<Motorhome>();
+
+        try {
+            //find all motorhomes where model == model
+            PreparedStatement findModelId = conn.prepareStatement("SELECT motorhome_id FROM motorhomes where model = ?");
+            findModelId.setString(1,model);
+            ResultSet rs = findModelId.executeQuery();
+            while (rs.next())
+            {
+                availableMotorhomes_id.add(rs.getInt(1));
+            }
+            //subtract all motorhomes that are occupied in time period
+            for (int i: availableMotorhomes_id)
+            {
+                if(available(start, end, i));
+                {
+                    result.add(motorhomes.read(i));
+                }
+            }
+
+
+        }
+        catch (Exception e){}
+
+        return result;
+    }
+
+
+    private boolean available(LocalDate start, LocalDate end, int id) // todo make test
+    {
+        List<Reservation> reservationsList = new ArrayList<Reservation>();
+        // reservations with that motorhome id
+        try
+        {
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM reservations WHERE motorhome_id = ?");
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next())
+            {
+                Reservation reservation = new Reservation();
+
+                reservation.setReservation_id(rs.getInt(1));
+                reservation.setLocation(rs.getString(2));
+                reservation.setKmFromOffice(rs.getDouble(3));
+                reservation.setStartDate(LocalDate.parse(rs.getString(4)));
+                reservation.setEndDate(LocalDate.parse(rs.getString(5)));
+                reservation.setNumberOfDays(rs.getLong(6));
+                reservation.setMotorhomeId(rs.getInt(7));
+
+                reservationsList.add(reservation);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        boolean flag1;
+        boolean flag2;
+
+        for (Reservation R: reservationsList)
+        {
+            flag1 = R.getStartDate().isAfter(start) && R.getEndDate().isAfter(start);
+            flag2 = R.getEndDate().isAfter(end) &&  R.getEndDate().isAfter(end);
+            if (flag1==flag2)
+                return true; // magic (made with a karnaugh map)
+        }
+        return false;
+    }
+
+
 }
 
 
