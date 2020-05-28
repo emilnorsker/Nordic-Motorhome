@@ -28,13 +28,42 @@ public class BookingController
 
 
 
+
     @GetMapping("")
-    public String rent( Model model)
+    public String ChooseDateAndModel(Model model)
     {
         model.addAttribute("motorhomes", getModels());
 
         return "booking";
     }
+
+
+    @GetMapping("/search")
+    public String ChooseMotorhome(@RequestParam(value="start")String start,@RequestParam(value="end")String end, @RequestParam(value="model") String[] models, Model model)
+    {
+        LocalDate startDate = LocalDate.parse(start);
+        System.out.println(startDate);
+        LocalDate endDate = LocalDate.parse(end);
+        System.out.println(endDate);
+
+        model.addAttribute("availableMotorhomes",reservationRepo.findAvailableMotorhomes(startDate, endDate, models));
+        return "redirect:/booking";
+    }
+
+    @GetMapping("")
+    public String EnterContact(Model model)
+    {
+        model.addAttribute("motorhomes", getModels());
+        return "booking";
+    }
+
+
+    @GetMapping("")
+    public String SaveReservation(Model model)
+    {
+        return "booking";
+    }
+
 
 
     @GetMapping("/contacts")
@@ -49,12 +78,12 @@ public class BookingController
 
         return "create";
     }
-
     @PostMapping("/create")
     public String create(@ModelAttribute Contact contact) throws SQLException {
         bookingRepo.create(contact);
         return "redirect:/booking";
     }
+
     @GetMapping("/update")
     public String showUpdatePage(){
 
@@ -88,20 +117,7 @@ public class BookingController
         return typeModels;
     }
 
-
     // step one pick date and model
-    @GetMapping("/search")
-    public String search(@RequestParam(value="start")String start,@RequestParam(value="end")String end, @RequestParam(value="model") String[] models, Model model)
-    {
-        LocalDate startDate = LocalDate.parse(start);
-        System.out.println(startDate);
-        LocalDate endDate = LocalDate.parse(end);
-        System.out.println(endDate);
-
-        model.addAttribute("availableMotorhomes",reservationRepo.findAvailableMotorhomes(startDate, endDate, models));
-
-        return "redirect:/booking";
-    }
 
     //step two choose model
 

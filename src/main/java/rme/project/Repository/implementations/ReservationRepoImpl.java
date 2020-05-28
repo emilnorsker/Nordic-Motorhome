@@ -167,20 +167,22 @@ public class ReservationRepoImpl implements IReservationRepo
                 PreparedStatement findModelId = conn.prepareStatement("SELECT motorhome_id FROM motorhomes where model = ?");
                 findModelId.setString(1, models[i]);
                 ResultSet rs = findModelId.executeQuery();
-                //check if the motorhome i available
+                //check if the motorhome is available
                 while (rs.next())
                 {
                     availableMotorhomes_id.add(rs.getInt(1));
+                    System.out.println("from sql" +rs.getInt(1));
                 }
                 //subtract all motorhomes that are occupied in time period
                 for (int j: availableMotorhomes_id)
                 {
                     if(available(start, end, j));
-                {
-                    result.add(motorhomes.read(j)); //todo fix error here
+                    {
+                        System.out.println("before passing fina;  " +j);
+                        result.add(motorhomes.read(j)); //todo fix error here
+                    }
+                }
             }
-        }
-    }
         }
         catch (Exception e){}
 
@@ -202,7 +204,6 @@ public class ReservationRepoImpl implements IReservationRepo
             while (rs.next())
             {
                 Reservation reservation = new Reservation();
-
                 reservation.setReservation_id(rs.getInt(1));
                 reservation.setLocation(rs.getString(2));
                 reservation.setKmFromOffice(rs.getDouble(3));
