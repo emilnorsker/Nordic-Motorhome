@@ -32,7 +32,7 @@ public class Reservation {
         this.kmFromOffice = kmFromOffice;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.numberOfDays = ChronoUnit.DAYS.between(startDate, endDate); //Calculates days length of the reservation
+        setNumberOfDays(); //Calculates days length of the reservation and sets field.
         this.motorhome_id = motorhome_id;
     }
 
@@ -92,7 +92,7 @@ public class Reservation {
         return numberOfDays;
     }
 
-    public void setNumberOfDays(Long numberOfDays) {
-        this.numberOfDays = numberOfDays;
+    public void setNumberOfDays() {
+        this.numberOfDays = ChronoUnit.DAYS.between(startDate, endDate);
     }
 }

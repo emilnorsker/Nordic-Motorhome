@@ -31,6 +31,7 @@ public class ReservationRepoImpl implements IReservationRepo
             statement.setDouble(3, item.getKmFromOffice());
             statement.setDate(4, java.sql.Date.valueOf(item.getStartDate())); //Converting LocalDate to sql.Date
             statement.setDate(5, java.sql.Date.valueOf(item.getEndDate())); //Converting LocalDate to sql.Date
+            item.setNumberOfDays(); //Calculate new number of days
             statement.setLong(6, item.getNumberOfDays());
             statement.setInt(7, item.getMotorhome_id());
 
@@ -62,7 +63,7 @@ public class ReservationRepoImpl implements IReservationRepo
                 reservation.setKmFromOffice(rs.getDouble(3));
                 reservation.setStartDate(LocalDate.parse(rs.getString(4)));
                 reservation.setEndDate(LocalDate.parse(rs.getString(5)));
-                reservation.setNumberOfDays(rs.getLong(6));
+                reservation.setNumberOfDays();
                 reservation.setMotorhome_id(rs.getInt(7));
 
             }
@@ -94,7 +95,7 @@ public class ReservationRepoImpl implements IReservationRepo
                 reservation.setKmFromOffice(rs.getDouble(3));
                 reservation.setStartDate(LocalDate.parse(rs.getString(4)));
                 reservation.setEndDate(LocalDate.parse(rs.getString(5)));
-                reservation.setNumberOfDays(rs.getLong(6));
+                reservation.setNumberOfDays();
                 reservation.setMotorhome_id(rs.getInt(7));
 
                 reservationsList.add(reservation);
@@ -120,9 +121,9 @@ public class ReservationRepoImpl implements IReservationRepo
             statement.setDouble(2, item.getKmFromOffice());
             statement.setDate(3, java.sql.Date.valueOf(item.getStartDate())); //Converting LocalDate to sql.Date
             statement.setDate(4, java.sql.Date.valueOf(item.getEndDate())); //Converting LocalDate to sql.Date
+            item.setNumberOfDays();
             statement.setLong(5, item.getNumberOfDays());
             statement.setInt(6, item.getMotorhome_id());
-
             statement.setInt(7, item.getReservation_id());
 
             statement.executeUpdate();
@@ -200,7 +201,7 @@ public class ReservationRepoImpl implements IReservationRepo
                 reservation.setKmFromOffice(rs.getDouble(3));
                 reservation.setStartDate(LocalDate.parse(rs.getString(4)));
                 reservation.setEndDate(LocalDate.parse(rs.getString(5)));
-                reservation.setNumberOfDays(rs.getLong(6));
+                reservation.setNumberOfDays();
                 reservation.setMotorhome_id(rs.getInt(7));
 
                 reservationsList.add(reservation);
