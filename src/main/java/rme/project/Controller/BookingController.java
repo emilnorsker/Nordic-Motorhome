@@ -88,11 +88,11 @@ public class BookingController
     }
 
 
-    @PostMapping("/search/{start}{end}{model}")
-    public String search(@PathVariable("start")LocalDate start,@PathVariable("end")LocalDate end, @PathVariable("model") String model)
+    @GetMapping("/search/{start}{end}")
+    public String search(@PathVariable("start")LocalDate start,@PathVariable("end")LocalDate end)
     {
 
-        System.out.println(start);
+        //System.out.println(start);
         return "/booking";
     }
 

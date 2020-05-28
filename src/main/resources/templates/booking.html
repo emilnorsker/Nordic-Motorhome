@@ -19,7 +19,6 @@
                 document.getElementById("numdays2").value=GetDays();
             }
         }
-
     </script>
 </head>
 
@@ -28,10 +27,12 @@
 <div class="indexjumbotron">
     <div class="movedown">
         <div class="container">
-            <div th:replace="fragments/Menu"/>
+            <div th:replace="fragments/Menu"/></div>
             <div class="jumbotron">
-                    <h3>Booking</h3>
-                    <hr class="my-4"/>
+                <h3>Booking</h3>
+                <hr class="my-4"/>
+
+                <form action="/booking/search/" >
 
                 <div id="pickup_date"><p>
                         <label class="form">Pickup Date:</label>
@@ -44,8 +45,11 @@
                 </div>
 
                 <p>Please Choose a Vehicle</p>
-                <div th:replace="fragments/elements/dropdown :: dropdown(${motorhomes}, 'name', 'reserve_form')"></div>
-                <br>
+                    <!--<div th:replace="fragments/elements/dropdown :: dropdown(${motorhomes}, 'name', 'reserve_form')"></div> -->
+                    <br>
+
+                    <input type="submit" > </input>
+                </form>
 
                 <form action="/booking/create" method="post">
 
@@ -70,7 +74,6 @@
                     <!--<div th:replace="fragments/search_modal"/>-->
                 </form>
             </div>
-        </div>
     </div>
 </div>
 
