@@ -33,9 +33,27 @@ public class BookingController
     @GetMapping(value = "") //todo step max/min
     public String ChooseDateAndModel(Model model)
     {
+        model.addAttribute("reservation", reservation);
+
+
+
         model.addAttribute("step", step);
         model.addAttribute("motorhomes", getModels());
         return "booking/booking";
+    }
+
+    @GetMapping(value = "/1") // , params = {"start={}", "end={}", "model={}"}
+    public String ChooseMotorhome(Model model, @RequestParam("start")String start, @RequestParam("end")String end, @RequestParam("model")String carModel)
+    {
+        reservation.setStartDate(LocalDate.parse(start));
+        reservation.setStartDate(LocalDate.parse(end));
+
+        String[] models = new String[] {carModel};
+
+        System.out.println("working");
+
+        reservationRepo.findAvailableMotorhomes(reservation.getStartDate(), reservation.getEndDate(), models);
+        return "redirect:";
     }
 
     //change to modal, opened from reservations?

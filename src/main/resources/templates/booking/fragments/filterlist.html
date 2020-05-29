@@ -24,7 +24,7 @@
 
                 </tr>
                     <th:block th:each="motorhome : ${motorhomes}">
-                    <tr th:data="${motorhome}">
+                    <tr th:data="${motorhome.model}">
                         <td th:text="${motorhome.model}">Model</td>
                         <td th:text="${motorhome.brand}">Brand</td>
                         <td th:text="${motorhome.price}">Price</td>

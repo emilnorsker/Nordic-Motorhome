@@ -189,6 +189,8 @@ public class ReservationRepoImpl implements IReservationRepo
         return result;
     }
 
+//  todo  public List<Motorhome> findAllAvailableMotorhomes(LocalDate start, LocalDate end, String[] models) {
+
 
     private boolean available(LocalDate start, LocalDate end, int id) // todo make test
     {

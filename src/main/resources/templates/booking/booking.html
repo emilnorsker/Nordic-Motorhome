@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../main.css">
     <link rel="stylesheet" href="../filterlist.css">
 
-
     <script type="text/javascript">
         function GetDays(){
             var dropdt = new Date(document.getElementById("drop_date").value);
@@ -44,23 +43,33 @@
             }
         }
     </script>
-
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
+        function OnDatesEntered()
+        {
+            var startdate = document.querySelectorAll("start");
+            // if field startdate not complete :: return
+
+            // if field enddate not complete :: return
+            // else  :: submit startdate, enddate
+
+        }
+    </script> <!--
+    <script>
+        document.addEventListener("DOMContentLoaded", () =>
+            {
             const rows = document.querySelectorAll("tr[data]");
 
-            rows.forEach(row => {
-                row.addEventListener("click", () => {
-                    document.getElementById("motoSel").value = row.dataset.data;
-                    }
-
-                )
+            rows.forEach(row =>
+            {
+                row.addEventListener("click", () =>
+                    {
+                        document.getElementById("motoSel").value = row.getAttribute("data");//row.dataset.data;
+                    })
             })
 
             }
         )
-    </script>
-
+    </script> -->
 </head>
 
 <body>
@@ -72,27 +81,38 @@
             <div class="jumbotron">
                 <h3>Booking</h3>
                 <hr class="my-4"/>
-                <form action="/booking/search/" method="get" id="search-form">
+
+                <!-- DATE AND MODEL -->
+
+                <form action="/booking/1" method="get" id="search-form">
                     <h5>Choose Date and Model</h5>
-                <div id="pickup_date"><p>
+                    <div id="pickup_date"><p>
                         <label class="form">Pickup Date:</label>
-                        <input type="date" class="textbox" id="start" name="start"/></p>
-                </div>
+                        <input type="date" class="textbox" id="start"   th:value="${reservation.startDate}" th:placeholer="${reservation.startDate}" name="start"  onchange="OnDatesEntered" /></p>
+                    </div>
 
-                <div id="dropoff_date"><p>
-                    <label class="form">Dropoff Date:</label>
-                    <input type="date" class="textbox" id="end" name="end" /></p>
-                </div>
+                    <div id="dropoff_date"><p>
+                        <label class="form">Dropoff Date:</label>
+                        <input type="date" class="textbox" id="end"    th:value="${reservation.endDate}" th:placeholer="${reservation.endDate}" name="end"  onchange="OnDatesEntered" /></p>
+                    </div>
 
-                <p>Choose your desired model</p>
+                    <p>Choose your desired model</p>
                     <div th:replace="booking/fragments/filterlist"/>
                     <br>
+
+
+
+                    <div id="reserve_form">
+                        <div id="motos">
+                            <label class="form">Selected Motorhome:</label>
+                            <input form="search-form" type="text" class="textbox" id="motoSel" name="model"/>
+                        </div>
+                    </div>
+
+                    <input type="submit" form="search-form">
+
                 </form>
 
-                <div id="reserve_form">
-
-                    <div id="motos"><label class="form">Selected Motorhome:</label><input type="text" class="textbox" id="motoSel" name="motos"/></div>
-                </div>
                 <!-- PERSONAL DETAILS -->
 
                 <hr class="my-4"/>
@@ -124,7 +144,7 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+1<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
