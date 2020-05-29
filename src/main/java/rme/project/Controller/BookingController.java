@@ -28,6 +28,8 @@ public class BookingController
 
     public int step = 0;
     Reservation reservation = new Reservation();
+    List<Motorhome> motorhomes = null;
+
 
 
     @GetMapping(value = "") //todo step max/min
@@ -38,7 +40,7 @@ public class BookingController
 
 
         model.addAttribute("step", step);
-        model.addAttribute("motorhomes", null);
+        model.addAttribute("motorhomes", motorhomes);
         return "booking/booking";
     }
 
@@ -50,8 +52,9 @@ public class BookingController
 
         System.out.println(start);
         System.out.println(end);
+        motorhomes =  reservationRepo.findAllAvailableMotorhomes(reservation.getStartDate(), reservation.getEndDate());
 
-        model.addAttribute("motorhomes", reservationRepo.findAllAvailableMotorhomes(reservation.getStartDate(), reservation.getEndDate()));
+        model.addAttribute("motorhomes", motorhomes );
 
         return "redirect:";
     }
