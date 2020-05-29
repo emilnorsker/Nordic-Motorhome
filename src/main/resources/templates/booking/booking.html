@@ -32,7 +32,8 @@
                 <h3>Booking</h3>
                 <hr class="my-4"/>
 
-                <form action="/booking/search/" method="get" id="search-form">
+                <div th:replace="booking/fragments/multipage_form :: form(step=${step})"></div>
+                <!--<form action="/booking/search/" method="get" id="search-form">
 
                 <div id="pickup_date"><p>
                         <label class="form">Pickup Date:</label>
@@ -49,7 +50,7 @@
                     <br>
 
                     <input type="submit" > </input>
-                </form>
+                </form> -->
 
             </div>
         </div>

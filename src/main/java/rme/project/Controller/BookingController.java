@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import rme.project.Models.Contact;
 import rme.project.Models.Motorhome;
+import rme.project.Models.Reservation;
 import rme.project.Repository.implementations.BookingRepoImpl;
 import rme.project.Repository.implementations.MotorhomeRepoIMPL;
 import rme.project.Repository.implementations.ReservationRepoImpl;
@@ -25,29 +26,52 @@ public class BookingController
     private IMotorhomeRepo motorhomesRepo = new MotorhomeRepoIMPL();
     private IReservationRepo reservationRepo = new ReservationRepoImpl();
 
+    public int step = 0;
+    Reservation reservation = new Reservation();
 
-
-
-    @GetMapping("")
-    public String ChooseDateAndModel(Model model)
+    @GetMapping("") //todo step max/min
+    public String ChooseDateAndModel(Model model, @RequestParam(value="step", required = false)Integer increment, @RequestParam(value="start", required = false)String start,@RequestParam(value="end", required = false)String end, @RequestParam(value="model", required = false) String[] models)
     {
+
+
+        if (!(increment==null))
+        {
+            if (!(step<0 || step>3))
+            step+=increment;
+        }
+        model.addAttribute("step", step);
         model.addAttribute("motorhomes", getModels());
 
         return "booking/booking";
     }
 
-
-    @GetMapping("/search")
-    public String ChooseMotorhome(@RequestParam(value="start")String start,@RequestParam(value="end")String end, @RequestParam(value="model") String[] models, Model model)
+    public String SearchAvailable(String start, String end, String[] models)
     {
         LocalDate startDate = LocalDate.parse(start);
         System.out.println(startDate);
         LocalDate endDate = LocalDate.parse(end);
         System.out.println(endDate);
-
-        model.addAttribute("availableMotorhomes",reservationRepo.findAvailableMotorhomes(startDate, endDate, models));
-        return "redirect:/booking";
+        reservationRepo.findAvailableMotorhomes(startDate, endDate, models);
+        return "";
     }
+
+
+    @GetMapping("")
+    public String ChooseMotorhome(Model model, @RequestParam(value="step", required = false)Integer increment, @RequestParam(value="step", required = false)Integer id)
+    {
+
+
+        if (!(increment==null))
+        {
+            if (!(step<0 || step>3))
+                step+=increment;
+        }
+        model.addAttribute("step", step);
+
+        return "booking/booking";
+    }
+
+
 
 
     public List<Motorhome> getModels()
