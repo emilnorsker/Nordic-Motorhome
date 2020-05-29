@@ -26,13 +26,10 @@
     border-bottom: 1px solid #ddd;
 }
 
-#myTable tr.header, #myTable tr:hover {
+#myTable tr.header {
     /* Add a grey background color to the table header and on hover */
     background-color: #f1f1f1;
 }
-
-.myclass{
-    display:inline-block;
-    width: 80px;
-    height: 40px;
+.mark tr:hover, td.selected {
+    background-color: dodgerblue;
 }
