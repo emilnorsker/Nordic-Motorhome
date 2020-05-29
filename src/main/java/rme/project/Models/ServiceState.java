@@ -2,14 +2,30 @@ package rme.project.Models;
 
 import java.time.LocalDate;
 
+/**
+ * Model for a vans state, updated by mechanic after reservation is over
+ * Might not be implemented in time
+ *
+ * @author Mikkel Åxman
+ * @version 1.0
+ */
 public class ServiceState {
-    int serviceState_id;
-    String damages;
-    float oil;
-    float water;
-    LocalDate date;
-    int motorhome_id;
+    private int serviceState_id;
+    private String damages;
+    private float oil;
+    private float water;
+    private LocalDate date;
+    private int motorhome_id;
 
+    /**
+     *
+     * @param serviceState_id
+     * @param damages
+     * @param oil
+     * @param water
+     * @param date
+     * @param motorhome_id
+     */
     public ServiceState(int serviceState_id, String damages, float oil, float water, LocalDate date, int motorhome_id) {
         this.serviceState_id = serviceState_id;
         this.damages = damages;

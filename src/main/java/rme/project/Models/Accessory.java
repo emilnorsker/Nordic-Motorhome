@@ -1,22 +1,26 @@
 package rme.project.Models;
 
-import java.util.List;
-
+/**
+ * @author Mikkel Åxman
+ * @version 2.0 removed list of motorhomes to mirror junction table setup in DB.
+ */
 public class Accessory {
-    int accessory_id;
-    String name;
-    float price;
-    List<Motorhome> motorhomesList; //TODO make Junction table?
-    String imagePath;
+    private int accessory_id;
+    private String name;
+    private float price;  //TODO Should be BigDecimal in later iteration
+    private String imagePath;
 
-    //TODO Skal accessories have startDate og endDate så de ikke bliver double booket? ja. Eller foreign key Reservation?
-
-
-    public Accessory(int accessory_id, String name, float price, List<Motorhome> motorhomesList, String imagePath) {
+    /**
+     * Accessory is related to motorhome and reservation thru junction tables in DB
+     * @param accessory_id ID is not-null, unsigned and auto-incremented in DB
+     * @param name Item name
+     * @param price Price pr. day
+     * @param imagePath Filepath for image if any. leave null if none.
+     */
+    public Accessory(int accessory_id, String name, float price, String imagePath) {
         this.accessory_id = accessory_id;
         this.name = name;
         this.price = price;
-        this.motorhomesList = motorhomesList;
         this.imagePath = imagePath;
     }
 
@@ -38,14 +42,6 @@ public class Accessory {
 
     public void setPrice(float price) {
         this.price = price;
-    }
-
-    public List<Motorhome> getMotorhomesList() {
-        return motorhomesList;
-    }
-
-    public void setMotorhomesList(List<Motorhome> motorhomesList) {
-        this.motorhomesList = motorhomesList;
     }
 
     public String getImagePath() {

@@ -56,9 +56,9 @@ public class BookingController
         List<Motorhome> typeModels = new ArrayList<Motorhome>();
         for (Motorhome M:motorhomesRepo.readAll())
         {
-            if (!models.contains(M.model))
+            if (!models.contains(M.getModel()))
             {
-                models.add(M.model);
+                models.add(M.getModel());
                 typeModels.add(M);
             }
         }

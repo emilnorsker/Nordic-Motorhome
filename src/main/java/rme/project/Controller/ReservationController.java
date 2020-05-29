@@ -8,6 +8,9 @@ import rme.project.Repository.implementations.ReservationRepoImpl;
 
 import java.sql.SQLException;
 
+/**
+ * @author Mikkel Åxman
+ */
 @Controller
 @RequestMapping("/reservations")
 public class ReservationController {
@@ -25,19 +28,17 @@ public class ReservationController {
 
     @GetMapping("/create")
     public String showCreatePage(){
-        return "create";
+        return "redirect:booking";
     }
 
 
     @PostMapping("/create")
-    public String create(@ModelAttribute Reservation reservation) throws SQLException {
-
-        return "booking"; //TODO Sådan man Redirecter to rent??
+    public String create() {
+        return "redirect:booking";  //TODO redirect to booking
     }
 
-    @GetMapping("/update") //todo what view is update
+    @GetMapping("/update")
     public String showUpdatePage(){
-
         return "update";
     }
 
