@@ -38,21 +38,21 @@ public class BookingController
 
 
         model.addAttribute("step", step);
-        model.addAttribute("motorhomes", getModels());
+        model.addAttribute("motorhomes", null);
         return "booking/booking";
     }
 
-    @GetMapping(value = "/1") // , params = {"start={}", "end={}", "model={}"}
-    public String ChooseMotorhome(Model model, @RequestParam("start")String start, @RequestParam("end")String end, @RequestParam("model")String carModel)
+    @GetMapping(value = "/dates")
+    public String ChooseMotorhome(Model model, @RequestParam("start")String start, @RequestParam("end")String end)
     {
         reservation.setStartDate(LocalDate.parse(start));
-        reservation.setStartDate(LocalDate.parse(end));
+        reservation.setEndDate(LocalDate.parse(end));
 
-        String[] models = new String[] {carModel};
+        System.out.println(start);
+        System.out.println(end);
 
-        System.out.println("working");
+        model.addAttribute("motorhomes", reservationRepo.findAllAvailableMotorhomes(reservation.getStartDate(), reservation.getEndDate()));
 
-        reservationRepo.findAvailableMotorhomes(reservation.getStartDate(), reservation.getEndDate(), models);
         return "redirect:";
     }
 

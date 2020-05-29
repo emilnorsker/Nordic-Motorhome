@@ -44,10 +44,23 @@
         }
     </script>
     <script>
-        function OnDatesEntered()
-        {
-            var startdate = document.querySelectorAll("start");
+        function OnDatesEntered() {
+            const start = document.getElementById("start").value;
+            const end = document.getElementById("end").value;
+
             // if field startdate not complete :: return
+            if (start == "")
+            {
+                return;
+            }
+            else if (end == "")
+            {
+                return;
+            }
+            else
+            {
+              document.getElementById("dates-form").submit();
+            }
 
             // if field enddate not complete :: return
             // else  :: submit startdate, enddate
@@ -84,17 +97,18 @@
 
                 <!-- DATE AND MODEL -->
 
-                <form action="/booking/1" method="get" id="search-form">
+                <form action="/booking/dates" method="get" id="dates-form">
                     <h5>Choose Date and Model</h5>
                     <div id="pickup_date"><p>
                         <label class="form">Pickup Date:</label>
-                        <input type="date" class="textbox" id="start"   th:value="${reservation.startDate}" th:placeholer="${reservation.startDate}" name="start"  onchange="OnDatesEntered" /></p>
+                        <input type="date" class="textbox" id="start"   th:value="${reservation.startDate}" th:placeholer="${reservation.startDate}" name="start"  onchange="OnDatesEntered()" /></p>
                     </div>
 
                     <div id="dropoff_date"><p>
                         <label class="form">Dropoff Date:</label>
-                        <input type="date" class="textbox" id="end"    th:value="${reservation.endDate}" th:placeholer="${reservation.endDate}" name="end"  onchange="OnDatesEntered" /></p>
+                        <input type="date" class="textbox" id="end"    th:value="${reservation.endDate}" th:placeholer="${reservation.endDate}" name="end"  onchange="OnDatesEntered()" /></p>
                     </div>
+                </form>
 
                     <p>Choose your desired model</p>
                     <div th:replace="booking/fragments/filterlist"/>
@@ -105,13 +119,11 @@
                     <div id="reserve_form">
                         <div id="motos">
                             <label class="form">Selected Motorhome:</label>
-                            <input form="search-form" type="text" class="textbox" id="motoSel" name="model"/>
+                            <input  type="text" class="textbox" id="motoSel" name="model"/>
                         </div>
                     </div>
 
-                    <input type="submit" form="search-form">
 
-                </form>
 
                 <!-- PERSONAL DETAILS -->
 

@@ -189,8 +189,29 @@ public class ReservationRepoImpl implements IReservationRepo
         return result;
     }
 
-//  todo  public List<Motorhome> findAllAvailableMotorhomes(LocalDate start, LocalDate end, String[] models) {
+    @Override
+    public List<Motorhome> findAllAvailableMotorhomes(LocalDate start, LocalDate end)
+    {
+        List<Motorhome> result = new ArrayList<Motorhome>();
+        IMotorhomeRepo motorhomes = new MotorhomeRepoIMPL();
+        try
+        {
+            for (int i = 0; i <motorhomes.readAll().size() ; i++)
+            {
+                int motorhome_id = motorhomes.readAll().get(i).getMotorhome_id();
+                if (available(start, end, motorhome_id))
+                {
+                    result.add(motorhomes.read(motorhome_id));
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
 
+        return result;
+    }
 
     private boolean available(LocalDate start, LocalDate end, int id) // todo make test
     {
