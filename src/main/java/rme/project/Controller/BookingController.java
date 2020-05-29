@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import rme.project.Models.Contact;
 import rme.project.Models.Motorhome;
-import rme.project.Models.Reservation;
 import rme.project.Repository.implementations.BookingRepoImpl;
 import rme.project.Repository.implementations.MotorhomeRepoIMPL;
 import rme.project.Repository.implementations.ReservationRepoImpl;
@@ -34,7 +33,7 @@ public class BookingController
     {
         model.addAttribute("motorhomes", getModels());
 
-        return "booking";
+        return "booking/booking";
     }
 
 
@@ -50,38 +49,42 @@ public class BookingController
         return "redirect:/booking";
     }
 
-    @GetMapping("")
-    public String EnterContact(Model model)
+
+    public List<Motorhome> getModels()
     {
-        model.addAttribute("motorhomes", getModels());
-        return "booking";
+        List<String> models = new ArrayList<String>();
+        List<Motorhome> typeModels = new ArrayList<Motorhome>();
+        for (Motorhome M:motorhomesRepo.readAll())
+        {
+            if (!models.contains(M.model))
+            {
+                models.add(M.model);
+                typeModels.add(M);
+            }
+        }
+        return typeModels;
     }
 
 
-    @GetMapping("")
-    public String SaveReservation(Model model)
-    {
-        return "booking";
-    }
 
-
+    // ##########################################################################################################
 
     @GetMapping("/contacts")
     public String contacts(Model model){
         model.addAttribute("contacts", bookingRepo.readAll());
-        return "contacts";
+        return "contacts/contacts";
     }
-
 
     @GetMapping("/create")
     public String showCreatePage(){
 
         return "create";
     }
+
     @PostMapping("/create")
     public String create(@ModelAttribute Contact contact) throws SQLException {
         bookingRepo.create(contact);
-        return "redirect:/booking";
+        return "redirect:";
     }
 
     @GetMapping("/update")
@@ -102,20 +105,7 @@ public class BookingController
         return "redirect:/booking/contacts";
     }
 
-    public List<Motorhome> getModels()
-    {
-        List<String> models = new ArrayList<String>();
-        List<Motorhome> typeModels = new ArrayList<Motorhome>();
-        for (Motorhome M:motorhomesRepo.readAll())
-        {
-            if (!models.contains(M.model))
-            {
-                models.add(M.model);
-                typeModels.add(M);
-            }
-        }
-        return typeModels;
-    }
+    // ##########################################################################################################
 
     // step one pick date and model
 

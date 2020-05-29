@@ -3,9 +3,7 @@ package rme.project.Controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import rme.project.Models.Motorhome;
 import rme.project.Models.Reservation;
-import rme.project.Repository.implementations.MotorhomeRepoIMPL;
 import rme.project.Repository.implementations.ReservationRepoImpl;
 
 import java.sql.SQLException;
@@ -22,7 +20,7 @@ public class ReservationController {
     @GetMapping("")
     public String reservations(Model model){
         model.addAttribute("reservations", reservationRepo.readAll());
-        return "reservations";
+        return "reservations/reservations";
     }
 
     @GetMapping("/create")
@@ -34,10 +32,10 @@ public class ReservationController {
     @PostMapping("/create")
     public String create(@ModelAttribute Reservation reservation) throws SQLException {
 
-        return "redirect:/booking"; //TODO Sådan man Redirecter to rent??
+        return "booking"; //TODO Sådan man Redirecter to rent??
     }
 
-    @GetMapping("/update")
+    @GetMapping("/update") //todo what view is update
     public String showUpdatePage(){
 
         return "update";
@@ -46,13 +44,13 @@ public class ReservationController {
     @PostMapping("/update")
     public String update(@ModelAttribute Reservation reservation) throws SQLException {
         reservationRepo.update(reservation);
-        return "redirect:/reservations";
+        return "redirect:";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") int id){
         reservationRepo.delete(id);
-        return "redirect:/reservations";
+        return "redirect:";
     }
 
 }

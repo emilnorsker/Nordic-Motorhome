@@ -75,7 +75,7 @@
 
                     <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
                         <div th:each="contact :${contacts}">
-                            <a th:insert="fragments/con_update_modal :: conUpdateModal(${contact.firstName}, ${contact.lastName}, ${contact.email}, ${contact.phone}, ${contact.contact_id})"></a>
+                            <a th:insert="contacts/fragments/contact_update_modal :: conUpdateModal(${contact.firstName}, ${contact.lastName}, ${contact.email}, ${contact.phone}, ${contact.contact_id})"></a>
                         </div>
                     </div>
 

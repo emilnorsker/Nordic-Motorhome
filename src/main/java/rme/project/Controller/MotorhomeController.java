@@ -8,32 +8,30 @@ import rme.project.Repository.implementations.MotorhomeRepoIMPL;
 import java.sql.SQLException;
 
 @Controller
-@RequestMapping(("/motorhomes"))
+@RequestMapping("/motorhomes")
 public class MotorhomeController {
-    private MotorhomeRepoIMPL motorRepo;
 
-    {
-        motorRepo = new MotorhomeRepoIMPL();
-    }
+    private MotorhomeRepoIMPL motorRepo = motorRepo = new MotorhomeRepoIMPL();
+
     @GetMapping("")
     public String motorhomes(Model model){
         model.addAttribute("motorhomes", motorRepo.readAll());
-        return "motorhomes";
+        return "motorhomes/motorhomes";
     }
 
     @GetMapping("/create")
     public String showCreatePage(){
 
-        return "create";
+        return "motorhomes/create";
     }
 
     @PostMapping("/create")
     public String create(@ModelAttribute Motorhome motorhome) throws SQLException {
         motorRepo.create(motorhome);
-        return "redirect:/motorhomes";
+        return "redirect:";
     }
 
-    @GetMapping("/update")
+    @GetMapping("update")
     public String showUpdatePage(){
 
         return "update";
@@ -42,13 +40,14 @@ public class MotorhomeController {
     @PostMapping("/update")
     public String update(@ModelAttribute Motorhome motorhome) throws SQLException {
         motorRepo.update(motorhome);
-        return "redirect:/motorhomes";
+        return "redirect:";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") int id){
         motorRepo.delete(id);
-        return "redirect:/motorhomes";
+
+        return "redirect:";
     }
 
 }
