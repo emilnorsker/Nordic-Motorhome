@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="../filterlist.css">
 
 
     <script type="text/javascript">
@@ -20,6 +21,46 @@
             }
         }
     </script>
+    <script>
+        function myFunction() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const rows = document.querySelectorAll("tr[data]");
+
+            rows.forEach(row => {
+                row.addEventListener("click", () => {
+                    document.getElementById("motoSel").value = row.dataset.data;
+                    }
+
+                )
+            })
+
+            }
+        )
+    </script>
+
 </head>
 
 <body>
@@ -31,10 +72,8 @@
             <div class="jumbotron">
                 <h3>Booking</h3>
                 <hr class="my-4"/>
-
-                <div th:replace="booking/fragments/multipage_form :: form(step=${step})"></div>
-                <!--<form action="/booking/search/" method="get" id="search-form">
-
+                <form action="/booking/search/" method="get" id="search-form">
+                    <h5>Choose Date and Model</h5>
                 <div id="pickup_date"><p>
                         <label class="form">Pickup Date:</label>
                         <input type="date" class="textbox" id="start" name="start"/></p>
@@ -46,12 +85,40 @@
                 </div>
 
                 <p>Choose your desired model</p>
-                    <div th:replace="booking/fragments/dropdown :: dropdown(${motorhomes}, 'name', 'search-form')"></div>
+                    <div th:replace="booking/fragments/filterlist"/>
                     <br>
+                </form>
 
-                    <input type="submit" > </input>
-                </form> -->
+                <div id="reserve_form">
 
+                    <div id="motos"><label class="form">Selected Motorhome:</label><input type="text" class="textbox" id="motoSel" name="motos"/></div>
+                </div>
+                <!-- PERSONAL DETAILS -->
+
+                <hr class="my-4"/>
+                <h5>Personal Details</h5>
+                <form action="/booking/create" method="post">
+
+                    <div class="form-group">
+                        <input type="text" name="firstName" class="form-control" placeholder="Please enter your Firstname">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="lastName" class="form-control" placeholder="Please enter your Lastname">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="email" class="form-control" placeholder="Please enter your email">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="phone" class="form-control" placeholder="Please enter your phone number">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Add</button>
+                    <!-- <input type="submit" form="reserve_form"> </input> -->
+                    <!--<div th:replace="fragments/search_modal"/>-->
+                </form>
             </div>
         </div>
     </div>

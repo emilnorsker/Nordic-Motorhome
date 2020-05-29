@@ -1,0 +1,44 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal">
+    Motorhomes
+</button>
+
+<div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Available Motorhomes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Model..">
+
+                <table id="myTable">
+                <tr class="header">
+                    <th style="width:20%;">Model</th>
+                    <th style="width:20%;">Brand</th>
+                    <th style="width:20%;">Price</th>
+
+                </tr>
+                    <th:block th:each="motorhome : ${motorhomes}">
+                    <tr th:data="${motorhome}">
+                        <td th:text="${motorhome.model}">Model</td>
+                        <td th:text="${motorhome.brand}">Brand</td>
+                        <td th:text="${motorhome.price}">Price</td>
+                    </tr>
+                    </th:block>
+                </table>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -34,13 +34,15 @@ public class BookingController
     public String ChooseDateAndModel(Model model)
     {
         model.addAttribute("step", step);
+        model.addAttribute("motorhomes", getModels());
         return "booking/booking";
     }
+
     //change to modal, opened from reservations?
     //addDates
     //addMotorhome
     //addReservation
-
+/*
     @GetMapping(value = "step0") //todo step max/min
     public String ChooseDateAndModel(Model model, @RequestParam(value="step", required = false)Integer increment, @RequestParam(value="start", required = false)String start,@RequestParam(value="end", required = false)String end, @RequestParam(value="model", required = false) String[] models)
     {
@@ -66,7 +68,7 @@ public class BookingController
         reservationRepo.findAvailableMotorhomes(startDate, endDate, models);
         return "";
     }
-
+*/
 /*
     @GetMapping(value="")
     public String ChooseMotorhome(Model model, @RequestParam(value="step", required = false)Integer increment, @RequestParam(value="id", required = false)Integer id)
