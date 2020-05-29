@@ -1,35 +1,37 @@
 package rme.project.Models;
 
-import java.util.List;
-
 /**
- *
  * @author Mikkel Åxman
+ * @version 2.0 cleaned up to mirror fields in DB. removed image filepath for now.
  */
 public class Motorhome {
 
-    public int motorhome_id; //Auto-incrementing
-    public String model;
-    public String brand;
-    public String licensePlate; //UNIQUE useful for indexing, but has a small chance of being null. Chance of having spaces as well.
-    public float price; //Should be BigDecimal for precision
+    private int motorhome_id; //Auto-incrementing, unsigned, not null, in DB
+    private String model;
+    private String brand;
+    private String licensePlate; //UNIQUE useful for indexing, but has a small chance of being null. Chance of having spaces as well.
+    private float price; //Should be BigDecimal for precision
+    //private String imagePath;
 
-    //String imagePath;
-
-    List<Reservation> reservations;
-    List<Accessory> accessories;
-
+    //Empty constructor
     public Motorhome(){
-
     }
+
+    /**
+     * Model for motorhome.
+     * @param id    motorhome unique ID is not null, unsigned, auto-incrementing in DB
+     * @param brand name of auto maker
+     * @param model type/model of auto
+     * @param licensePlate technically UNIQUE and possible primary key, but employees might set as null.
+     * @param price Price per day. should be bigdecimal later.
+     */
     public Motorhome(int id, String brand, String model, String licensePlate, float price)
-        {
+    {
         this.motorhome_id = id;
         this.model = model;
         this.brand = brand;
         this.price = price;
         this.licensePlate = licensePlate;
-
     }
 
 
@@ -75,23 +77,6 @@ public class Motorhome {
 
     public void setPrice(float price) {
         this.price = price;
-    }
-
-
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
-
-    public List<Accessory> getAccessories() {
-        return accessories;
-    }
-
-    public void setAccessories(List<Accessory> accessories) {
-        this.accessories = accessories;
     }
 
 }

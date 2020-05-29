@@ -1,8 +1,6 @@
 package rme.project.Models;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.format.annotation.DateTimeFormat;
-
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -12,20 +10,30 @@ import java.time.temporal.ChronoUnit;
  * @author Mikkel Åxman
  */
 public class Reservation {
-    @Id
-    int reservation_id;
-    String location;
-    double kmFromOffice;
-    int motorhome_id;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    LocalDate startDate;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    LocalDate endDate;
-    Long numberOfDays;
 
+    private int reservation_id;
+    private String location;
+    private double kmFromOffice;
+    private int motorhome_id;
+    @DateTimeFormat(pattern = "yyyy-MM-dd") //For when date is returned in another format and needs parsing
+    private LocalDate startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate endDate;
+    private Long numberOfDays;
+
+    //Empty constructor.
     public Reservation() {
     }
 
+    /**
+     *
+     * @param reservation_id ID
+     * @param location String address for drop-off
+     * @param kmFromOffice manually entered distance to dropoff, used to calculate price. Will be made automatic later.
+     * @param startDate Reservation starts at this date
+     * @param endDate   Reservation ends at this date
+     * @param motorhome_id  ID for motorhome used in this reservation
+     */
     public Reservation(int reservation_id, String location, double kmFromOffice, LocalDate startDate, LocalDate endDate, int motorhome_id) {
         this.reservation_id = reservation_id;
         this.location = location;
@@ -52,9 +60,7 @@ public class Reservation {
         return kmFromOffice;
     }
 
-    public void setKmFromOffice(double kmFromOffice) {
-        this.kmFromOffice = kmFromOffice;
-    }
+    public void setKmFromOffice(double kmFromOffice) { this.kmFromOffice = kmFromOffice; }
 
     public int getMotorhome_id() {
         return motorhome_id;

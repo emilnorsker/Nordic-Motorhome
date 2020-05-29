@@ -2,14 +2,25 @@ package rme.project.Models;
 
 import java.time.LocalDate;
 
-//sale is a junction table with contact and reservation ids
+/**
+ * sale is a mirror of the junction table with contact and reservation ids
+ * @author Mikkel Åxman
+ * @version 1.0
+ */
+
 public class Sale {
-    int contact_id;
-    int reservation_id;
-    LocalDate date;
-    float amount;
+    private int contact_id;
+    private int reservation_id;
+    private LocalDate date;
+    private float amount;
 
-
+    /**
+     *
+     * @param reservation_id
+     * @param date  The date the sale is updated.
+     * @param amount    Total price
+     * @param contact_id
+     */
     public Sale(int reservation_id, LocalDate date, float amount, int contact_id) {
 
         this.reservation_id = reservation_id;
