@@ -29,7 +29,19 @@ public class BookingController
     public int step = 0;
     Reservation reservation = new Reservation();
 
-    @GetMapping("") //todo step max/min
+
+    @GetMapping(value = "") //todo step max/min
+    public String ChooseDateAndModel(Model model)
+    {
+        model.addAttribute("step", step);
+        return "booking/booking";
+    }
+    //change to modal, opened from reservations?
+    //addDates
+    //addMotorhome
+    //addReservation
+
+    @GetMapping(value = "step0") //todo step max/min
     public String ChooseDateAndModel(Model model, @RequestParam(value="step", required = false)Integer increment, @RequestParam(value="start", required = false)String start,@RequestParam(value="end", required = false)String end, @RequestParam(value="model", required = false) String[] models)
     {
 
@@ -42,7 +54,7 @@ public class BookingController
         model.addAttribute("step", step);
         model.addAttribute("motorhomes", getModels());
 
-        return "booking/booking";
+        return "booking/booking/"+;
     }
 
     public String SearchAvailable(String start, String end, String[] models)
@@ -55,9 +67,9 @@ public class BookingController
         return "";
     }
 
-
-    @GetMapping("")
-    public String ChooseMotorhome(Model model, @RequestParam(value="step", required = false)Integer increment, @RequestParam(value="step", required = false)Integer id)
+/*
+    @GetMapping(value="")
+    public String ChooseMotorhome(Model model, @RequestParam(value="step", required = false)Integer increment, @RequestParam(value="id", required = false)Integer id)
     {
 
 
@@ -70,10 +82,7 @@ public class BookingController
 
         return "booking/booking";
     }
-
-
-
-
+*/
     public List<Motorhome> getModels()
     {
         List<String> models = new ArrayList<String>();
