@@ -42,6 +42,14 @@
                     </div>
 
                     <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
+                        <h7 id="row">Motorhome</h7>
+                    </div>
+
+                    <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
+                        <h7 id="row">Accessories</h7>
+                    </div>
+
+                    <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
                         <h7 id="row">Update</h7>
                     </div>
 
@@ -80,7 +88,19 @@
                     <p th:each="reservation :${reservations}">
                         <span id="row" style="color: black" th:text="${reservation.numberOfDays}"/>
                     </p>
-                </div>
+                    </div>
+
+                    <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
+                        <p th:each="reservation :${reservations}">
+                            <a style="color: lightgreen;" th:href="@{'reservations/getMotorhome/'+${reservation.motorhome_id}}">Show Van</a>
+                        </p>
+                    </div>
+
+                    <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
+                        <p th:each="reservation :${reservations}">
+                            <a style="color: lightgreen;" th:href="@{'reservations/getAccessories/'+${reservation.reservation_id}}">Show Items</a>
+                        </p>
+                    </div>
 
                     <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
                         <div th:each="reservation :${reservations}">

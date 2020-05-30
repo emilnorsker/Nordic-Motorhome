@@ -258,7 +258,9 @@ public class ReservationRepoImpl implements IReservationRepo
         return false;
     }
 
+    public void getMotorhome(int id) {
 
+    }
 }
 
 

@@ -20,7 +20,7 @@ public class ReservationController {
         reservationRepo = new ReservationRepoImpl();
     }
 
-    @GetMapping("")
+    @GetMapping()
     public String reservations(Model model){
         model.addAttribute("reservations", reservationRepo.readAll());
         return "reservations/reservations";
@@ -30,7 +30,6 @@ public class ReservationController {
     public String showCreatePage(){
         return "redirect:booking";
     }
-
 
     @PostMapping("/create")
     public String create() {
@@ -51,6 +50,12 @@ public class ReservationController {
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") int id){
         reservationRepo.delete(id);
+        return "redirect:";
+    }
+
+    @GetMapping("/getMotorhome/{id}")
+    public String getMotorhome(@PathVariable("id") int id){
+        reservationRepo.getMotorhome(id);
         return "redirect:";
     }
 
