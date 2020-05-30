@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -17,105 +17,33 @@
             <div th:replace="fragments/Menu"/>
 
             <div class="jumbotron">
-
                 <h3 >List of Reservations</h3>
                 <hr class="my-4"/>
-                <div class="row">
-                    <div class="col-sm p-3 mb-2 bg-light text-black">
-                        <h7 id="row">Drop-off Location</h7>
-                    </div>
-
-                    <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
-                        <h7 id="row">Km from Office</h7>
-                    </div>
-
-                    <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
-                        <h7 id="row">Start Date</h7>
-                    </div>
-
-                    <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
-                        <h7 id="row">End Date</h7>
-                    </div>
-
-                    <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
-                        <h7 id="row">Number of Days</h7>
-                    </div>
-
-                    <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
-                        <h7 id="row">Motorhome</h7>
-                    </div>
-
-                    <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
-                        <h7 id="row">Accessories</h7>
-                    </div>
-
-                    <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
-                        <h7 id="row">Update</h7>
-                    </div>
-
-                    <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
-                        <h7 id="row">Delete</h7>
-                    </div>
-
+                <table style="width:100%">
+                    <tr>
+                        <th>Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th> info </th>
+                        <th>update</th>
+                        <th>delete</th>
+                    </tr>
+                    <tr th:each="reservation :${reservations}">
+                        <td>customer name</td>
+                        <td th:text="${reservation.startDate}"></td>
+                        <td th:text="${reservation.endDate}"></td>
+                        <td>info</td>
+                        <td th:insert="reservations/fragments/reservation_update_modal :: resUpdateModal(${reservation})"></td> <!-- update -->
+                        <td>
+                            <form action="/reservations/delete/">
+                                <input type="hidden" name="id" th:value="${reservation.reservation_id}"/>
+                                <input type="submit" style="color: lightcoral;" value="Delete"/>
+                            </form>
+                        </td> <!-- delete -->
+                    </tr>
+                </table>
                 </div>
-
-                <div class="row">
-                    <div class="col-sm p-3 mb-2 bg-light text-white">
-                        <p th:each="reservation :${reservations}">
-                            <span id="row" style="color: black" th:text="${reservation.location}"/>
-                        </p>
-                    </div>
-
-                    <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                        <p th:each="reservation :${reservations}">
-                            <span id="row" style="color: black" th:text="${reservation.kmFromOffice}"/>
-                        </p>
-                    </div>
-
-                    <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                        <p th:each="reservation :${reservations}">
-                            <span id="row" style="color: black" th:text="${reservation.startDate}"/>
-                        </p>
-                    </div>
-
-                    <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                        <p th:each="reservation :${reservations}">
-                            <span id="row" style="color: black" th:text="${reservation.endDate}"/>
-                        </p>
-                    </div>
-
-                    <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                    <p th:each="reservation :${reservations}">
-                        <span id="row" style="color: black" th:text="${reservation.numberOfDays}"/>
-                    </p>
-                    </div>
-
-                    <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                        <p th:each="reservation :${reservations}">
-                            <a style="color: lightgreen;" th:href="@{'reservations/getMotorhome/'+${reservation.motorhome_id}}">Show Van</a>
-                        </p>
-                    </div>
-
-                    <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                        <p th:each="reservation :${reservations}">
-                            <a style="color: lightgreen;" th:href="@{'reservations/getAccessories/'+${reservation.reservation_id}}">Show Items</a>
-                        </p>
-                    </div>
-
-                    <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                        <div th:each="reservation :${reservations}">
-                            <a th:insert="reservations/fragments/reservation_update_modal :: resUpdateModal(${reservation.location}, ${reservation.kmFromOffice}, ${reservation.startDate}, ${reservation.endDate}, ${reservation.motorhome_id}, ${reservation.reservation_id})"></a>
-                        </div>
-                    </div>
-
-                    <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                        <p th:each="reservation :${reservations}">
-                            <a style="color: lightcoral;" th:href="@{'reservations/delete/'+${reservation.reservation_id}}">Delete</a>
-                        </p>
-                    </div>
-
-                </div>
-                <button type="button" class="btn btn-primary" action="/reservations/create">
+                <button type="button" class="btn btn-primary" href="/booking?reset=true">
                     Add Reservation
                 </button>
 <!--                <div th:replace="fragments/create_modal">   TODO add "create button" to link to /booking    -->

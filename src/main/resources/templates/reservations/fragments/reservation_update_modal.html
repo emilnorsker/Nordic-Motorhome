@@ -1,12 +1,12 @@
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<div th:fragment="resUpdateModal(location1,kmFromOffice1,startDate1,endDate1,motorhome_id1, id)">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="resUpdateModal(reservation)">
 
-    <p>
-        <a type="button" style="color: dodgerblue;" data-toggle="modal" th:attr="data-target='#update' + ${id}" th:href="@{'reservations/update/' + ${reservation.reservation_id}}">Update</a>
+    <p> <!-- todo jut pass reervation object -->
+        <a type="button" style="color: dodgerblue;" data-toggle="modal" th:attr="data-target='#update' + ${reservation.reservation_id}" th:href="@{'reservations/update/' + ${reservation.reservation_id}}">Update</a>
     </p>
+ <!-- ${reservation.location}, ${reservation.kmFromOffice}, ${reservation.startDate}, ${reservation.endDate}, ${reservation.motorhome_id}, ${reservation.reservation_id} -->
 
-
-    <div class="modal fade" th:id="update+${id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" th:id="update+${reservation.reservation_id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -15,23 +15,23 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body"> <!-- todo table date instead of this -->
                     <div class="container">
 
                         <form action="/reservations/update" method="post">
                             <div class="form-group">
-                                <input type="text" name="location" class="form-control" th:value="${location1}"
-                                       th:placeholder="${location1}">
+                                <input type="text" name="location" class="form-control" th:value="${reservation.location}"
+                                       th:placeholder="${reservation.location}">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="kmFromOffice" class="form-control" th:value="${kmFromOffice1}"
-                                       th:placeholder="${kmFromOffice1}">
+                                <input type="text" name="kmFromOffice" class="form-control" th:value="${reservation.kmFromOffice}"
+                                       th:placeholder="${reservation.kmFromOffice}">
                             </div>
                             <div class="form-group">
-                                <input type="date" name="startDate" class="form-control" th:value="${startDate1}" th:placeholder="${startDate1}" >
+                                <input type="date" name="startDate" class="form-control" th:value="${reservation.startDate}" th:placeholder="${reservation.startDate}" >
                             </div>
                             <div class="form-group">
-                                <input type="date" name="endDate" class="form-control" th:value="${endDate1}" th:placeholder="${endDate1}" >
+                                <input type="date" name="endDate" class="form-control" th:value="${reservation.endDate}" th:placeholder="${reservation.endDate}" >
                             </div>
 
 <!--                            <div class="form-group">
@@ -39,9 +39,9 @@
                             </div> TODO ADD MOTORHOME PICKER and accessories
 -->
                             <input type="hidden" name="motorhome_id" th:value="${reservation.motorhome_id}">
-                            <div th:text = "${motorhome_id1}"></div>
+                            <div th:text = "${reservation.motorhome_id}"></div>
                             <input type="hidden" name="reservation_id" th:value="${reservation.reservation_id}">
-                            <div th:text = "${id}"></div>
+                            <div th:text = "${reservation.reservation_id}"></div>
 
 
                             <div class="modal-footer">

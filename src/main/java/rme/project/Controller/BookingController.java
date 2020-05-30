@@ -36,7 +36,6 @@ public class BookingController
     public String ChooseDateAndModel(Model model, @RequestParam(value = "reset", required = false) String reset)
     {
 
-        System.out.println(reset);
         if (reset!= null && reset.equalsIgnoreCase("true"))
         {
             reservation = new Reservation();
@@ -62,7 +61,7 @@ public class BookingController
     }
 
     @GetMapping("/create")
-    public String create(@RequestParam("motorhome_id")int motorhome_id, @RequestParam("firstName") String fName, @RequestParam("lastName") String lName, @RequestParam("email") String email, @RequestParam("phone") String number)
+    public String create(@RequestParam("motorhome_id")String motorhome_id, @RequestParam("firstName") String fName, @RequestParam("lastName") String lName, @RequestParam("email") String email, @RequestParam("phone") String number)
     {
         Contact contact = new Contact();
         contact.setFirstName(fName);
@@ -74,7 +73,7 @@ public class BookingController
         bookingRepo.create(contact); // todo get contact id
 
         //todo set contact_id
-        reservation.setMotorhome_id(motorhome_id);
+        reservation.setMotorhome_id(Integer.parseInt(motorhome_id));
         reservation.setKmFromOffice(10d); // todo better calculation
 
         System.out.println("create");

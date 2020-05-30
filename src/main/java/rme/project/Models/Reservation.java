@@ -11,7 +11,7 @@ import java.time.temporal.ChronoUnit;
  */
 public class Reservation {
 
-    private int reservation_id;
+    public int reservation_id;
     private String location;
     private double kmFromOffice;
     private int motorhome_id;
@@ -20,6 +20,7 @@ public class Reservation {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     private Long numberOfDays;
+    private int contact_id;
 
     //Empty constructor.
     public Reservation() {

@@ -19,6 +19,7 @@ import java.util.List;
 public class ReservationRepoImpl implements IReservationRepo
 {
 
+    //todo contact information
     Connection conn = DBConnection.getDatabaseConnection();
     @Override
     public void create(Reservation item) {
@@ -197,7 +198,7 @@ public class ReservationRepoImpl implements IReservationRepo
         try
         {
             //gets all available motorhomes
-            System.out.println(motorhomes.readAll().size());
+            System.out.println("read all size" +motorhomes.readAll().size());
             for (int i = 0; i <motorhomes.readAll().size() ; i++)
             {
                 int motorhome_id = motorhomes.readAll().get(i).getMotorhome_id();
@@ -217,11 +218,12 @@ public class ReservationRepoImpl implements IReservationRepo
 
     private boolean available(LocalDate start, LocalDate end, int id) // todo make test
     {
-        System.out.println("id  " +id);
         List<Reservation> reservationsList = new ArrayList<Reservation>();
         // reservations with that motorhome id
         try
         {
+
+            //finding all reservation with the motorhome id
             PreparedStatement statement = conn.prepareStatement("SELECT * FROM reservations WHERE motorhome_id = ?");
 
             statement.setInt(1, id);
@@ -229,6 +231,7 @@ public class ReservationRepoImpl implements IReservationRepo
             while (rs.next())
             {
                 Reservation reservation = new Reservation();
+
                 reservation.setReservation_id(rs.getInt(1));
                 reservation.setLocation(rs.getString(2));
                 reservation.setKmFromOffice(rs.getDouble(3));
@@ -247,14 +250,17 @@ public class ReservationRepoImpl implements IReservationRepo
         boolean flag1;
         boolean flag2;
 
-        for (Reservation R: reservationsList)
-        {
-            flag1 = R.getStartDate().isAfter(start) && R.getEndDate().isAfter(start);
-            flag2 = R.getEndDate().isAfter(end) &&  R.getEndDate().isAfter(end);
-            if (flag1==flag2) {
-                return true; // magic (made with a karnaugh map)
+        if (reservationsList.size()>0) {
+            for (Reservation R : reservationsList)
+            {
+                flag1 = R.getStartDate().isAfter(start) == R.getEndDate().isAfter(start);
+                flag2 = R.getEndDate().isAfter(end) == R.getEndDate().isAfter(end);
+                if (flag1 == flag2)
+                    return true; // magic (made with a karnaugh map)
             }
         }
+        else
+            return true;
         return false;
     }
 
