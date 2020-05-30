@@ -32,9 +32,8 @@
                         <td>customer name</td>
                         <td th:text="${reservation.startDate}"></td>
                         <td th:text="${reservation.endDate}"></td>
-                        <td>info</td>
-                        <td th:insert="reservations/fragments/reservation_update_modal :: resUpdateModal(${reservation})"></td> <!-- update -->
-                        <td>
+                        <td th:insert="reservations/fragments/info :: info(${reservation})">info</td>
+                       <td>
                             <form action="/reservations/delete/">
                                 <input type="hidden" name="id" th:value="${reservation.reservation_id}"/>
                                 <input type="submit" style="color: lightcoral;" value="Delete"/>

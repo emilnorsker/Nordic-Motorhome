@@ -38,11 +38,13 @@
                                 <input type="text" name="motorhome_id" class="form-control" th:value="${motorhome_id}" th:placeholder="${motorhome_id1}" >
                             </div> TODO ADD MOTORHOME PICKER and accessories
 -->
-                            <input type="hidden" name="motorhome_id" th:value="${reservation.motorhome_id}">
-                            <div th:text = "${reservation.motorhome_id}"></div>
-                            <input type="hidden" name="reservation_id" th:value="${reservation.reservation_id}">
-                            <div th:text = "${reservation.reservation_id}"></div>
+                            <div class="form-group">
+                                <input type="hidden" name="motorhome_id" th:value="${reservation.motorhome_id}">
+                            </div>
 
+                            <div class="form-group">
+                                <input type="hidden" name="reservation_id" th:value="${reservation.reservation_id}">
+                            </div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
