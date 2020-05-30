@@ -118,7 +118,6 @@
                 <!-- DATE AND MODEL -->
                 <form action="/booking/dates" method="get" id="dates-form">
                     <h5>Choose Date and Model</h5>
-
                     <div id="pickup_date"><p>
                         <label class="form">Pickup Date:</label>
                         <input type="date" class="textbox" id="start"   th:value="${reservation.startDate}" th:placeholer="${reservation.startDate}" name="start"  onchange="OnDatesEntered()" /></p>
@@ -129,7 +128,6 @@
                     </div>
                 </form>
 
-                
                 <form action="/booking/create" id="add_booking">
                     <p>Choose your desired model</p>
                     <div th:replace="booking/fragments/filterlist"/>

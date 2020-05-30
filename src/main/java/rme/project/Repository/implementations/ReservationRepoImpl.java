@@ -196,6 +196,8 @@ public class ReservationRepoImpl implements IReservationRepo
         IMotorhomeRepo motorhomes = new MotorhomeRepoIMPL();
         try
         {
+            //gets all available motorhomes
+            System.out.println(motorhomes.readAll().size());
             for (int i = 0; i <motorhomes.readAll().size() ; i++)
             {
                 int motorhome_id = motorhomes.readAll().get(i).getMotorhome_id();
