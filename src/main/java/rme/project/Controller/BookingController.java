@@ -70,17 +70,17 @@ public class BookingController
         contact.setEmail(email);
         contact.setPhone(number); //todo change phone to int
 
-
-
         BookingRepoImpl bookingRepo = new BookingRepoImpl();
-
         bookingRepo.create(contact); // todo get contact id
 
         //todo set contact_id
         reservation.setMotorhome_id(motorhome_id);
         reservation.setKmFromOffice(10d); // todo better calculation
 
+        System.out.println("create");
         reservationRepo.create(reservation);
+        System.out.println("done");
+
 
         return "redirect:";
     }

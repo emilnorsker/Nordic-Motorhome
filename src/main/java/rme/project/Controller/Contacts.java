@@ -14,7 +14,7 @@ public class Contacts
 {
     private IBookingRepo bookingRepo = new BookingRepoImpl();
 
-    @GetMapping("/contacts")
+    @GetMapping("")
     public String contacts(Model model){
         model.addAttribute("contacts", bookingRepo.readAll());
         return "contacts/contacts";
