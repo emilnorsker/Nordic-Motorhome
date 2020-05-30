@@ -66,7 +66,7 @@
             // else  :: submit startdate, enddate
 
         }
-    </script> <!--
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", () =>
             {
@@ -76,13 +76,14 @@
             {
                 row.addEventListener("click", () =>
                     {
-                        document.getElementById("motoSel").value = row.getAttribute("data");//row.dataset.data;
+                        document.getElementById("motoSel").textContent = row.getElementsByClassName("row_with_model")[0].id;//row.dataset.data;
+                        document.getElementById("motorhome_id").value = row.getAttribute("data");//row.dataset.data;
                     })
             })
 
             }
         )
-    </script> -->
+    </script>
 </head>
 
 <body>
@@ -91,65 +92,56 @@
     <div class="movedown">
         <div class="container">
             <div th:replace="fragments/Menu"/>
+
             <div class="jumbotron">
                 <h3>Booking</h3>
                 <hr class="my-4"/>
-
                 <!-- DATE AND MODEL -->
-
                 <form action="/booking/dates" method="get" id="dates-form">
                     <h5>Choose Date and Model</h5>
+
                     <div id="pickup_date"><p>
                         <label class="form">Pickup Date:</label>
                         <input type="date" class="textbox" id="start"   th:value="${reservation.startDate}" th:placeholer="${reservation.startDate}" name="start"  onchange="OnDatesEntered()" /></p>
                     </div>
-
                     <div id="dropoff_date"><p>
                         <label class="form">Dropoff Date:</label>
                         <input type="date" class="textbox" id="end"    th:value="${reservation.endDate}" th:placeholer="${reservation.endDate}" name="end"  onchange="OnDatesEntered()" /></p>
                     </div>
                 </form>
 
+                
+                <form action="/booking/create" id="add_booking">
                     <p>Choose your desired model</p>
                     <div th:replace="booking/fragments/filterlist"/>
-                    <br>
-
-
 
                     <div id="reserve_form">
                         <div id="motos">
                             <label class="form">Selected Motorhome:</label>
-                            <input  type="text" class="textbox" id="motoSel" name="model"/>
+                            <p  type="text" class="textbox" id="motoSel" name="model"></p>
+                            <input type="hidden" id="motorhome_id" name="motorhome_id">
+                        </div>
+                    </div>
+                    <!-- PERSONAL DETAILS -->
+                    <hr class="my-4"/>
+                    <h5>Personal Details</h5>
+
+                    <div>
+                        <div class="form-group">
+                            <input type="text" name="firstName" class="form-control" placeholder="Please enter your Firstname">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="lastName" class="form-control" placeholder="Please enter your Lastname">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="email" class="form-control" placeholder="Please enter your email">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="phone" class="form-control" placeholder="Please enter your phone number">
                         </div>
                     </div>
 
-
-
-                <!-- PERSONAL DETAILS -->
-
-                <hr class="my-4"/>
-                <h5>Personal Details</h5>
-                <form action="/booking/create" method="post">
-
-                    <div class="form-group">
-                        <input type="text" name="firstName" class="form-control" placeholder="Please enter your Firstname">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text" name="lastName" class="form-control" placeholder="Please enter your Lastname">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text" name="email" class="form-control" placeholder="Please enter your email">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text" name="phone" class="form-control" placeholder="Please enter your phone number">
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Add</button>
-                    <!-- <input type="submit" form="reserve_form"> </input> -->
-                    <!--<div th:replace="fragments/search_modal"/>-->
+                    <input type="submit" class="btn btn-primary" form="add_booking"> <!--todo add check here -->
                 </form>
             </div>
         </div>

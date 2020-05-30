@@ -24,10 +24,11 @@
 
                 </tr>
                     <th:block th:each="motorhome : ${motorhomes}">
-                    <tr th:data="${motorhome.model}">
-                        <td th:text="${motorhome.model}">Model</td>
-                        <td th:text="${motorhome.brand}">Brand</td>
-                        <td th:text="${motorhome.price}">Price</td>
+                        <div type="hidden" th:value="${motorhome.motorhome_id}"></div>
+                        <tr th:data="${motorhome.motorhome_id}">
+                            <td th:id="${motorhome.model}" class="row_with_model" th:text="${motorhome.model}">Model</td>
+                            <td th:text="${motorhome.brand}">Brand</td>
+                            <td th:text="${motorhome.price}">Price</td>
                     </tr>
                     </th:block>
                 </table>
@@ -35,7 +36,6 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
-                    </form>
                 </div>
             </div>
         </div>

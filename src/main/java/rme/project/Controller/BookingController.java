@@ -22,7 +22,7 @@ import java.util.List;
 @RequestMapping("/booking")
 public class BookingController
 {
-    private IBookingRepo bookingRepo = new BookingRepoImpl();
+
     private IMotorhomeRepo motorhomesRepo = new MotorhomeRepoIMPL();
     private IReservationRepo reservationRepo = new ReservationRepoImpl();
 
@@ -33,13 +33,16 @@ public class BookingController
 
 
     @GetMapping(value = "") //todo step max/min
-    public String ChooseDateAndModel(Model model)
+    public String ChooseDateAndModel(Model model, @RequestParam(value = "reset", required = false) String reset)
     {
+
+        System.out.println(reset);
+        if (reset!= null && reset.equalsIgnoreCase("true"))
+        {
+            reservation = new Reservation();
+        }
+
         model.addAttribute("reservation", reservation);
-
-
-
-        model.addAttribute("step", step);
         model.addAttribute("motorhomes", motorhomes);
         return "booking/booking";
     }
@@ -50,62 +53,38 @@ public class BookingController
         reservation.setStartDate(LocalDate.parse(start));
         reservation.setEndDate(LocalDate.parse(end));
 
-        System.out.println(start);
-        System.out.println(end);
-        motorhomes =  reservationRepo.findAllAvailableMotorhomes(reservation.getStartDate(), reservation.getEndDate());
+        // todo calculate number of days
 
+        motorhomes =  reservationRepo.findAllAvailableMotorhomes(reservation.getStartDate(), reservation.getEndDate());
         model.addAttribute("motorhomes", motorhomes );
 
         return "redirect:";
     }
 
-    //change to modal, opened from reservations?
-    //addDates
-    //addMotorhome
-    //addReservation
-/*
-    @GetMapping(value = "step0") //todo step max/min
-    public String ChooseDateAndModel(Model model, @RequestParam(value="step", required = false)Integer increment, @RequestParam(value="start", required = false)String start,@RequestParam(value="end", required = false)String end, @RequestParam(value="model", required = false) String[] models)
+    @GetMapping("/create")
+    public String create(@RequestParam("motorhome_id")int motorhome_id, @RequestParam("firstName") String fName, @RequestParam("lastName") String lName, @RequestParam("email") String email, @RequestParam("phone") String number)
     {
+        Contact contact = new Contact();
+        contact.setFirstName(fName);
+        contact.setLastName(lName);
+        contact.setEmail(email);
+        contact.setPhone(number); //todo change phone to int
 
 
-        if (!(increment==null))
-        {
-            if (!(step<0 || step>3))
-            step+=increment;
-        }
-        model.addAttribute("step", step);
-        model.addAttribute("motorhomes", getModels());
 
-        return "booking/booking/"+;
+        BookingRepoImpl bookingRepo = new BookingRepoImpl();
+
+        bookingRepo.create(contact); // todo get contact id
+
+        //todo set contact_id
+        reservation.setMotorhome_id(motorhome_id);
+        reservation.setKmFromOffice(10d); // todo better calculation
+
+        reservationRepo.create(reservation);
+
+        return "redirect:";
     }
 
-    public String SearchAvailable(String start, String end, String[] models)
-    {
-        LocalDate startDate = LocalDate.parse(start);
-        System.out.println(startDate);
-        LocalDate endDate = LocalDate.parse(end);
-        System.out.println(endDate);
-        reservationRepo.findAvailableMotorhomes(startDate, endDate, models);
-        return "";
-    }
-*/
-/*
-    @GetMapping(value="")
-    public String ChooseMotorhome(Model model, @RequestParam(value="step", required = false)Integer increment, @RequestParam(value="id", required = false)Integer id)
-    {
-
-
-        if (!(increment==null))
-        {
-            if (!(step<0 || step>3))
-                step+=increment;
-        }
-        model.addAttribute("step", step);
-
-        return "booking/booking";
-    }
-*/
     public List<Motorhome> getModels()
     {
         List<String> models = new ArrayList<String>();
@@ -120,52 +99,5 @@ public class BookingController
         }
         return typeModels;
     }
-
-
-
     // ##########################################################################################################
-
-    @GetMapping("/contacts")
-    public String contacts(Model model){
-        model.addAttribute("contacts", bookingRepo.readAll());
-        return "contacts/contacts";
-    }
-
-    @GetMapping("/create")
-    public String showCreatePage(){
-
-        return "create";
-    }
-
-    @PostMapping("/create")
-    public String create(@ModelAttribute Contact contact) throws SQLException {
-        bookingRepo.create(contact);
-        return "redirect:";
-    }
-
-    @GetMapping("/update")
-    public String showUpdatePage(){
-
-        return "update";
-    }
-
-    @PostMapping("/update")
-    public String update(@ModelAttribute Contact contact) throws SQLException {
-        bookingRepo.update(contact);
-        return "redirect:/booking/contacts";
-    }
-
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") int id){
-        bookingRepo.delete(id);
-        return "redirect:/booking/contacts";
-    }
-
-    // ##########################################################################################################
-
-    // step one pick date and model
-
-    //step two choose model
-
-
 }
