@@ -107,7 +107,7 @@ public class Reservation {
     }
 
     public void setNumberOfDays() {
-        this.numberOfDays = ChronoUnit.DAYS.between(startDate, endDate);
+        this.numberOfDays = ChronoUnit.DAYS.between(startDate, endDate) +1 ;
     }
 
     public int getContact_id() {
