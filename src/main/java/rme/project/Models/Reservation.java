@@ -23,9 +23,7 @@ public class Reservation {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     private Long numberOfDays;
-
     private int contact_id;
-
     public Contact contact;
 
     //Empty constructor.
