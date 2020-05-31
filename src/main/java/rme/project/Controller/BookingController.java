@@ -61,7 +61,7 @@ public class BookingController
     }
 
     @GetMapping("/create")
-    public String create(@RequestParam("motorhome_id")String motorhome_id, @RequestParam("firstName") String fName, @RequestParam("lastName") String lName, @RequestParam("email") String email, @RequestParam("phone") String number)
+    public String create(@RequestParam("motorhome_id")String motorhome_id, @RequestParam("firstName") String fName, @RequestParam("lastName") String lName, @RequestParam("email") String email, @RequestParam("phone") String number, @RequestParam("location") String location)
     {
         Contact contact = new Contact();
         contact.setFirstName(fName);
@@ -75,6 +75,7 @@ public class BookingController
         //todo set contact_id
         reservation.setMotorhome_id(Integer.parseInt(motorhome_id));
         reservation.setKmFromOffice(10d); // todo better calculation
+        reservation.setLocation(location);
 
         System.out.println("create");
         reservationRepo.create(reservation);

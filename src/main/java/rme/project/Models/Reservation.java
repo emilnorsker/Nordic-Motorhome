@@ -11,16 +11,17 @@ import java.time.temporal.ChronoUnit;
  */
 public class Reservation {
 
-    public int reservation_id;
+    private int reservation_id;
     private String location;
     private double kmFromOffice;
-    private int motorhome_id;
+    private int motorhome_id; // too change type  to motorhome
+    private Motorhome motorhome; // too change type  to motorhome
     @DateTimeFormat(pattern = "yyyy-MM-dd") //For when date is returned in another format and needs parsing
     private LocalDate startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     private Long numberOfDays;
-    private int contact_id;
+    private Contact contact;
 
     //Empty constructor.
     public Reservation() {

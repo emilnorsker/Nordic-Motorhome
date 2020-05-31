@@ -67,22 +67,26 @@
             const start = document.getElementById("start").value;
             const end = document.getElementById("end").value;
 
-            // if field startdate not complete :: return
-            if (start == "")
+            var startIsEmpty = start == "";
+            var endIsEmpty = end == "";
+
+            if (startIsEmpty && endIsEmpty)
             {
                 return;
             }
-            else if (end == "")
+            else if(startIsEmpty)
             {
-                return;
+                document.getElementById("start").max=end;
+            }
+            else if(endIsEmpty)
+            {
+                document.getElementById("end").min=start
             }
             else
             {
-              document.getElementById("dates-form").submit();
+                document.getElementById("overlay").style.width="100%";
+                document.getElementById("dates-form").submit();
             }
-
-            // if field enddate not complete :: return
-            // else  :: submit startdate, enddate
 
         }
     </script>
@@ -107,7 +111,9 @@
 
 <body>
 
-<div class="indexjumbotron">
+<div class="loader" th:insert="booking/fragments/overlay"></div>
+
+<div class="indexjumbotron" id="jumbotron">
     <div class="movedown">
         <div class="container">
             <div th:replace="fragments/Menu"/>
@@ -118,13 +124,17 @@
                 <!-- DATE AND MODEL -->
                 <form action="/booking/dates" method="get" id="dates-form">
                     <h5>Choose Date and Model</h5>
-                    <div id="pickup_date"><p>
-                        <label class="form">Pickup Date:</label>
-                        <input type="date" class="textbox" id="start"   th:value="${reservation.startDate}" th:placeholer="${reservation.startDate}" name="start"  onchange="OnDatesEntered()" /></p>
+                    <div id="pickup_date">
+                        <p>
+                            <label class="form">Pickup Date:</label>
+                            <input type="date" class="textbox" id="start"   th:value="${reservation.startDate}" th:placeholer="${reservation.startDate}" name="start"  onchange="OnDatesEntered()" required/>
+                        </p>
                     </div>
-                    <div id="dropoff_date"><p>
-                        <label class="form">Dropoff Date:</label>
-                        <input type="date" class="textbox" id="end"    th:value="${reservation.endDate}" th:placeholer="${reservation.endDate}" name="end"  onchange="OnDatesEntered()" /></p>
+                    <div id="dropoff_date">
+                        <p>
+                            <label class="form">Dropoff Date:</label>
+                            <input type="date" class="textbox" id="end"    th:value="${reservation.endDate}" th:placeholer="${reservation.endDate}" name="end"  onchange="OnDatesEntered()" required/>
+                        </p>
                     </div>
                 </form>
 
@@ -136,7 +146,7 @@
                         <div id="motos">
                             <label class="form">Selected Motorhome:</label>
                             <p  type="text" class="textbox" id="motoSel" name="model"></p>
-                            <input type="hidden" id="motorhome_id" name="motorhome_id">
+                            <input type="hidden" id="motorhome_id" name="motorhome_id" required>
                         </div>
                     </div>
 
@@ -146,7 +156,7 @@
 
                     <div>
                         <div class="form-group">
-                            <input type="text" name="location" class="form-control" placeholder="Please enter pick-up location">
+                            <input type="text" name="location" class="form-control" placeholder="Please enter pick-up location" required>
                         </div>
                     </div>
 
@@ -156,16 +166,16 @@
 
                     <div>
                         <div class="form-group">
-                            <input type="text" name="firstName" class="form-control" placeholder="Please enter your Firstname">
+                            <input type="text" name="firstName" class="form-control" placeholder="Please enter your Firstname" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="lastName" class="form-control" placeholder="Please enter your Lastname">
+                            <input type="text" name="lastName" class="form-control" placeholder="Please enter your Lastname" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="email" class="form-control" placeholder="Please enter your email">
+                            <input type="text" name="email" class="form-control" placeholder="Please enter your email" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="phone" class="form-control" placeholder="Please enter your phone number">
+                            <input type="text" name="phone" class="form-control" placeholder="Please enter your phone number" required>
                         </div>
                     </div>
 

@@ -1,0 +1,61 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<!-- LINKS:
+https://www.w3.org/Style/Examples/007/center.en.html
+https://www.w3schools.com/howto/howto_js_fullscreen_overlay.asp
+https://loading.io/css/
+-->
+
+
+<div th:fragment="overlay" class="overlay" id="overlay">
+    <div class="overlay-content">
+    <div class="lds-dual-ring"></div>
+    </div>
+</div>
+
+
+<style>
+    .overlay {
+        height: 100%;
+        width: 0;
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        background-color: rgb(0,0,0); /* Black fallback color */
+        background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
+        overflow-x: hidden; /* Disable horizontal scroll */
+    }
+    .overlay-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: 0 -50% 0 0;
+        transform: translate(-50%, -50%)
+    }
+    .lds-dual-ring {
+        display: inline-block;
+        width: 50%;
+        height: 50%;
+    }
+    .lds-dual-ring:after {
+        content: " ";
+        display: block;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border-radius: 50%;
+        border: 6px solid #fff;
+        border-color: #fff transparent #fff transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+    }
+    @keyframes lds-dual-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+</html>

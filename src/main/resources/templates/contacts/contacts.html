@@ -81,7 +81,7 @@
 
                     <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
                         <p th:each="contact :${contacts}">
-                            <a style="color: lightcoral;" th:href="@{'/booking/delete/' + ${contact.contact_id}}">Delete</a>
+                            <a style="color: lightcoral;" th:href="@{'/contacts/delete/'+${contact.contact_id}}">Delete</a>
                         </p>
                     </div>
 

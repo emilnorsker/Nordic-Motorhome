@@ -21,17 +21,17 @@
                         <form action="/reservations/update" method="post">
                             <div class="form-group">
                                 <input type="text" name="location" class="form-control" th:value="${reservation.location}"
-                                       th:placeholder="${reservation.location}">
+                                       th:placeholder="${reservation.location}" required>
                             </div>
                             <div class="form-group">
                                 <input type="text" name="kmFromOffice" class="form-control" th:value="${reservation.kmFromOffice}"
-                                       th:placeholder="${reservation.kmFromOffice}">
+                                       th:placeholder="${reservation.kmFromOffice}" required>
                             </div>
                             <div class="form-group">
-                                <input type="date" name="startDate" class="form-control" th:value="${reservation.startDate}" th:placeholder="${reservation.startDate}" >
+                                <input type="date" name="startDate" class="form-control" th:value="${reservation.startDate}" th:placeholder="${reservation.startDate}" required>
                             </div>
                             <div class="form-group">
-                                <input type="date" name="endDate" class="form-control" th:value="${reservation.endDate}" th:placeholder="${reservation.endDate}" >
+                                <input type="date" name="endDate" class="form-control" th:value="${reservation.endDate}" th:placeholder="${reservation.endDate}" required >
                             </div>
 
 <!--                            <div class="form-group">

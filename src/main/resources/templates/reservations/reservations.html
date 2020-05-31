@@ -24,9 +24,8 @@
                         <th>Name</th>
                         <th>Start Date</th>
                         <th>End Date</th>
-                        <th> info </th>
-                        <th>update</th>
-                        <th>delete</th>
+                        <th>Info </th>
+                        <th>Delete</th>
                     </tr>
                     <tr th:each="reservation :${reservations}">
                         <td>customer name</td>
@@ -41,11 +40,11 @@
                         </td> <!-- delete -->
                     </tr>
                 </table>
-                </div>
-                <button type="button" class="btn btn-primary" href="/booking?reset=true">
-                    Add Reservation
-                </button>
-<!--                <div th:replace="fragments/create_modal">   TODO add "create button" to link to /booking    -->
+            </div>
+
+            <form action="booking?reset=true">
+            <input type="submit" class="btn btn-primary" value="add">
+            </form>
                 </div>
             </div>
         </div>
