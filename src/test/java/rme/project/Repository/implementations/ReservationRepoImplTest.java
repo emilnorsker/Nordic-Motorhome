@@ -19,10 +19,12 @@ class ReservationRepoImplTest {
     @Test
     void create() {
         //assign
+        ReservationRepoImpl repo = new ReservationRepoImpl();
+        repo.delete(666); //Cleaning last test up.
+
         Reservation expected = new Reservation(666, "Hej Vej 77", 2.22, LocalDate.parse("1990-05-22"), LocalDate.parse("2020-05-22"), 1);
         Reservation actual;
 
-        ReservationRepoImpl repo = new ReservationRepoImpl();
 
         //act
         repo.create(expected);
@@ -30,9 +32,10 @@ class ReservationRepoImplTest {
 
         //assert
         assertEquals(expected.getReservation_id(), actual.getReservation_id());
-        //assertEquals(expected.getLocation(), actual.getLocation());
+        assertEquals(expected.getLocation(), actual.getLocation());
         assertEquals(expected.getStartDate(), actual.getStartDate());
         assertEquals(expected.getNumberOfDays(), actual.getNumberOfDays());
+
 
     }
 
@@ -46,7 +49,7 @@ class ReservationRepoImplTest {
     void findAllAvailableMotorhomes() {
         System.out.println("finding all available motorhomes");
         //assign
-        MotorhomeRepoIMPL mh_repo = new MotorhomeRepoIMPL();
+        MotorhomeRepoImpl mh_repo = new MotorhomeRepoImpl();
         ReservationRepoImpl re_repo = new ReservationRepoImpl();
 
         List<Motorhome> available_mh_list;
@@ -56,7 +59,7 @@ class ReservationRepoImplTest {
 
         Motorhome motorhome_available = mh_repo.readAll().get(0);
         System.out.println("available mh id = "+motorhome_available.getMotorhome_id());
-        Motorhome motorhome_not_available = new Motorhome(1111, "brand", "model", "license", 1f);
+        Motorhome motorhome_not_available = new Motorhome(1111, "brand", "model", "license", 2, "2p");
         Reservation r = new Reservation(2222, "location", 5d, now.minusDays(1), day.plusDays(1), motorhome_not_available.getMotorhome_id());
 
 

@@ -7,13 +7,11 @@ import rme.project.Models.Contact;
 import rme.project.Models.Motorhome;
 import rme.project.Models.Reservation;
 import rme.project.Repository.implementations.BookingRepoImpl;
-import rme.project.Repository.implementations.MotorhomeRepoIMPL;
+import rme.project.Repository.implementations.MotorhomeRepoImpl;
 import rme.project.Repository.implementations.ReservationRepoImpl;
-import rme.project.Repository.interfaces.IBookingRepo;
 import rme.project.Repository.interfaces.IMotorhomeRepo;
 import rme.project.Repository.interfaces.IReservationRepo;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +21,7 @@ import java.util.List;
 public class BookingController
 {
 
-    private IMotorhomeRepo motorhomesRepo = new MotorhomeRepoIMPL();
+    private IMotorhomeRepo motorhomesRepo = new MotorhomeRepoImpl();
     private IReservationRepo reservationRepo = new ReservationRepoImpl();
 
     public int step = 0;
