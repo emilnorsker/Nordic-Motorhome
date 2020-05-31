@@ -23,6 +23,7 @@
                         <tr>
                             <th>Model</th>
                             <th>Brand</th>
+                            <th>Type</th>
                             <th>Price per day</th>
                             <th>License Plate </th>
                             <th>Update </th>
@@ -31,6 +32,7 @@
                         <tr th:each="motorhome :${motorhomes}">
                             <td th:text="${motorhome.model}"></td>
                             <td th:text="${motorhome.brand}"></td>
+                            <td th:text="${motorhome.type}"></td>
                             <td th:text="${motorhome.price}"></td>
                             <td th:text="${motorhome.licensePlate}"></td>
                             <td th:insert="motorhomes/fragments/motorhomes_update_modal :: updateModal(${motorhome})">info</td>

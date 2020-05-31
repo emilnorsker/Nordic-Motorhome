@@ -28,7 +28,7 @@
                         <th>Delete</th>
                     </tr>
                     <tr th:each="reservation :${reservations}">
-                        <td>customer name</td>
+                        <td th:text="${reservation.contact.getFirstName() +' '+reservation.contact.getLastName()}"></td>
                         <td th:text="${reservation.startDate}"></td>
                         <td th:text="${reservation.endDate}"></td>
                         <td th:insert="reservations/fragments/info :: info(${reservation})">info</td>
