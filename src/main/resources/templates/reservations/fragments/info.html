@@ -124,6 +124,15 @@
                                 </div>
                             </th>
                         </tr>
+                        <tr class="reservation-info">
+                            <th>KM from office</th>
+                            <th>
+                                <div class="form-group">
+                                    <input type="text" name="kmFromOffice" class="form-control" th:value="${reservation.kmFromOffice}"
+                                           th:placeholder="${reservation.kmFromOffice}" required>
+                                </div>
+                            </th>
+                        </tr>
 
                         <tr id="im-empty :)"> <!-- make a segment ish thing -->
                         </tr>
@@ -134,8 +143,8 @@
                             <th>Brand</th>
                             <th>
                                 <div class="form-group">
-                                    <input type="text" name="brand" class="form-control" th:value="${reservation.motorhome.brand}"
-                                           th:placeholder="${reservation.motorhome.brand}">
+                                    <input type="text" maxlength="16" name="brand" class="form-control" th:value="${reservation.motorhome.brand}"
+                                           th:placeholder="${reservation.motorhome.brand}" required>
                                 </div>
                             </th>
                         </tr>
@@ -144,8 +153,8 @@
                             <th>Model</th>
                             <th>
                                 <div class="form-group">
-                                    <input type="text" name="model" class="form-control" th:value="${reservation.motorhome.model}"
-                                           th:placeholder="${reservation.motorhome.model}">
+                                    <input type="text" name="model" maxlength="24" class="form-control" th:value="${reservation.motorhome.model}"
+                                           th:placeholder="${reservation.motorhome.model}" required>
                                 </div>
                             </th>
                         </tr>
@@ -154,15 +163,18 @@
                             <th>License Plate</th>
                             <th>
                                 <div class="form-group">
-                                    <input type="text" name="kmFromOffice" class="form-control" th:value="${reservation.motorhome.licensePlate}"
-                                           th:placeholder="${reservation.motorhome.licensePlate}">
+                                    <input type="text" maxlength="9" name="licensePlate" class="form-control" th:value="${reservation.motorhome.licensePlate}"
+                                           th:placeholder="${reservation.motorhome.licensePlate}" required>
                                 </div>
                             </th>
                         </tr>
 
 
                     </table>
-
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
                 </div>
             </div>
         </div>
