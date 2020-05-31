@@ -1,11 +1,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="updateModal(motorhome)">
 
-    <!-- model1,brand1,price1,licensePlate1,id -->
+        <input type="button" style="color: dodgerblue;" data-toggle="modal" th:attr="data-target='#update' + ${motorhome.motorhome_id}" th:href="@{'/update/' + ${motorhome.motorhome_id}}" value="Update">
 
-    <p>
-        <a type="button" style="color: dodgerblue;" data-toggle="modal" th:attr="data-target='#update' + ${motorhome.motorhome_id}" th:href="@{'/update/' + ${motorhome.motorhome_id}}">Update</a>
-    </p>
 
 
     <div class="modal fade" th:id="update+${motorhome.motorhome_id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -34,7 +31,7 @@
                                 <input type="text" name="licensePlate" class="form-control" th:value="${motorhome.licensePlate}" th:placeholder="${motorhome.licensePlate}" >
                             </div>
                             <input type="hidden" name="motorhome_id" th:value="${motorhome.motorhome_id}">
-                            <div th:text = "${motorhome.motorhome_id}"></div>
+
 
 
                             <div class="modal-footer">

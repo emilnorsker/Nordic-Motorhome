@@ -43,11 +43,11 @@ public class MotorhomeController {
         return "redirect:";
     }
 
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") int id){
-        motorRepo.delete(id);
+    @GetMapping("/delete/")
+    public String delete(@RequestParam("id") String id){
+        motorRepo.delete(Integer.parseInt(id));
 
-        return "redirect:";
+        return "redirect:/motorhomes";
     }
 
 }

@@ -8,7 +8,7 @@
 }
 
 .jumbotron {
-    overflow-y: scroll;
+    overflow-y: hidden;
     max-height:800px;
 }
 
