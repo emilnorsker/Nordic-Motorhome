@@ -173,7 +173,7 @@ public class ReservationRepoImpl implements IReservationRepo
 
         //generate evaluation data
         List<Integer> availableMotorhomes_id = new ArrayList<Integer>();
-        IMotorhomeRepo motorhomes = new MotorhomeRepoIMPL();
+        IMotorhomeRepo motorhomes = new MotorhomeRepoImpl();
         List<Motorhome> result = new ArrayList<Motorhome>();
 
         try {
@@ -211,7 +211,7 @@ public class ReservationRepoImpl implements IReservationRepo
     public List<Motorhome> findAllAvailableMotorhomes(LocalDate start, LocalDate end)
     {
         List<Motorhome> result = new ArrayList<Motorhome>();
-        IMotorhomeRepo motorhomes = new MotorhomeRepoIMPL();
+        IMotorhomeRepo motorhomes = new MotorhomeRepoImpl();
         try
         {
             //gets all available motorhomes

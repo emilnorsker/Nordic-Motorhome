@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import rme.project.Models.Reservation;
-import rme.project.Repository.implementations.MotorhomeRepoIMPL;
+import rme.project.Repository.implementations.MotorhomeRepoImpl;
 import rme.project.Repository.implementations.ReservationRepoImpl;
 import rme.project.Repository.interfaces.IMotorhomeRepo;
 import rme.project.Repository.interfaces.IReservationRepo;
@@ -18,7 +18,7 @@ import java.sql.SQLException;
 @RequestMapping("/reservations")
 public class ReservationController {
     private IReservationRepo reservationRepo = new ReservationRepoImpl();
-    private IMotorhomeRepo motorhomeRepo = new MotorhomeRepoIMPL();
+    private IMotorhomeRepo motorhomeRepo = new MotorhomeRepoImpl();
 
     @GetMapping()
     public String reservations(Model model){
