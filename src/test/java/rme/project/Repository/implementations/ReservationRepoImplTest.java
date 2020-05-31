@@ -18,7 +18,7 @@ class ReservationRepoImplTest {
     void findAllAvailableMotorhomes() {
         System.out.println("finding all available motorhomes");
         //assign
-        MotorhomeRepoIMPL mh_repo = new MotorhomeRepoIMPL();
+        MotorhomeRepoImpl mh_repo = new MotorhomeRepoImpl();
         ReservationRepoImpl re_repo = new ReservationRepoImpl();
 
         List<Motorhome> available_mh_list;
@@ -28,7 +28,7 @@ class ReservationRepoImplTest {
 
         Motorhome motorhome_available = mh_repo.readAll().get(0);
         System.out.println("available mh id = "+motorhome_available.getMotorhome_id());
-        Motorhome motorhome_not_available = new Motorhome(1111, "brand", "model", "license", 1f);
+        Motorhome motorhome_not_available = new Motorhome(1111, "brand", "model", "license", 1f, "4-door");
         Contact contact = new Contact(1111, "firstName", "lastName", "email", "phone");
         Reservation r = new Reservation(2222, "location", 5d, now.minusDays(1), day.plusDays(1), motorhome_not_available.getMotorhome_id(),contact.getContact_id() );
 

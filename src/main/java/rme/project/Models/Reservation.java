@@ -2,7 +2,7 @@ package rme.project.Models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import rme.project.Repository.implementations.ContactRepoImpl;
-import rme.project.Repository.implementations.MotorhomeRepoIMPL;
+import rme.project.Repository.implementations.MotorhomeRepoImpl;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -47,7 +47,7 @@ public class Reservation {
         this.endDate = endDate;
         setNumberOfDays(); //Calculates days length of the reservation and sets field.
         this.motorhome_id = motorhome_id;
-        this.motorhome = new MotorhomeRepoIMPL().read(motorhome_id);
+        this.motorhome = new MotorhomeRepoImpl().read(motorhome_id);
         this.contact_id = contact_id;
         this.contact = new ContactRepoImpl().read(contact_id);
     }
