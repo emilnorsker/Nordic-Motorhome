@@ -27,8 +27,8 @@ public class Reservation {
     private int contact_id;
 
     public Contact contact;
-    //Empty constructor.
 
+    //Empty constructor.
     public Reservation() {
     }
 

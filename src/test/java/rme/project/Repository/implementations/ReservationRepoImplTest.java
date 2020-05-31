@@ -46,8 +46,6 @@ class ReservationRepoImplTest {
         available_mh_list = re_repo.findAllAvailableMotorhomes(r.getStartDate(), r.getEndDate());
 
 
-
-
         System.out.println("motorhome in list");
         for (Motorhome M : available_mh_list) {
             System.out.println(M.getMotorhome_id());
