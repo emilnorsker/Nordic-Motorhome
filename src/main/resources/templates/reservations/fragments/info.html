@@ -137,14 +137,12 @@
                         <tr id="im-empty :)"> <!-- make a segment ish thing -->
                         </tr>
                         <hr class="my-4"/>
-                        <!-- todo motorhome info
-                        -->
+
                         <tr class="reservation-info">
                             <th>Brand</th>
                             <th>
                                 <div class="form-group">
-                                    <input type="text" maxlength="16" name="brand" class="form-control" th:value="${reservation.motorhome.brand}"
-                                           th:placeholder="${reservation.motorhome.brand}" required>
+                                    <p th:text="${reservation.motorhome.brand}"/>
                                 </div>
                             </th>
                         </tr>
@@ -153,8 +151,7 @@
                             <th>Model</th>
                             <th>
                                 <div class="form-group">
-                                    <input type="text" name="model" maxlength="24" class="form-control" th:value="${reservation.motorhome.model}"
-                                           th:placeholder="${reservation.motorhome.model}" required>
+                                    <p th:text="${reservation.motorhome.model}"/>
                                 </div>
                             </th>
                         </tr>
@@ -163,8 +160,7 @@
                             <th>License Plate</th>
                             <th>
                                 <div class="form-group">
-                                    <input type="text" maxlength="9" name="licensePlate" class="form-control" th:value="${reservation.motorhome.licensePlate}"
-                                           th:placeholder="${reservation.motorhome.licensePlate}" required>
+                                    <p  th:text="${reservation.motorhome.licensePlate}"/>
                                 </div>
                             </th>
                         </tr>
