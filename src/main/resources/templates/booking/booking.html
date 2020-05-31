@@ -15,7 +15,7 @@
 
         function cal(){
             if(document.getElementById("drop_date")){
-                document.getElementById("numdays2").value=GetDays()+1; //+1 because start date isn't counted
+                document.getElementById("numdays2").value=GetDays(); //+1 because start date isn't counted
             }
         }
     </script>
@@ -80,7 +80,9 @@
             }
             else if(endIsEmpty)
             {
-                document.getElementById("end").min=start
+                var minStartDate = new Date();
+
+                document.getElementById("end").min=start;
             }
             else
             {
@@ -119,7 +121,7 @@
             <div th:replace="fragments/Menu"/>
 
             <div class="jumbotron">
-                <h3>Booking</h3>
+                <h3 id="headline">Booking</h3>
                 <hr class="my-4"/>
                 <!-- DATE AND MODEL -->
                 <form action="/booking/dates" method="get" id="dates-form">
