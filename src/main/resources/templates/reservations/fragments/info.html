@@ -129,11 +129,12 @@
                         </tr>
                         <hr class="my-4"/>
                         <!-- todo motorhome info
+                        -->
                         <tr class="reservation-info">
                             <th>Brand</th>
                             <th>
                                 <div class="form-group">
-                                    <input type="text" name="kmFromOffice" class="form-control" th:value="${reservation.motorhome.brand}"
+                                    <input type="text" name="brand" class="form-control" th:value="${reservation.motorhome.brand}"
                                            th:placeholder="${reservation.motorhome.brand}">
                                 </div>
                             </th>
@@ -143,7 +144,7 @@
                             <th>Model</th>
                             <th>
                                 <div class="form-group">
-                                    <input type="text" name="kmFromOffice" class="form-control" th:value="${reservation.motorhome.model}"
+                                    <input type="text" name="model" class="form-control" th:value="${reservation.motorhome.model}"
                                            th:placeholder="${reservation.motorhome.model}">
                                 </div>
                             </th>
@@ -154,11 +155,10 @@
                             <th>
                                 <div class="form-group">
                                     <input type="text" name="kmFromOffice" class="form-control" th:value="${reservation.motorhome.licensePlate}"
-                                           th:placeholder="${reservation.licensePlate}">
+                                           th:placeholder="${reservation.motorhome.licensePlate}">
                                 </div>
                             </th>
                         </tr>
-                        -->
 
 
                     </table>
