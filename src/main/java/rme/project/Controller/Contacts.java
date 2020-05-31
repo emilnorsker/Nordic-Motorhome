@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import rme.project.Models.Contact;
-import rme.project.Repository.implementations.BookingRepoImpl;
+import rme.project.Repository.implementations.ContactRepoImpl;
 import rme.project.Repository.interfaces.IBookingRepo;
 
 import java.sql.SQLException;
@@ -12,23 +12,23 @@ import java.sql.SQLException;
 @RequestMapping("contacts")
 public class Contacts
 {
-    private IBookingRepo bookingRepo = new BookingRepoImpl();
+    private IBookingRepo contactRepo = new ContactRepoImpl();
 
     @GetMapping("")
     public String contacts(Model model){
-        model.addAttribute("contacts", bookingRepo.readAll());
+        model.addAttribute("contacts", contactRepo.readAll());
         return "contacts/contacts";
     }
 
     @GetMapping("/create")
     public String showCreatePage(){
 
-        return "create";
+        return "/create";
     }
 
     @PostMapping("/create")
     public String create(@ModelAttribute Contact contact) throws SQLException {
-        bookingRepo.create(contact);
+        contactRepo.create(contact);
         return "redirect:";
     }
 
@@ -40,13 +40,13 @@ public class Contacts
 
     @PostMapping("/update")
     public String update(@ModelAttribute Contact contact) throws SQLException {
-        bookingRepo.update(contact);
-        return "redirect:/booking/contacts";
+        contactRepo.update(contact);
+        return "redirect:/contacts";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") int id){
-        bookingRepo.delete(id);
-        return "redirect:/booking/contacts";
+        contactRepo.delete(id);
+        return "redirect:/contacts";
     }
 }

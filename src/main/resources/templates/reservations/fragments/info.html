@@ -15,14 +15,13 @@
                 </div>
                 <div class="modal-body">
                     <table style="width:100%">
-                        <!-- todo contact info
-
+                        <!--
                         <tr class="reservation-info">
                             <th>First name</th>
                             <th>
                                 <div class="form-group">
-                                    <input type="text" name="fName" class="form-control" th:value="${reservation.contact.fName}"
-                                           th:placeholder="${reservation.contact.fName}">
+                                    <input type="text" name="fName" class="form-control" th:value="${reservation.contact.firstName}"
+                                           th:placeholder="${reservation.contact.firstName}">
                                 </div>
                             </th>
                         </tr>
@@ -31,8 +30,8 @@
                             <th>Last name</th>
                             <th>
                                 <div class="form-group">
-                                    <input type="text" name="fName" class="form-control" th:value="${reservation.contact.lName}"
-                                           th:placeholder="${reservation.contact.lName}">
+                                    <input type="text" name="fName" class="form-control" th:value="${reservation.contact.lastName}"
+                                           th:placeholder="${reservation.contact.lastName}">
                                 </div>
                             </th>
                         </tr>
@@ -56,8 +55,7 @@
                                 </div>
                             </th>
                         </tr>
-                        -->
-
+-->
                         <tr id="i'm-empty :)"> <!-- make a segment ish thing -->
                         </tr>
 
@@ -95,7 +93,6 @@
                             </th>
                         </tr>
 
-                        <!-- Price per day
                         <tr class="reservation-info">
                             <th>Price per day</th>
                             <th>
@@ -104,18 +101,17 @@
                                            th:placeholder="${reservation.motorhome.price}">
                                 </div>
                             </th>
-                        </tr> -->
+                        </tr>
 
-                        <!-- Total price
+                        <!-- Total price -->
                         <tr class="reservation-info">
                             <th>Total price</th>
                             <th>
                                 <div class="form-group">
-                                    <input type="text" name="price" class="form-control" th:value="${reservation.motorhome.price}"
-                                           th:placeholder="${reservation.motorhome.price}">
+                                    <p type="text"  class="form-control" th:text="${reservation.motorhome.price * reservation.numberOfDays}">
                                 </div>
                             </th>
-                        </tr> -->
+                        </tr>
 
                         <!-- location -->
                         <tr class="reservation-info">
@@ -161,8 +157,8 @@
                                 </div>
                             </th>
                         </tr>
-
                         -->
+
 
                     </table>
                     <input type="submit" value="update">

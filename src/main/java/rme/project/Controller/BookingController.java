@@ -6,14 +6,12 @@ import org.springframework.web.bind.annotation.*;
 import rme.project.Models.Contact;
 import rme.project.Models.Motorhome;
 import rme.project.Models.Reservation;
-import rme.project.Repository.implementations.BookingRepoImpl;
+import rme.project.Repository.implementations.ContactRepoImpl;
 import rme.project.Repository.implementations.MotorhomeRepoIMPL;
 import rme.project.Repository.implementations.ReservationRepoImpl;
-import rme.project.Repository.interfaces.IBookingRepo;
 import rme.project.Repository.interfaces.IMotorhomeRepo;
 import rme.project.Repository.interfaces.IReservationRepo;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,12 +65,10 @@ public class BookingController
         contact.setFirstName(fName);
         contact.setLastName(lName);
         contact.setEmail(email);
-        contact.setPhone(number); //todo change phone to int
+        contact.setPhone(number);
+        new ContactRepoImpl().create(contact); // todo !!! not proper way to do it... !!! plz change
 
-        BookingRepoImpl bookingRepo = new BookingRepoImpl();
-        bookingRepo.create(contact); // todo get contact id
-
-        //todo set contact_id
+        reservation.setContact_id(contact.getContact_id());
         reservation.setMotorhome_id(Integer.parseInt(motorhome_id));
         reservation.setKmFromOffice(10d); // todo better calculation
         reservation.setLocation(location);
@@ -82,7 +78,7 @@ public class BookingController
         System.out.println("done");
 
 
-        return "redirect:";
+        return "redirect:/reservations";
     }
 
     public List<Motorhome> getModels()

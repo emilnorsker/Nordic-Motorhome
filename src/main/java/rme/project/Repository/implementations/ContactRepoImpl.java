@@ -14,7 +14,7 @@ import java.util.List;
 
 
 
-public class BookingRepoImpl implements IBookingRepo
+public class ContactRepoImpl implements IBookingRepo
 {
 
     Connection conn = DBConnection.getDatabaseConnection();

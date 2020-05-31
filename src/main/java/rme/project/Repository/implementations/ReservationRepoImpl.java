@@ -1,6 +1,7 @@
 package rme.project.Repository.implementations;
 
 
+import rme.project.Models.Contact;
 import rme.project.Models.Motorhome;
 import rme.project.Models.Reservation;
 import rme.project.Repository.interfaces.IMotorhomeRepo;
@@ -26,6 +27,8 @@ public class ReservationRepoImpl implements IReservationRepo
         try
         {
             PreparedStatement statement = conn.prepareStatement("INSERT INTO reservations (reservation_id, location, kmFromOffice, startDate, endDate, numberOfDays,motorhome_id) VALUES (?,?,?,?,?,?,?)");
+
+            //todo  contact id
 
             statement.setInt(1, item.getReservation_id());
             statement.setString(2, item.getLocation());
@@ -67,6 +70,11 @@ public class ReservationRepoImpl implements IReservationRepo
                 reservation.setNumberOfDays();
                 reservation.setMotorhome_id(rs.getInt(7));
 
+                // todo use propperly, a.k.a. with interface
+                reservation.setMotorhome(new MotorhomeRepoIMPL().read(rs.getInt(7)));
+               // reservation.setContact(new ContactRepoImpl().read(rs.getInt(8)));
+
+
             }
         }
         catch (Exception e)
@@ -98,6 +106,10 @@ public class ReservationRepoImpl implements IReservationRepo
                 reservation.setEndDate(LocalDate.parse(rs.getString(5)));
                 reservation.setNumberOfDays();
                 reservation.setMotorhome_id(rs.getInt(7));
+
+                //todo todo use propperly, a.k.a. with interface
+                reservation.setMotorhome(new MotorhomeRepoIMPL().read(rs.getInt(7)));
+                // reservation.setContact(new ContactRepoImpl().read(rs.getInt(8)));
 
                 reservationsList.add(reservation);
             }
