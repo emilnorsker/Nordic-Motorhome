@@ -17,6 +17,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @version 4.0 added contact_id to reservation
+ */
 public class ReservationRepoImpl implements IReservationRepo
 {
 
@@ -26,7 +29,7 @@ public class ReservationRepoImpl implements IReservationRepo
     public void create(Reservation item) {
         try
         {
-            PreparedStatement statement = conn.prepareStatement("INSERT INTO reservations (reservation_id, location, kmFromOffice, startDate, endDate, numberOfDays,motorhome_id) VALUES (?,?,?,?,?,?,?)");
+            PreparedStatement statement = conn.prepareStatement("INSERT INTO reservations (reservation_id, location, kmFromOffice, startDate, endDate, numberOfDays,motorhome_id, contact_id) VALUES (?,?,?,?,?,?,?,?)");
 
             //todo  contact id
 
@@ -38,6 +41,7 @@ public class ReservationRepoImpl implements IReservationRepo
             item.setNumberOfDays(); //Calculate new number of days
             statement.setLong(6, item.getNumberOfDays());
             statement.setInt(7, item.getMotorhome_id());
+            statement.setInt(8, item.getContact_id());
 
             statement.executeUpdate();
         }
@@ -72,7 +76,7 @@ public class ReservationRepoImpl implements IReservationRepo
 
                 // todo use propperly, a.k.a. with interface
                 reservation.setMotorhome(new MotorhomeRepoIMPL().read(rs.getInt(7)));
-               // reservation.setContact(new ContactRepoImpl().read(rs.getInt(8)));
+                reservation.setContact(new ContactRepoImpl().read(rs.getInt(8)));
 
 
             }
@@ -109,7 +113,7 @@ public class ReservationRepoImpl implements IReservationRepo
 
                 //todo use propperly format, a.k.a. with interface IMotorhomeRepo...
                 reservation.setMotorhome(new MotorhomeRepoIMPL().read(rs.getInt(7)));
-                // reservation.setContact(new ContactRepoImpl().read(rs.getInt(8)));
+                reservation.setContact(new ContactRepoImpl().read(rs.getInt(8)));
 
                 reservationsList.add(reservation);
             }
@@ -128,7 +132,7 @@ public class ReservationRepoImpl implements IReservationRepo
     {
         try
         {
-            PreparedStatement statement = conn.prepareStatement("UPDATE reservations SET location = ?, kmFromOffice = ?, startDate = ?, endDate = ?, numberOfDays = ?, motorhome_id =? WHERE reservation_id = ?");
+            PreparedStatement statement = conn.prepareStatement("UPDATE reservations SET location = ?, kmFromOffice = ?, startDate = ?, endDate = ?, numberOfDays = ?, motorhome_id =?, contact_id =? WHERE reservation_id = ?");
 
             statement.setString(1, item.getLocation());
             statement.setDouble(2, item.getKmFromOffice());
@@ -137,7 +141,8 @@ public class ReservationRepoImpl implements IReservationRepo
             item.setNumberOfDays();
             statement.setLong(5, item.getNumberOfDays());
             statement.setInt(6, item.getMotorhome_id());
-            statement.setInt(7, item.getReservation_id());
+            statement.setInt(7, item.getContact_id());
+            statement.setInt(8, item.getReservation_id());
 
             statement.executeUpdate();
         }
