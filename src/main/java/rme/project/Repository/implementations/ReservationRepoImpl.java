@@ -107,7 +107,7 @@ public class ReservationRepoImpl implements IReservationRepo
                 reservation.setNumberOfDays();
                 reservation.setMotorhome_id(rs.getInt(7));
 
-                //todo todo use propperly, a.k.a. with interface
+                //todo use propperly format, a.k.a. with interface IMotorhomeRepo...
                 reservation.setMotorhome(new MotorhomeRepoIMPL().read(rs.getInt(7)));
                 // reservation.setContact(new ContactRepoImpl().read(rs.getInt(8)));
 
