@@ -22,6 +22,9 @@ public class ContactRepoImpl implements IBookingRepo
     @Override
     public void create(Contact contact) {
 
+        //
+
+
         try {
             PreparedStatement createContact = conn.prepareStatement("INSERT INTO contact (contact_id,firstName, lastName, email, phone) VALUES (?,?,?,?,?)");
 
