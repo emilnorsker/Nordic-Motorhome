@@ -19,16 +19,19 @@
 
                         <form action="/motorhomes/update" method="post">
                             <div class="form-group">
-                                <input type="text" name="model" class="form-control" th:value="${motorhome.model}" th:placeholder="${motorhome.model}" >
+                                <input type="text" name="model" maxlength="24" class="form-control" th:value="${motorhome.model}" th:placeholder="${motorhome.model}" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="brand" class="form-control" th:value="${motorhome.brand}" th:placeholder="${motorhome.brand}" >
+                                <input type="text" name="brand" maxlength="16" class="form-control" th:value="${motorhome.brand}" th:placeholder="${motorhome.brand}" required>
                             </div>
                             <div class="form-group">
-                                <input type="number" step="0.01" name="price" class="form-control" th:value="${motorhome.price}" th:placeholder="${motorhome.price}" >
+                                <input type="number" maxlength="12" name="price" min="0" class="form-control" th:value="${motorhome.price}" th:placeholder="${motorhome.price}" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="licensePlate" class="form-control" th:value="${motorhome.licensePlate}" th:placeholder="${motorhome.licensePlate}" >
+                                <input type="text" name="licensePlate" maxlength="9" ass="form-control" th:value="${motorhome.licensePlate}" th:placeholder="${motorhome.licensePlate}" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="type" maxlength=16 ass="form-control" th:value="${motorhome.type}" th:placeholder="${motorhome.type}" required>
                             </div>
                             <input type="hidden" name="motorhome_id" th:value="${motorhome.motorhome_id}">
 

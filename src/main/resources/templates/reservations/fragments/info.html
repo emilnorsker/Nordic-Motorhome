@@ -20,8 +20,8 @@
                             <th>First name</th>
                             <th>
                                 <div class="form-group">
-                                    <input type="text" name="fName" class="form-control" th:value="${reservation.contact.firstName}"
-                                           th:placeholder="${reservation.contact.firstName}">
+                                    <input type="text" maxlength="45" name="fName" class="form-control" th:value="${reservation.contact.firstName}"
+                                           th:placeholder="${reservation.contact.firstName}" required>
                                 </div>
                             </th>
                         </tr>
@@ -30,8 +30,8 @@
                             <th>Last name</th>
                             <th>
                                 <div class="form-group">
-                                    <input type="text" name="fName" class="form-control" th:value="${reservation.contact.lastName}"
-                                           th:placeholder="${reservation.contact.lastName}">
+                                    <input type="text" maxlength="24" name="fName" class="form-control" th:value="${reservation.contact.lastName}"
+                                           th:placeholder="${reservation.contact.lastName}" required>
                                 </div>
                             </th>
                         </tr>
@@ -40,8 +40,8 @@
                             <th>Email</th>
                             <th>
                                 <div class="form-group">
-                                    <input type="text" name="email" class="form-control" th:value="${reservation.contact.email}"
-                                           th:placeholder="${reservation.contact.email}">
+                                    <input type="email" name="email" class="form-control" th:value="${reservation.contact.email}"
+                                           th:placeholder="${reservation.contact.email}" required>
                                 </div>
                             </th>
                         </tr>
@@ -50,13 +50,14 @@
                             <th>Phone number</th>
                             <th>
                                 <div class="form-group">
-                                    <input type="text" name="phone" class="form-control" th:value="${reservation.contact.phone}"
-                                           th:placeholder="${reservation.contact.phone}">
+                                    <input type="text" maxlength="12" name="phone" class="form-control" th:value="${reservation.contact.phone}"
+                                           th:placeholder="${reservation.contact.phone}" required>
                                 </div>
                             </th>
                         </tr>
 
                         <tr id="i'm-empty :)"> <!-- make a segment ish thing -->
+                            <hr class="my-4"/>
                         </tr>
 
 
@@ -65,19 +66,19 @@
                             <th>Start date</th>
                             <th>
                                 <div class="form-group">
-                                    <input type="text" name="startDate" class="form-control" th:value="${reservation.startDate}"
-                                           th:placeholder="${reservation.startDate}">
+                                    <input type="date" name="startDate" class="form-control" th:value="${reservation.startDate}"
+                                           th:placeholder="${reservation.startDate}" required>
                                 </div>
                             </th>
                         </tr>
 
-                        <!-- end date -->
+                        <!-- end date TODO Make enddate only after start date again here-->
                         <tr class="reservation-info-row">
                             <th>End date</th>
                             <th>
                                 <div class="form-group">
-                                    <input type="text" name="endDate" class="form-control" th:value="${reservation.endDate}"
-                                           th:placeholder="${reservation.endDate}">
+                                    <input type="date" name="endDate" class="form-control" th:value="${reservation.endDate}"
+                                           th:placeholder="${reservation.endDate}" required>
                                 </div>
                             </th>
                         </tr>
@@ -88,7 +89,7 @@
                             <th>
                                 <div class="form-group">
                                     <input type="text" name="numberOfDays" class="form-control" th:value="${reservation.numberOfDays}"
-                                           th:placeholder="${reservation.numberOfDays}">
+                                           th:placeholder="${reservation.numberOfDays}" required>
                                 </div>
                             </th>
                         </tr>
@@ -98,7 +99,7 @@
                             <th>
                                 <div class="form-group">
                                     <input type="text" name="price" class="form-control" th:value="${reservation.motorhome.price}"
-                                           th:placeholder="${reservation.motorhome.price}">
+                                           th:placeholder="${reservation.motorhome.price}" required>
                                 </div>
                             </th>
                         </tr>
@@ -108,7 +109,7 @@
                             <th>Total price</th>
                             <th>
                                 <div class="form-group">
-                                    <p type="text"  class="form-control" th:text="${reservation.motorhome.price * reservation.numberOfDays}">
+                                    <p type="text"  class="form-control" th:text="${reservation.motorhome.price * reservation.numberOfDays}" required>
                                 </div>
                             </th>
                         </tr>
@@ -119,14 +120,14 @@
                             <th>
                                 <div class="form-group">
                                     <input type="text" name="location" class="form-control" th:value="${reservation.location}"
-                                           th:placeholder="${reservation.location}">
+                                           th:placeholder="${reservation.location}" required>
                                 </div>
                             </th>
                         </tr>
 
                         <tr id="im-empty :)"> <!-- make a segment ish thing -->
                         </tr>
-
+                        <hr class="my-4"/>
                         <!-- todo motorhome info
                         <tr class="reservation-info">
                             <th>Brand</th>
@@ -161,7 +162,7 @@
 
 
                     </table>
-                    <input type="submit" value="update">
+
                 </div>
             </div>
         </div>

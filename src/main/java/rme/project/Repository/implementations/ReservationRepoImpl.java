@@ -258,7 +258,7 @@ public class ReservationRepoImpl implements IReservationRepo
                 reservation.setEndDate(LocalDate.parse(rs.getString(5)));
                 reservation.setNumberOfDays();
                 reservation.setMotorhome_id(rs.getInt(7));
-
+                reservation.setContact_id(rs.getInt(8));
 
                 reservationsList.add(reservation);
             }
@@ -272,6 +272,7 @@ public class ReservationRepoImpl implements IReservationRepo
         if (reservationsList.size()>0) {
             for (Reservation R : reservationsList)
             {
+                //TODO YO kan du ikke bare bruge ChronoUnit.DAYS.between(startDate, endDate) og se om den returner minus?
                 flag1 = R.getStartDate().isAfter(start) == R.getEndDate().isAfter(start);
                 flag2 = R.getEndDate().isAfter(end) == R.getEndDate().isAfter(end);
                 if (flag1 == flag2)

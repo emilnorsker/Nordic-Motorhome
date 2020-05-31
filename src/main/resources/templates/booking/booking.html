@@ -156,12 +156,12 @@
 
                     <div>
                         <div class="form-group">
-                            <input type="text" name="location" class="form-control" placeholder="Please enter pick-up location" required>
+                            <input type="text" name="location" maxlength="45" class="form-control" placeholder="Please enter pick-up location" required>
                         </div>
                     </div>
                     <div>
                         <div class="form-group">
-                            <input type="text" name="kmFromOffice" class="form-control" placeholder="Please enter distance from office" required>
+                            <input type="number" name="kmFromOffice" min="0" max="9000" class="form-control" placeholder="Please enter distance from office in km" required>
                         </div>
                     </div>
 
@@ -171,16 +171,16 @@
 
                     <div>
                         <div class="form-group">
-                            <input type="text" name="firstName" class="form-control" placeholder="Please enter your Firstname" required>
+                            <input type="text" name="firstName" maxlength="45" class="form-control" placeholder="Please enter your Firstname" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="lastName" class="form-control" placeholder="Please enter your Lastname" required>
+                            <input type="text" name="lastName" maxlength="24" class="form-control" placeholder="Please enter your Lastname" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="email" class="form-control" placeholder="Please enter your email" required>
+                            <input type="email" name="email" maxlength="45" class="form-control" placeholder="Please enter your email" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="phone" class="form-control" placeholder="Please enter your phone number" required>
+                            <input type="text" name="phone" maxlength="12" class="form-control" placeholder="Please enter your phone number" required>
                         </div>
                     </div>
 
@@ -191,7 +191,7 @@
     </div>
 </div>
 
-1<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>

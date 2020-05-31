@@ -21,6 +21,7 @@
 
                     <table style="width:100%">
                         <tr>
+                            <th>Type</th>
                             <th>Model</th>
                             <th>Brand</th>
                             <th>Price per day</th>
@@ -29,10 +30,12 @@
                             <th>Delete</th>
                         </tr>
                         <tr th:each="motorhome :${motorhomes}">
+                            <td th:text="${motorhome.type}"></td>
                             <td th:text="${motorhome.model}"></td>
                             <td th:text="${motorhome.brand}"></td>
                             <td th:text="${motorhome.price}"></td>
                             <td th:text="${motorhome.licensePlate}"></td>
+
                             <td th:insert="motorhomes/fragments/motorhomes_update_modal :: updateModal(${motorhome})">info</td>
                             <td>
                                 <form action="/motorhomes/delete/">

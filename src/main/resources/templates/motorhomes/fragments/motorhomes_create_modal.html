@@ -15,23 +15,26 @@
                 <div class="container">
 
                     <form action="/motorhomes/create" method="post">
+
                         <div class="form-group">
-                            <input type="text" name="model" class="form-control" placeholder="Please enter a Model" required>
+                            <input type="text" name="model" maxlength="24" class="form-control" placeholder="Please enter a Model" required>
                         </div>
 
                         <div class="form-group">
-                            <input type="text" name="brand" class="form-control" placeholder="Please enter a Brand" required>
+                            <input type="text" name="brand" maxlength="16" class="form-control" placeholder="Please enter a Brand" required>
                         </div>
-
+                        <!--Maxlength doesnt work for numbers in chrome for some reason, but we keep it for other browsers-->
                         <div class="form-group">
-                            <input type="number" step="0.01" name="price" class="form-control" placeholder="Please enter a Price" required>
+                            <input type="number" maxlength="12" min="0" name="price" class="form-control" placeholder="Please enter a Price" required>
                         </div>
 
                         <div class="form-group">
                             <input type="text" name="licensePlate" class="form-control" maxlength="9" placeholder="Please enter a License Plate" required>
                         </div>
 
-
+                        <div class="form-group">
+                            <input type="text" name="type" maxlength="16" class="form-control" placeholder="Please enter a Type" required>
+                        </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
