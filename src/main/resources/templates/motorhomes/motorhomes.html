@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -15,75 +15,36 @@
             <div class="container">
 
         <div th:replace="fragments/Menu"/>
-
                 <div class="jumbotron">
-
-        <h3 >List of Motorhomes</h3>
+                    <h3 >List of Motorhomes</h3>
                     <hr class="my-4"/>
-        <div class="row">
-            <div class="col-sm p-3 mb-2 bg-light text-black">
-                <h7 id="row">Model</h7>
-            </div>
 
-            <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
-                <h7 id="row">Brand</h7>
-            </div>
+                    <table style="width:100%">
+                        <tr>
+                            <th>Type</th>
+                            <th>Model</th>
+                            <th>Brand</th>
+                            <th>Price per day</th>
+                            <th>License Plate </th>
+                            <th>Update </th>
+                            <th>Delete</th>
+                        </tr>
+                        <tr th:each="motorhome :${motorhomes}">
+                            <td th:text="${motorhome.type}"></td>
+                            <td th:text="${motorhome.model}"></td>
+                            <td th:text="${motorhome.brand}"></td>
+                            <td th:text="${motorhome.price}"></td>
+                            <td th:text="${motorhome.licensePlate}"></td>
 
-            <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
-                <h7 id="row">Price</h7>
-            </div>
-
-            <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
-                <h7 id="row">License Plate</h7>
-            </div>
-
-            <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
-                <h7 id="row">Update</h7>
-            </div>
-
-            <div class="col-sm col-sm p-3 mb-2 bg-light text-black">
-                <h7 id="row">Delete</h7>
-            </div>
-
-        </div>
-
-        <div class="row">
-
-            <div class="col-sm p-3 mb-2 bg-light text-white">
-                <p th:each="motorhome :${motorhomes}">
-                    <span id="row" style="color: black" th:text="${motorhome.model}"/>
-                </p>
-            </div>
-
-            <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                <p th:each="motorhome :${motorhomes}">
-                    <span id="row" style="color: black" th:text="${motorhome.brand}"/>
-                </p>
-            </div>
-
-            <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                <p th:each="motorhome :${motorhomes}">
-                    <span id="row" style="color: black" th:text="${motorhome.price}"/>
-                </p>
-            </div>
-
-            <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                <p th:each="motorhome :${motorhomes}">
-                    <span id="row" style="color: black" th:text="${motorhome.licensePlate}"/>
-                </p>
-            </div>
-
-            <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                <div th:each="motorhome :${motorhomes}">
-                    <a th:insert="motorhomes/fragments/motorhomes_update_modal :: updateModal(${motorhome.model}, ${motorhome.brand},${motorhome.price}, ${motorhome.licensePlate},${motorhome.motorhome_id})"></a>
-                </div>
-            </div>
-
-            <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
-                <p th:each="motorhome :${motorhomes}">
-                    <a style="color: lightcoral;" th:href="@{'/motorhomes/delete/' + ${motorhome.motorhome_id}}">Delete</a>
-                </p>
-            </div>
+                            <td th:insert="motorhomes/fragments/motorhomes_update_modal :: updateModal(${motorhome})">info</td>
+                            <td>
+                                <form action="/motorhomes/delete/">
+                                    <input type="hidden" name="id" th:value="${motorhome.motorhome_id}"/>
+                                    <input type="submit" style="color: lightcoral;" value="Delete"/>
+                                </form>
+                            </td> <!-- delete -->
+                        </tr>
+                    </table>
 
                     </div>
                     <div th:replace="motorhomes/fragments/motorhomes_create_modal">

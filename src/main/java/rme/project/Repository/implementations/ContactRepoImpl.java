@@ -14,13 +14,16 @@ import java.util.List;
 
 
 
-public class BookingRepoImpl implements IBookingRepo
+public class ContactRepoImpl implements IBookingRepo
 {
 
     Connection conn = DBConnection.getDatabaseConnection();
 
     @Override
     public void create(Contact contact) {
+
+        //
+
 
         try {
             PreparedStatement createContact = conn.prepareStatement("INSERT INTO contact (contact_id,firstName, lastName, email, phone) VALUES (?,?,?,?,?)");

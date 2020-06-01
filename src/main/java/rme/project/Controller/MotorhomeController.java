@@ -4,14 +4,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import rme.project.Models.Motorhome;
-import rme.project.Repository.implementations.MotorhomeRepoIMPL;
+import rme.project.Repository.implementations.MotorhomeRepoImpl;
 import java.sql.SQLException;
 
 @Controller
 @RequestMapping("/motorhomes")
 public class MotorhomeController {
 
-    private MotorhomeRepoIMPL motorRepo = motorRepo = new MotorhomeRepoIMPL();
+    private MotorhomeRepoImpl motorRepo = motorRepo = new MotorhomeRepoImpl();
 
     @GetMapping("")
     public String motorhomes(Model model){
@@ -43,11 +43,11 @@ public class MotorhomeController {
         return "redirect:";
     }
 
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") int id){
-        motorRepo.delete(id);
+    @GetMapping("/delete/")
+    public String delete(@RequestParam("id") String id){
+        motorRepo.delete(Integer.parseInt(id));
 
-        return "redirect:";
+        return "redirect:/motorhomes";
     }
 
 }

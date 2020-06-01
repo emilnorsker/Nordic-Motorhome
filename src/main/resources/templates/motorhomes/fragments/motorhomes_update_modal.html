@@ -1,12 +1,11 @@
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<div th:fragment="updateModal(model1,brand1,price1,licensePlate1,id)">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="updateModal(motorhome)">
 
-    <p>
-        <a type="button" style="color: dodgerblue;" data-toggle="modal" th:attr="data-target='#update' + ${id}" th:href="@{'/update/' + ${motorhome.motorhome_id}}">Update</a>
-    </p>
+        <input type="button" style="color: dodgerblue;" data-toggle="modal" th:attr="data-target='#update' + ${motorhome.motorhome_id}" th:href="@{'/update/' + ${motorhome.motorhome_id}}" value="Update">
 
 
-    <div class="modal fade" th:id="update+${id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal fade" th:id="update+${motorhome.motorhome_id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -20,19 +19,22 @@
 
                         <form action="/motorhomes/update" method="post">
                             <div class="form-group">
-                                <input type="text" name="model" class="form-control" th:value="${model1}" th:placeholder="${model1}" >
+                                <input type="text" name="model" maxlength="24" class="form-control" th:value="${motorhome.model}" th:placeholder="${motorhome.model}" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="brand" class="form-control" th:value="${brand1}" th:placeholder="${brand1}" >
+                                <input type="text" name="brand" maxlength="16" class="form-control" th:value="${motorhome.brand}" th:placeholder="${motorhome.brand}" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="price" class="form-control" th:value="${price1}" th:placeholder="${price1}" >
+                                <input type="number" maxlength="12" name="price" min="0" class="form-control" th:value="${motorhome.price}" th:placeholder="${motorhome.price}" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="licensePlate" class="form-control" th:value="${licensePlate1}" th:placeholder="${licensePlate1}" >
+                                <input type="text" name="licensePlate" maxlength="9" ass="form-control" th:value="${motorhome.licensePlate}" th:placeholder="${motorhome.licensePlate}" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="type" maxlength=16 ass="form-control" th:value="${motorhome.type}" th:placeholder="${motorhome.type}" required>
                             </div>
                             <input type="hidden" name="motorhome_id" th:value="${motorhome.motorhome_id}">
-                            <div th:text = "${id}"></div>
+
 
 
                             <div class="modal-footer">

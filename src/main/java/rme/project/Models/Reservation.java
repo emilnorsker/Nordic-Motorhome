@@ -1,6 +1,8 @@
 package rme.project.Models;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import rme.project.Repository.implementations.ContactRepoImpl;
+import rme.project.Repository.implementations.MotorhomeRepoImpl;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -14,12 +16,15 @@ public class Reservation {
     private int reservation_id;
     private String location;
     private double kmFromOffice;
-    private int motorhome_id;
+    private int motorhome_id; // too change type  to motorhome
+    public Motorhome motorhome; // too change type  to motorhome
     @DateTimeFormat(pattern = "yyyy-MM-dd") //For when date is returned in another format and needs parsing
     private LocalDate startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     private Long numberOfDays;
+    private int contact_id;
+    public Contact contact;
 
     //Empty constructor.
     public Reservation() {
@@ -34,7 +39,7 @@ public class Reservation {
      * @param endDate   Reservation ends at this date
      * @param motorhome_id  ID for motorhome used in this reservation
      */
-    public Reservation(int reservation_id, String location, double kmFromOffice, LocalDate startDate, LocalDate endDate, int motorhome_id) {
+    public Reservation(int reservation_id, String location, double kmFromOffice, LocalDate startDate, LocalDate endDate, int motorhome_id, int contact_id) {
         this.reservation_id = reservation_id;
         this.location = location;
         this.kmFromOffice = kmFromOffice;
@@ -42,6 +47,9 @@ public class Reservation {
         this.endDate = endDate;
         setNumberOfDays(); //Calculates days length of the reservation and sets field.
         this.motorhome_id = motorhome_id;
+        this.motorhome = new MotorhomeRepoImpl().read(motorhome_id);
+        this.contact_id = contact_id;
+        this.contact = new ContactRepoImpl().read(contact_id);
     }
 
     /**************************************
@@ -99,6 +107,34 @@ public class Reservation {
     }
 
     public void setNumberOfDays() {
-        this.numberOfDays = ChronoUnit.DAYS.between(startDate, endDate);
+        this.numberOfDays = ChronoUnit.DAYS.between(startDate, endDate) +1 ;
+    }
+
+    public int getContact_id() {
+        return contact_id;
+    }
+
+    public void setContact_id(int contact_id) {
+        this.contact_id = contact_id;
+    }
+
+    public Motorhome getMotorhome() {
+        return motorhome;
+    }
+
+    public void setMotorhome(Motorhome motorhome) {
+        this.motorhome = motorhome;
+    }
+
+    public void setNumberOfDays(Long numberOfDays) {
+        this.numberOfDays = numberOfDays;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 }

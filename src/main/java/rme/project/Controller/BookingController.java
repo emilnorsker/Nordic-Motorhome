@@ -6,14 +6,12 @@ import org.springframework.web.bind.annotation.*;
 import rme.project.Models.Contact;
 import rme.project.Models.Motorhome;
 import rme.project.Models.Reservation;
-import rme.project.Repository.implementations.BookingRepoImpl;
-import rme.project.Repository.implementations.MotorhomeRepoIMPL;
+import rme.project.Repository.implementations.MotorhomeRepoImpl;
+import rme.project.Repository.implementations.ContactRepoImpl;
 import rme.project.Repository.implementations.ReservationRepoImpl;
-import rme.project.Repository.interfaces.IBookingRepo;
 import rme.project.Repository.interfaces.IMotorhomeRepo;
 import rme.project.Repository.interfaces.IReservationRepo;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,69 +20,66 @@ import java.util.List;
 @RequestMapping("/booking")
 public class BookingController
 {
-    private IBookingRepo bookingRepo = new BookingRepoImpl();
-    private IMotorhomeRepo motorhomesRepo = new MotorhomeRepoIMPL();
+
+    private IMotorhomeRepo motorhomesRepo = new MotorhomeRepoImpl();
     private IReservationRepo reservationRepo = new ReservationRepoImpl();
 
     public int step = 0;
     Reservation reservation = new Reservation();
+    List<Motorhome> motorhomes = null;
+
 
 
     @GetMapping(value = "") //todo step max/min
-    public String ChooseDateAndModel(Model model)
+    public String ChooseDateAndModel(Model model, @RequestParam(value = "reset", required = false) String reset)
     {
-        model.addAttribute("step", step);
-        model.addAttribute("motorhomes", getModels());
+        if (reset!= null && reset.equalsIgnoreCase("true"))
+        {
+            reservation = new Reservation();
+        }
+
+        model.addAttribute("reservation", reservation);
+        model.addAttribute("motorhomes", motorhomes);
         return "booking/booking";
     }
 
-    //change to modal, opened from reservations?
-    //addDates
-    //addMotorhome
-    //addReservation
-/*
-    @GetMapping(value = "step0") //todo step max/min
-    public String ChooseDateAndModel(Model model, @RequestParam(value="step", required = false)Integer increment, @RequestParam(value="start", required = false)String start,@RequestParam(value="end", required = false)String end, @RequestParam(value="model", required = false) String[] models)
+    @GetMapping(value = "/dates")
+    public String ChooseMotorhome(Model model, @RequestParam("start")String start, @RequestParam("end")String end)
     {
+        reservation.setStartDate(LocalDate.parse(start));
+        reservation.setEndDate(LocalDate.parse(end));
 
+        // todo calculate number of days
 
-        if (!(increment==null))
-        {
-            if (!(step<0 || step>3))
-            step+=increment;
-        }
-        model.addAttribute("step", step);
-        model.addAttribute("motorhomes", getModels());
+        motorhomes =  reservationRepo.findAllAvailableMotorhomes(reservation.getStartDate(), reservation.getEndDate());
+        model.addAttribute("motorhomes", motorhomes );
 
-        return "booking/booking/"+;
+        return "redirect:";
     }
 
-    public String SearchAvailable(String start, String end, String[] models)
+    @GetMapping("/create")
+    public String create(@RequestParam("motorhome_id")String motorhome_id, @RequestParam("firstName") String fName, @RequestParam("lastName") String lName, @RequestParam("email") String email, @RequestParam("phone") String number, @RequestParam("location") String location)
     {
-        LocalDate startDate = LocalDate.parse(start);
-        System.out.println(startDate);
-        LocalDate endDate = LocalDate.parse(end);
-        System.out.println(endDate);
-        reservationRepo.findAvailableMotorhomes(startDate, endDate, models);
-        return "";
+        Contact contact = new Contact();
+        contact.setFirstName(fName);
+        contact.setLastName(lName);
+        contact.setEmail(email);
+        contact.setPhone(number);
+        new ContactRepoImpl().create(contact); // todo !!! not proper way to do it... !!! plz change
+
+        reservation.setContact_id(contact.getContact_id());
+        reservation.setMotorhome_id(Integer.parseInt(motorhome_id));
+        reservation.setKmFromOffice(10d); // todo better calculation
+        reservation.setLocation(location);
+
+        System.out.println("create");
+        reservationRepo.create(reservation);
+        System.out.println("done");
+
+
+        return "redirect:/reservations";
     }
-*/
-/*
-    @GetMapping(value="")
-    public String ChooseMotorhome(Model model, @RequestParam(value="step", required = false)Integer increment, @RequestParam(value="id", required = false)Integer id)
-    {
 
-
-        if (!(increment==null))
-        {
-            if (!(step<0 || step>3))
-                step+=increment;
-        }
-        model.addAttribute("step", step);
-
-        return "booking/booking";
-    }
-*/
     public List<Motorhome> getModels()
     {
         List<String> models = new ArrayList<String>();
@@ -99,52 +94,5 @@ public class BookingController
         }
         return typeModels;
     }
-
-
-
     // ##########################################################################################################
-
-    @GetMapping("/contacts")
-    public String contacts(Model model){
-        model.addAttribute("contacts", bookingRepo.readAll());
-        return "contacts/contacts";
-    }
-
-    @GetMapping("/create")
-    public String showCreatePage(){
-
-        return "create";
-    }
-
-    @PostMapping("/create")
-    public String create(@ModelAttribute Contact contact) throws SQLException {
-        bookingRepo.create(contact);
-        return "redirect:";
-    }
-
-    @GetMapping("/update")
-    public String showUpdatePage(){
-
-        return "update";
-    }
-
-    @PostMapping("/update")
-    public String update(@ModelAttribute Contact contact) throws SQLException {
-        bookingRepo.update(contact);
-        return "redirect:/booking/contacts";
-    }
-
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") int id){
-        bookingRepo.delete(id);
-        return "redirect:/booking/contacts";
-    }
-
-    // ##########################################################################################################
-
-    // step one pick date and model
-
-    //step two choose model
-
-
 }

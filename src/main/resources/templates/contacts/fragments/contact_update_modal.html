@@ -1,4 +1,4 @@
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="conUpdateModal(first1,last1,email1,phone1,id)">
 
     <p>
@@ -20,17 +20,18 @@
 
                         <form action="/booking/update" method="post">
                             <div class="form-group">
-                                <input type="text" name="firstName" class="form-control" th:value="${first1}" th:placeholder="${first1}" >
+                                <input type="text" name="firstName" maxlength="45" class="form-control" th:value="${first1}" th:placeholder="${first1}" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="lastName" class="form-control" th:value="${last1}" th:placeholder="${last1}" >
+                                <input type="text" name="lastName" maxlength="16" class="form-control" th:value="${last1}" th:placeholder="${last1}" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="email" class="form-control" th:value="${email1}" th:placeholder="${email1}" >
+                                <input type="email" name="email" maxlength="45" class="form-control" th:value="${email1}" th:placeholder="${email1}" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="phone" class="form-control" th:value="${phone1}" th:placeholder="${phone1}" >
+                                <input type="text" name="phone" maxlength="12" class="form-control" th:value="${phone1}" th:placeholder="${phone1}" required>
                             </div>
+
                             <input type="hidden" name="contact_id" th:value="${contact.contact_id}">
                             <div th:text = "${id}"></div>
 

@@ -1,6 +1,7 @@
 package rme.project.Repository.implementations;
 
 
+import rme.project.Models.Contact;
 import rme.project.Models.Motorhome;
 import rme.project.Models.Reservation;
 import rme.project.Repository.interfaces.IMotorhomeRepo;
@@ -16,15 +17,21 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @version 4.0 added contact_id to reservation
+ */
 public class ReservationRepoImpl implements IReservationRepo
 {
 
+    //todo contact information
     Connection conn = DBConnection.getDatabaseConnection();
     @Override
     public void create(Reservation item) {
         try
         {
-            PreparedStatement statement = conn.prepareStatement("INSERT INTO reservations (reservation_id, location, kmFromOffice, startDate, endDate, numberOfDays,motorhome_id) VALUES (?,?,?,?,?,?,?)");
+            PreparedStatement statement = conn.prepareStatement("INSERT INTO reservations (reservation_id, location, kmFromOffice, startDate, endDate, numberOfDays,motorhome_id, contact_id) VALUES (?,?,?,?,?,?,?,?)");
+
+            //todo  contact id
 
             statement.setInt(1, item.getReservation_id());
             statement.setString(2, item.getLocation());
@@ -34,6 +41,7 @@ public class ReservationRepoImpl implements IReservationRepo
             item.setNumberOfDays(); //Calculate new number of days
             statement.setLong(6, item.getNumberOfDays());
             statement.setInt(7, item.getMotorhome_id());
+            statement.setInt(8, item.getContact_id());
 
             statement.executeUpdate();
         }
@@ -65,6 +73,12 @@ public class ReservationRepoImpl implements IReservationRepo
                 reservation.setEndDate(LocalDate.parse(rs.getString(5)));
                 reservation.setNumberOfDays();
                 reservation.setMotorhome_id(rs.getInt(7));
+                reservation.setContact_id(rs.getInt(8));
+
+                // todo use propperly, a.k.a. with interface
+                reservation.setMotorhome(new MotorhomeRepoImpl().read(rs.getInt(7)));
+                reservation.setContact(new ContactRepoImpl().read(rs.getInt(8)));
+
 
             }
         }
@@ -97,6 +111,11 @@ public class ReservationRepoImpl implements IReservationRepo
                 reservation.setEndDate(LocalDate.parse(rs.getString(5)));
                 reservation.setNumberOfDays();
                 reservation.setMotorhome_id(rs.getInt(7));
+                reservation.setContact_id(rs.getInt(8));
+
+                //todo use propperly format, a.k.a. with interface IMotorhomeRepo...
+                reservation.setMotorhome(new MotorhomeRepoImpl().read(rs.getInt(7)));
+                reservation.setContact(new ContactRepoImpl().read(rs.getInt(8)));
 
                 reservationsList.add(reservation);
             }
@@ -115,7 +134,7 @@ public class ReservationRepoImpl implements IReservationRepo
     {
         try
         {
-            PreparedStatement statement = conn.prepareStatement("UPDATE reservations SET location = ?, kmFromOffice = ?, startDate = ?, endDate = ?, numberOfDays = ?, motorhome_id =? WHERE reservation_id = ?");
+            PreparedStatement statement = conn.prepareStatement("UPDATE reservations SET location = ?, kmFromOffice = ?, startDate = ?, endDate = ?, numberOfDays = ?, motorhome_id =?, contact_id =? WHERE reservation_id = ?");
 
             statement.setString(1, item.getLocation());
             statement.setDouble(2, item.getKmFromOffice());
@@ -124,7 +143,8 @@ public class ReservationRepoImpl implements IReservationRepo
             item.setNumberOfDays();
             statement.setLong(5, item.getNumberOfDays());
             statement.setInt(6, item.getMotorhome_id());
-            statement.setInt(7, item.getReservation_id());
+            statement.setInt(7, item.getContact_id());
+            statement.setInt(8, item.getReservation_id());
 
             statement.executeUpdate();
         }
@@ -155,7 +175,7 @@ public class ReservationRepoImpl implements IReservationRepo
 
         //generate evaluation data
         List<Integer> availableMotorhomes_id = new ArrayList<Integer>();
-        IMotorhomeRepo motorhomes = new MotorhomeRepoIMPL();
+        IMotorhomeRepo motorhomes = new MotorhomeRepoImpl();
         List<Motorhome> result = new ArrayList<Motorhome>();
 
         try {
@@ -189,14 +209,40 @@ public class ReservationRepoImpl implements IReservationRepo
         return result;
     }
 
+    @Override
+    public List<Motorhome> findAllAvailableMotorhomes(LocalDate start, LocalDate end)
+    {
+        List<Motorhome> result = new ArrayList<Motorhome>();
+        IMotorhomeRepo motorhomes = new MotorhomeRepoImpl();
+        try
+        {
+            //gets all available motorhomes
+            System.out.println("read all size" +motorhomes.readAll().size());
+            for (int i = 0; i <motorhomes.readAll().size() ; i++)
+            {
+                int motorhome_id = motorhomes.readAll().get(i).getMotorhome_id();
+                if (available(start, end, motorhome_id))
+                {
+                    result.add(motorhomes.read(motorhome_id));
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+
+        return result;
+    }
 
     private boolean available(LocalDate start, LocalDate end, int id) // todo make test
     {
-        System.out.println("id  " +id);
         List<Reservation> reservationsList = new ArrayList<Reservation>();
         // reservations with that motorhome id
         try
         {
+
+            //finding all reservation with the motorhome id
             PreparedStatement statement = conn.prepareStatement("SELECT * FROM reservations WHERE motorhome_id = ?");
 
             statement.setInt(1, id);
@@ -204,6 +250,7 @@ public class ReservationRepoImpl implements IReservationRepo
             while (rs.next())
             {
                 Reservation reservation = new Reservation();
+
                 reservation.setReservation_id(rs.getInt(1));
                 reservation.setLocation(rs.getString(2));
                 reservation.setKmFromOffice(rs.getDouble(3));
@@ -211,7 +258,7 @@ public class ReservationRepoImpl implements IReservationRepo
                 reservation.setEndDate(LocalDate.parse(rs.getString(5)));
                 reservation.setNumberOfDays();
                 reservation.setMotorhome_id(rs.getInt(7));
-
+                reservation.setContact_id(rs.getInt(8));
 
                 reservationsList.add(reservation);
             }
@@ -222,18 +269,24 @@ public class ReservationRepoImpl implements IReservationRepo
         boolean flag1;
         boolean flag2;
 
-        for (Reservation R: reservationsList)
-        {
-            flag1 = R.getStartDate().isAfter(start) && R.getEndDate().isAfter(start);
-            flag2 = R.getEndDate().isAfter(end) &&  R.getEndDate().isAfter(end);
-            if (flag1==flag2) {
-                return true; // magic (made with a karnaugh map)
+        if (reservationsList.size()>0) {
+            for (Reservation R : reservationsList)
+            {
+                //TODO YO kan du ikke bare bruge ChronoUnit.DAYS.between(startDate, endDate) og se om den returner minus?
+                flag1 = R.getStartDate().isAfter(start) == R.getEndDate().isAfter(start);
+                flag2 = R.getEndDate().isAfter(end) == R.getEndDate().isAfter(end);
+                if (flag1 == flag2)
+                    return true; // magic (made with a karnaugh map)
             }
         }
+        else
+            return true;
         return false;
     }
 
+    public void getMotorhome(int id) {
 
+    }
 }
 
 

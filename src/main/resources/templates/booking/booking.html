@@ -1,12 +1,11 @@
 
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:form="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../main.css">
-
-
+    <link rel="stylesheet" href="../filterlist.css">
     <script type="text/javascript">
         function GetDays(){
             var dropdt = new Date(document.getElementById("drop_date").value);
@@ -16,7 +15,7 @@
 
         function cal(){
             if(document.getElementById("drop_date")){
-                document.getElementById("numdays2").value=GetDays();
+                document.getElementById("numdays2").value=GetDays(); //+1 because start date isn't counted
             }
         }
     </script>
@@ -43,81 +42,151 @@
             }
         }
     </script>
-
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", () =>
+            {
+                const start = document.getElementById("start").value;
+                const end = document.getElementById("end").value;
+                if (start == "")
+                {
+                    return;
+                }
+                else if (end == "")
+                {
+                    return;
+                }
+                else
+                {
+                    document.getElementById("filterlist_btn").disabled = false;
+                }
+            }
+        )
+    </script>
+    <script>
+        function OnDatesEntered() {
+            const start = document.getElementById("start").value;
+            const end = document.getElementById("end").value;
+
+            var startIsEmpty = start == "";
+            var endIsEmpty = end == "";
+
+            if (startIsEmpty && endIsEmpty)
+            {
+                return;
+            }
+            else if(startIsEmpty)
+            {
+                document.getElementById("start").max=end;
+            }
+            else if(endIsEmpty)
+            {
+                var minStartDate = new Date();
+
+                document.getElementById("end").min=start;
+            }
+            else
+            {
+                document.getElementById("overlay").style.width="100%";
+                document.getElementById("dates-form").submit();
+            }
+
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () =>
+            {
             const rows = document.querySelectorAll("tr[data]");
 
-            rows.forEach(row => {
-                row.addEventListener("click", () => {
-                    document.getElementById("motoSel").value = row.getAttribute("data");
-
-                    }
-
-                )
+            rows.forEach(row =>
+            {
+                row.addEventListener("click", () =>
+                    {
+                        document.getElementById("motoSel").textContent = row.getElementsByClassName("row_with_model")[0].id;//row.dataset.data;
+                        document.getElementById("motorhome_id").value = row.getAttribute("data");//row.dataset.data;
+                    })
             })
 
             }
         )
     </script>
-
 </head>
 
 <body>
 
-<div class="indexjumbotron">
+<div class="loader" th:insert="booking/fragments/overlay"></div>
+
+<div class="indexjumbotron" id="jumbotron">
     <div class="movedown">
         <div class="container">
             <div th:replace="fragments/Menu"/>
+
             <div class="jumbotron">
-                <h3>Booking</h3>
+                <h3 id="headline">Booking</h3>
                 <hr class="my-4"/>
-                <form action="/booking/search/" method="get" id="search-form">
+                <!-- DATE AND MODEL -->
+                <form action="/booking/dates" method="get" id="dates-form">
                     <h5>Choose Date and Model</h5>
-                <div id="pickup_date"><p>
-                        <label class="form">Pickup Date:</label>
-                        <input type="date" class="textbox" id="start" name="start"/></p>
-                </div>
-
-                <div id="dropoff_date"><p>
-                    <label class="form">Dropoff Date:</label>
-                    <input type="date" class="textbox" id="end" name="end" /></p>
-                </div>
-
-                <p>Choose your desired model</p>
-                    <div th:replace="booking/fragments/filterlist"/>
-                    <br>
+                    <div id="pickup_date">
+                        <p>
+                            <label class="form">Pickup Date:</label>
+                            <input type="date" class="textbox" id="start"   th:value="${reservation.startDate}" th:placeholer="${reservation.startDate}" name="start"  onchange="OnDatesEntered()" required/>
+                        </p>
+                    </div>
+                    <div id="dropoff_date">
+                        <p>
+                            <label class="form">Dropoff Date:</label>
+                            <input type="date" class="textbox" id="end"    th:value="${reservation.endDate}" th:placeholer="${reservation.endDate}" name="end"  onchange="OnDatesEntered()" required/>
+                        </p>
+                    </div>
                 </form>
 
-                <div id="reserve_form">
+                <form action="/booking/create" id="add_booking">
+                    <p>Choose your desired model</p>
+                    <div th:replace="booking/fragments/filterlist"/>
 
-                    <div id="motos"><label class="form">Selected Motorhome:</label><input type="text" class="textbox" id="motoSel" name="motos"/></div>
-                </div>
-                <!-- PERSONAL DETAILS -->
-
-                <hr class="my-4"/>
-                <h5>Personal Details</h5>
-                <form action="/booking/create" method="post">
-
-                    <div class="form-group">
-                        <input type="text" name="firstName" class="form-control" placeholder="Please enter your Firstname">
+                    <div id="reserve_form">
+                        <div id="motos">
+                            <label class="form">Selected Motorhome:</label>
+                            <p  type="text" class="textbox" id="motoSel" name="model"></p>
+                            <input type="hidden" id="motorhome_id" name="motorhome_id" required>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <input type="text" name="lastName" class="form-control" placeholder="Please enter your Lastname">
+                    <!-- LOCATION DETAILS -->
+                    <hr class="my-4"/>
+                    <h5>Location Details</h5>
+
+                    <div>
+                        <div class="form-group">
+                            <input type="text" name="location" maxlength="45" class="form-control" placeholder="Please enter pick-up location" required>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <input type="number" name="kmFromOffice" min="0" max="9000" class="form-control" placeholder="Please enter distance from office in km" required>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <input type="text" name="email" class="form-control" placeholder="Please enter your email">
+                    <!-- PERSONAL DETAILS -->
+                    <hr class="my-4"/>
+                    <h5>Personal Details</h5>
+
+                    <div>
+                        <div class="form-group">
+                            <input type="text" name="firstName" maxlength="45" class="form-control" placeholder="Please enter your Firstname" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="lastName" maxlength="24" class="form-control" placeholder="Please enter your Lastname" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" maxlength="45" class="form-control" placeholder="Please enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="phone" maxlength="12" class="form-control" placeholder="Please enter your phone number" required>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <input type="text" name="phone" class="form-control" placeholder="Please enter your phone number">
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Add</button>
-                    <!-- <input type="submit" form="reserve_form"> </input> -->
-                    <!--<div th:replace="fragments/search_modal"/>-->
+                    <input type="submit" class="btn btn-primary" form="add_booking"> <!--todo add check here -->
                 </form>
             </div>
         </div>
@@ -128,4 +197,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
+<footer>
+    <div th:replace="fragments/footer"/>
+</footer>
 </html>

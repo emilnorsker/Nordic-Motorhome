@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -81,7 +81,7 @@
 
                     <div class="col-sm col-sm p-3 mb-2 bg-light text-white">
                         <p th:each="contact :${contacts}">
-                            <a style="color: lightcoral;" th:href="@{'/booking/delete/' + ${contact.contact_id}}">Delete</a>
+                            <a style="color: lightcoral;" th:href="@{'/contacts/delete/'+${contact.contact_id}}">Delete</a>
                         </p>
                     </div>
 
