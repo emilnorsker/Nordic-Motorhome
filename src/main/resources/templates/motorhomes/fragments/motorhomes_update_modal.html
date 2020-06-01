@@ -25,7 +25,7 @@
                                 <input type="text" name="brand" maxlength="16" class="form-control" th:value="${motorhome.brand}" th:placeholder="${motorhome.brand}" required>
                             </div>
                             <div class="form-group">
-                                <input type="number" maxlength="12" name="price" min="0" class="form-control" th:value="${motorhome.price}" th:placeholder="${motorhome.price}" required>
+                                <input type="number" maxlength="12" step="0.01" name="price" min="0" class="form-control" th:value="${motorhome.price}" th:placeholder="${motorhome.price}" required>
                             </div>
                             <div class="form-group">
                                 <input type="text" name="licensePlate" maxlength="9" ass="form-control" th:value="${motorhome.licensePlate}" th:placeholder="${motorhome.licensePlate}" required>

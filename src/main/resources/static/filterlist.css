@@ -26,9 +26,10 @@
     border-bottom: 1px solid #ddd;
 }
 
-#myTable tr.header {
+#myTable tr.header, #myTable tr:hover{
     /* Add a grey background color to the table header */
-    background-color: #f1f1f1;
+    background-color: #0065f1;
+    cursor: pointer;
 }
 
 .modal-dialog {
