@@ -57,7 +57,6 @@ public class MotorhomeRepoImpl implements IMotorhomeRepo {
                 mh.setMotorhome_id(rs.getInt(1));
                 mh.setModel(rs.getString(2));
                 mh.setBrand(rs.getString(3));
-                //mh.setImageURL(rs.getString(4));
                 mh.setPrice(rs.getFloat(4));
                 mh.setLicensePlate(rs.getString(5));
                 mh.setType(rs.getString(6));

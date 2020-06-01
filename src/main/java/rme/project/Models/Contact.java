@@ -1,5 +1,7 @@
 package rme.project.Models;
 
+import java.sql.PreparedStatement;
+
 /**
  * @author Mikkel Åxman
  * @version 2.0 Changed classname from user. removed a few unused attributes.

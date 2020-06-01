@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import rme.project.Models.Motorhome;
+import rme.project.Models.Reservation;
 import rme.project.Repository.implementations.MotorhomeRepoImpl;
 
 import java.sql.SQLException;

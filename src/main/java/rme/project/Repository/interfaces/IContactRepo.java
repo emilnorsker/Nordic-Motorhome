@@ -9,4 +9,5 @@ import rme.project.Models.Contact;
 public interface IContactRepo extends CRUD<Contact> {
 
 
+    int getLastInsertId();
 }
