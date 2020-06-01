@@ -27,9 +27,15 @@
 }
 
 #myTable tr.header {
-    /* Add a grey background color to the table header and on hover */
+    /* Add a grey background color to the table header */
     background-color: #f1f1f1;
 }
-.mark tr:hover, td.selected {
-    background-color: dodgerblue;
+
+.modal-dialog {
+    max-width: 100%;
+    width: auto;
+    display: inline-block;
 }
+.modal{
+     text-align: center;
+ }

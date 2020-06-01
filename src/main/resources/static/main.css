@@ -8,7 +8,7 @@
 }
 
 .jumbotron {
-    overflow-y: hidden;
+    overflow: auto;
     max-height:800px;
 }
 
@@ -38,4 +38,5 @@
 #up{
     top: 100px;
 }
+
 
