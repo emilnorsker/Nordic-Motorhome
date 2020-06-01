@@ -24,7 +24,7 @@ public class Reservation {
     private LocalDate endDate;
     private Long numberOfDays;
     private int contact_id;
-    public Contact contact;
+    private Contact contact;
 
     //Empty constructor.
     public Reservation() {

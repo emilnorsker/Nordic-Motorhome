@@ -26,19 +26,19 @@ public class ReservationRepoImpl implements IReservationRepo {
     @Override
     public void create(Reservation item) {
         try {
-            PreparedStatement statement = conn.prepareStatement("INSERT INTO reservations (reservation_id, location, kmFromOffice, startDate, endDate, numberOfDays,motorhome_id, contact_id) VALUES (?,?,?,?,?,?,?,?)");
+            PreparedStatement statement = conn.prepareStatement("INSERT INTO reservations (location, kmFromOffice, startDate, endDate, numberOfDays,motorhome_id, contact_id) VALUES (?,?,?,?,?,?,?)");
 
             //todo  contact id
 
-            statement.setInt(1, item.getReservation_id());
-            statement.setString(2, item.getLocation());
-            statement.setDouble(3, item.getKmFromOffice());
-            statement.setDate(4, java.sql.Date.valueOf(item.getStartDate())); //Converting LocalDate to sql.Date
-            statement.setDate(5, java.sql.Date.valueOf(item.getEndDate())); //Converting LocalDate to sql.Date
+           // statement.setInt(1, item.getReservation_id()); Is done on DB
+            statement.setString(1, item.getLocation());
+            statement.setDouble(2, item.getKmFromOffice());
+            statement.setDate(3, java.sql.Date.valueOf(item.getStartDate())); //Converting LocalDate to sql.Date
+            statement.setDate(4, java.sql.Date.valueOf(item.getEndDate())); //Converting LocalDate to sql.Date
             item.setNumberOfDays(); //Calculate new number of days
-            statement.setLong(6, item.getNumberOfDays());
-            statement.setInt(7, item.getMotorhome_id());
-            statement.setInt(8, item.getContact_id());
+            statement.setLong(5, item.getNumberOfDays());
+            statement.setInt(6, item.getMotorhome_id());
+            statement.setInt(7, item.getContact_id());
 
             statement.executeUpdate();
         } catch (Exception e) {

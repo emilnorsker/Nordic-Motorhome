@@ -57,7 +57,7 @@ public class ReservationController {
         reservation.setStartDate(LocalDate.parse(params.get("startDate")));
         reservation.setEndDate(LocalDate.parse(params.get("endDate")));
         reservation.setLocation(params.get("location"));
-        reservation.setKmFromOffice(Integer.parseInt(params.get("kmFromOffice")));
+        reservation.setKmFromOffice(Double.parseDouble(params.get("kmFromOffice")));
 
         reservationRepo.update(reservation);
 

@@ -25,15 +25,15 @@ public class MotorhomeRepoImpl implements IMotorhomeRepo {
     public void create(Motorhome motorhome) {
 
         try {
-            PreparedStatement createMotorhome = conn.prepareStatement("INSERT INTO motorhomes (motorhome_id,model, brand, price, licensePLate, type) VALUES (?,?,?,?,?,?)");
+            PreparedStatement createMotorhome = conn.prepareStatement("INSERT INTO motorhomes (model, brand, price, licensePLate, type) VALUES (?,?,?,?,?)");
 
 
-            createMotorhome.setInt(1, motorhome.getMotorhome_id());
-            createMotorhome.setString(2, motorhome.getModel());
-            createMotorhome.setString(3, motorhome.getBrand());
-            createMotorhome.setFloat(4, motorhome.getPrice());
-            createMotorhome.setString(5, motorhome.getLicensePlate());
-            createMotorhome.setString(6, motorhome.getType());
+           // createMotorhome.setInt(1, motorhome.getMotorhome_id()); Is done on DB
+            createMotorhome.setString(1, motorhome.getModel());
+            createMotorhome.setString(2, motorhome.getBrand());
+            createMotorhome.setFloat(3, motorhome.getPrice());
+            createMotorhome.setString(4, motorhome.getLicensePlate());
+            createMotorhome.setString(5, motorhome.getType());
             createMotorhome.executeUpdate();
 
         } catch (SQLException e) {
