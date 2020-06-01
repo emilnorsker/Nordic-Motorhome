@@ -3,6 +3,9 @@ package rme.project.Controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Map;
 import rme.project.Models.Contact;
 import rme.project.Models.Reservation;
 import rme.project.Repository.implementations.ContactRepoImpl;
@@ -11,10 +14,6 @@ import rme.project.Repository.implementations.ReservationRepoImpl;
 import rme.project.Repository.interfaces.IContactRepo;
 import rme.project.Repository.interfaces.IMotorhomeRepo;
 import rme.project.Repository.interfaces.IReservationRepo;
-
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.Map;
 
 /**
  * @author Mikkel Åxman

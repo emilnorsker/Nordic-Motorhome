@@ -17,10 +17,6 @@ public class ContactRepoImpl implements IContactRepo {
 
     @Override
     public void create(Contact contact) {
-
-        //
-
-
         try {
             PreparedStatement createContact = conn.prepareStatement("INSERT INTO contact (contact_id,firstName, lastName, email, phone) VALUES (?,?,?,?,?)");
 
@@ -130,4 +126,8 @@ public class ContactRepoImpl implements IContactRepo {
 
     }
 
+    @Override
+    public int getLastInsertId() {
+        return 0;
+    }
 }
