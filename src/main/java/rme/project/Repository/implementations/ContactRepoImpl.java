@@ -17,18 +17,15 @@ public class ContactRepoImpl implements IContactRepo {
 
     @Override
     public void create(Contact contact) {
-
-        //
-
-
+        //TODO PLEASE CREATE TEST
         try {
-            PreparedStatement createContact = conn.prepareStatement("INSERT INTO contact (contact_id,firstName, lastName, email, phone) VALUES (?,?,?,?,?)");
+            PreparedStatement createContact = conn.prepareStatement("INSERT INTO contact (firstName, lastName, email, phone) VALUES (?,?,?,?)");
 
             //MySQL will auto increment the ID
-            createContact.setString(2, contact.getFirstName());
-            createContact.setString(3, contact.getLastName());
-            createContact.setString(4, contact.getEmail());
-            createContact.setString(5, contact.getPhone());
+            createContact.setString(1, contact.getFirstName());
+            createContact.setString(2, contact.getLastName());
+            createContact.setString(3, contact.getEmail());
+            createContact.setString(4, contact.getPhone());
 
             createContact.executeUpdate();
 
@@ -130,4 +127,22 @@ public class ContactRepoImpl implements IContactRepo {
 
     }
 
+    @Override
+    public int getLastInsertId() {
+        int lastID = 0;
+        try {
+            List<Contact> contact = null;
+            PreparedStatement statement = conn.prepareStatement("SELECT LAST_INSERT_ID() FROM contact");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                lastID = resultSet.getInt(1);
+                System.out.println("Last ID " + lastID);
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        return lastID;
+
+    }
 }

@@ -77,7 +77,7 @@ public class BookingController
         contact.setLastName(lName);
         contact.setEmail(email);
         contact.setPhone(number);
-        new ContactRepoImpl().create(contact); // todo !!! not proper way to do it... !!! plz change
+        contactRepo.create(contact); // todo !!! not proper way to do it... !!! plz change
 
         reservation.setContact_id(contactRepo.getLastInsertId());
         reservation.setMotorhome_id(Integer.parseInt(motorhome_id));
