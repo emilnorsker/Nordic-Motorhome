@@ -17,24 +17,24 @@ class ReservationRepoImplTest {
     void create() {
         //assign
         ReservationRepoImpl repo = new ReservationRepoImpl();
-        //TODO check if reservation 666 exists before deleting it
-        repo.delete(666); //Cleaning last test up.
 
-        Reservation expected = new Reservation(666, "Hej Vej 77", 2.22, LocalDate.parse("2020-05-22"), LocalDate.parse("2020-05-22"),1,1);
+        //Doesnt use reservation ID since .create method sends empty to DB. DB auto increments therefore we use getLastID() instead.
+        Reservation expected = new Reservation(666,"Narnia",123,LocalDate.parse("2020-05-30"),LocalDate.parse("2020-05-29"),1,1);
         Reservation actual;
 
         //act
         repo.create(expected);
-        actual = repo.read(expected.getReservation_id());
+        int lastId = repo.getLastInsertId();
+        actual = repo.read(lastId);
 
         //assert
-        assertEquals(expected.getReservation_id(), actual.getReservation_id());
+        assertEquals(lastId, actual.getReservation_id());
         assertEquals(expected.getLocation(), actual.getLocation());
         assertEquals(expected.getStartDate(), actual.getStartDate());
         assertEquals(expected.getNumberOfDays(), actual.getNumberOfDays());
         assertEquals(expected.getContact_id(), actual.getContact_id());
 
-
+        repo.delete(lastId); //Cleanup
     }
 
     @Test
@@ -62,11 +62,7 @@ class ReservationRepoImplTest {
         mh_repo.create(motorhome_not_available);
         re_repo.create(r);
 
-
         available_mh_list = re_repo.findAllAvailableMotorhomes(r.getStartDate(), r.getEndDate());
-
-
-
 
         System.out.println("motorhome in list");
         for (Motorhome M : available_mh_list) {

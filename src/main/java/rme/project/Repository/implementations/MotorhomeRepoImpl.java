@@ -127,6 +127,26 @@ public class MotorhomeRepoImpl implements IMotorhomeRepo {
 
     }
 
+    /**
+     * We need this to get ID from newly created entry, since DB makes it automatically
+     * @return ID as int
+     */
+    @Override
+    public int getLastInsertId() {
+        int lastID = 0;
+        try {
+            PreparedStatement statement = conn.prepareStatement("SELECT LAST_INSERT_ID() FROM motorhomes");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                lastID = resultSet.getInt(1);
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        return lastID;
+    }
+
     @Override
     public int Search(int id) {
         return 0;

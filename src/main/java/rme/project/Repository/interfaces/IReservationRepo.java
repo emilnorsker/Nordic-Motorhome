@@ -13,4 +13,6 @@ public interface IReservationRepo extends CRUD<Reservation> {
     List<Motorhome> findAvailableMotorhomes(LocalDate start, LocalDate end, String[] models);
 
     List<Motorhome> findAllAvailableMotorhomes(LocalDate start, LocalDate end);
+
+    int getLastInsertId();
 }

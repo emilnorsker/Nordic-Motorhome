@@ -138,10 +138,10 @@
                                 </th>
                             </tr>
                             <tr class="reservation-info">
-                                <th>KM from office</th>
+                                <th>km from office</th>
                                 <th>
                                     <div class="form-group">
-                                        <input type="text" name="kmFromOffice" class="form-control"
+                                        <input type="number" step="0.01" min="0" max="9000" name="kmFromOffice" class="form-control"
                                                th:value="${reservation.kmFromOffice}"
                                                th:placeholder="${reservation.kmFromOffice}" required>
                                     </div>

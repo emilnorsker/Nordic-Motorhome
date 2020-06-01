@@ -127,6 +127,10 @@ public class ContactRepoImpl implements IContactRepo {
 
     }
 
+    /**
+     * We need this to get ID from newly created entry, since DB makes it automatically
+     * @return ID as int
+     */
     @Override
     public int getLastInsertId() {
         int lastID = 0;
@@ -136,7 +140,6 @@ public class ContactRepoImpl implements IContactRepo {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 lastID = resultSet.getInt(1);
-                System.out.println("Last ID " + lastID);
             }
         }
         catch (Exception e){

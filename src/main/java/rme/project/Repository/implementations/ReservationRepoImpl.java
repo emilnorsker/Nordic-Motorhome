@@ -1,6 +1,7 @@
 package rme.project.Repository.implementations;
 
 
+import rme.project.Models.Contact;
 import rme.project.Models.Motorhome;
 import rme.project.Models.Reservation;
 import rme.project.Repository.interfaces.IMotorhomeRepo;
@@ -28,14 +29,12 @@ public class ReservationRepoImpl implements IReservationRepo {
         try {
             PreparedStatement statement = conn.prepareStatement("INSERT INTO reservations (location, kmFromOffice, startDate, endDate, numberOfDays,motorhome_id, contact_id) VALUES (?,?,?,?,?,?,?)");
 
-            //todo  contact id
-
            // statement.setInt(1, item.getReservation_id()); Is done on DB
             statement.setString(1, item.getLocation());
             statement.setDouble(2, item.getKmFromOffice());
             statement.setDate(3, java.sql.Date.valueOf(item.getStartDate())); //Converting LocalDate to sql.Date
             statement.setDate(4, java.sql.Date.valueOf(item.getEndDate())); //Converting LocalDate to sql.Date
-            item.setNumberOfDays(); //Calculate new number of days
+            item.setNumberOfDays(); //Calculate new number of days before setting
             statement.setLong(5, item.getNumberOfDays());
             statement.setInt(6, item.getMotorhome_id());
             statement.setInt(7, item.getContact_id());
@@ -249,7 +248,24 @@ public class ReservationRepoImpl implements IReservationRepo {
         return false;
     }
 
-    public void getMotorhome(int id) {
+    /**
+     * We need this to get ID from newly created entry, since DB makes it automatically
+     * @return ID as int
+     */
+    @Override
+    public int getLastInsertId() {
+        int lastID = 0;
+        try {
+            PreparedStatement statement = conn.prepareStatement("SELECT LAST_INSERT_ID() FROM reservations");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                lastID = resultSet.getInt(1);
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        return lastID;
 
     }
 }
