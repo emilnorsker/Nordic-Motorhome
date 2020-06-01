@@ -4,20 +4,18 @@
 package rme.project.Repository.interfaces;
 
 import java.util.List;
-public interface CRUD <T>
-{
-    //TODO Vi skal lige gå det her igennem med interfaces, jeg forstår ikke helt hvad det er vi vil
 
-        void create(T item);
+public interface CRUD<T> {
 
-        T read(int id);
 
-        List<T> readAll();
+    void create(T item);
 
-        void update(T item);
+    T read(int id);
 
-        void delete(int id);
+    List<T> readAll();
 
-        //TODO Vi skal lige kigge på det her sammen, er ikke sikker på hvad parametre de skal tage
+    void update(T item);
+
+    void delete(int id);
 
 }

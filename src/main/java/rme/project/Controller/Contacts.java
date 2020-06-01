@@ -5,23 +5,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import rme.project.Models.Contact;
 import rme.project.Repository.implementations.ContactRepoImpl;
-import rme.project.Repository.interfaces.IBookingRepo;
+import rme.project.Repository.interfaces.IContactRepo;
 
 import java.sql.SQLException;
+
 @Controller
 @RequestMapping("contacts")
-public class Contacts
-{
-    private IBookingRepo contactRepo = new ContactRepoImpl();
+public class Contacts {
+    private final IContactRepo contactRepo = new ContactRepoImpl();
 
     @GetMapping("")
-    public String contacts(Model model){
+    public String contacts(Model model) {
         model.addAttribute("contacts", contactRepo.readAll());
         return "contacts/contacts";
     }
 
     @GetMapping("/create")
-    public String showCreatePage(){
+    public String showCreatePage() {
 
         return "/create";
     }
@@ -33,7 +33,7 @@ public class Contacts
     }
 
     @GetMapping("/update")
-    public String showUpdatePage(){
+    public String showUpdatePage() {
 
         return "update";
     }
@@ -45,7 +45,7 @@ public class Contacts
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") int id){
+    public String delete(@PathVariable("id") int id) {
         contactRepo.delete(id);
         return "redirect:/contacts";
     }

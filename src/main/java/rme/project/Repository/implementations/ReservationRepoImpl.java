@@ -1,7 +1,6 @@
 package rme.project.Repository.implementations;
 
 
-import rme.project.Models.Contact;
 import rme.project.Models.Motorhome;
 import rme.project.Models.Reservation;
 import rme.project.Repository.interfaces.IMotorhomeRepo;
@@ -11,7 +10,6 @@ import rme.project.Util.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,15 +18,14 @@ import java.util.List;
 /**
  * @version 4.0 added contact_id to reservation
  */
-public class ReservationRepoImpl implements IReservationRepo
-{
+public class ReservationRepoImpl implements IReservationRepo {
 
     //todo contact information
     Connection conn = DBConnection.getDatabaseConnection();
+
     @Override
     public void create(Reservation item) {
-        try
-        {
+        try {
             PreparedStatement statement = conn.prepareStatement("INSERT INTO reservations (reservation_id, location, kmFromOffice, startDate, endDate, numberOfDays,motorhome_id, contact_id) VALUES (?,?,?,?,?,?,?,?)");
 
             //todo  contact id
@@ -44,9 +41,7 @@ public class ReservationRepoImpl implements IReservationRepo
             statement.setInt(8, item.getContact_id());
 
             statement.executeUpdate();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e);
         }
 
@@ -55,16 +50,14 @@ public class ReservationRepoImpl implements IReservationRepo
     @Override
     public Reservation read(int id) {
         Reservation reservation = null;
-        try
-        {
+        try {
             reservation = new Reservation();
             PreparedStatement statement = conn.prepareStatement("SELECT * FROM reservations WHERE reservation_id=?");
 
-            statement.setInt(1,id);
+            statement.setInt(1, id);
 
             ResultSet rs = statement.executeQuery();
-            while (rs.next())
-            {
+            while (rs.next()) {
 
                 reservation.setReservation_id(rs.getInt(1));
                 reservation.setLocation(rs.getString(2));
@@ -81,12 +74,9 @@ public class ReservationRepoImpl implements IReservationRepo
 
 
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e); // we're only printing, for the sake of not interrupting the system.
-        }
-        finally {
+        } finally {
             return reservation;
         }
     }
@@ -95,13 +85,11 @@ public class ReservationRepoImpl implements IReservationRepo
     public List<Reservation> readAll() {
 
         List<Reservation> reservationsList = new ArrayList<>();
-        try
-        {
+        try {
             PreparedStatement statement = conn.prepareStatement("SELECT * FROM reservations");
             ResultSet rs = statement.executeQuery();
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 Reservation reservation = new Reservation();
 
                 reservation.setReservation_id(rs.getInt(1));
@@ -119,21 +107,16 @@ public class ReservationRepoImpl implements IReservationRepo
 
                 reservationsList.add(reservation);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e); // we're only printing, for the sake of not interrupting the system.
-        }
-        finally {
+        } finally {
             return reservationsList;
         }
     }
 
     @Override
-    public void update(Reservation item)
-    {
-        try
-        {
+    public void update(Reservation item) {
+        try {
             PreparedStatement statement = conn.prepareStatement("UPDATE reservations SET location = ?, kmFromOffice = ?, startDate = ?, endDate = ?, numberOfDays = ?, motorhome_id =?, contact_id =? WHERE reservation_id = ?");
 
             statement.setString(1, item.getLocation());
@@ -147,24 +130,18 @@ public class ReservationRepoImpl implements IReservationRepo
             statement.setInt(8, item.getReservation_id());
 
             statement.executeUpdate();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
 
     @Override
-    public void delete(int id)
-    {
-        try
-        {
+    public void delete(int id) {
+        try {
             PreparedStatement statement = conn.prepareStatement("DELETE FROM reservations WHERE reservation_id=?");
             statement.setInt(1, id);
             statement.executeUpdate();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
@@ -188,47 +165,39 @@ public class ReservationRepoImpl implements IReservationRepo
                 findModelId.setString(1, models[i]);
                 ResultSet rs = findModelId.executeQuery();
                 //check if the motorhome is available
-                while (rs.next())
-                {
+                while (rs.next()) {
                     availableMotorhomes_id.add(rs.getInt(1));
-                    System.out.println("from sql" +rs.getInt(1));
+                    System.out.println("from sql" + rs.getInt(1));
                 }
                 //subtract all motorhomes that are occupied in time period
-                for (int j: availableMotorhomes_id)
-                {
-                    if(available(start, end, j));
+                for (int j : availableMotorhomes_id) {
+                    if (available(start, end, j)) ;
                     {
-                        System.out.println("before passing fina;  " +j);
+                        System.out.println("before passing fina;  " + j);
                         result.add(motorhomes.read(j)); //todo fix error here
                     }
                 }
             }
+        } catch (Exception e) {
         }
-        catch (Exception e){}
 
         return result;
     }
 
     @Override
-    public List<Motorhome> findAllAvailableMotorhomes(LocalDate start, LocalDate end)
-    {
+    public List<Motorhome> findAllAvailableMotorhomes(LocalDate start, LocalDate end) {
         List<Motorhome> result = new ArrayList<Motorhome>();
         IMotorhomeRepo motorhomes = new MotorhomeRepoImpl();
-        try
-        {
+        try {
             //gets all available motorhomes
-            System.out.println("read all size" +motorhomes.readAll().size());
-            for (int i = 0; i <motorhomes.readAll().size() ; i++)
-            {
+            System.out.println("read all size" + motorhomes.readAll().size());
+            for (int i = 0; i < motorhomes.readAll().size(); i++) {
                 int motorhome_id = motorhomes.readAll().get(i).getMotorhome_id();
-                if (available(start, end, motorhome_id))
-                {
+                if (available(start, end, motorhome_id)) {
                     result.add(motorhomes.read(motorhome_id));
                 }
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e);
         }
 
@@ -239,16 +208,14 @@ public class ReservationRepoImpl implements IReservationRepo
     {
         List<Reservation> reservationsList = new ArrayList<Reservation>();
         // reservations with that motorhome id
-        try
-        {
+        try {
 
             //finding all reservation with the motorhome id
             PreparedStatement statement = conn.prepareStatement("SELECT * FROM reservations WHERE motorhome_id = ?");
 
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
-            while (rs.next())
-            {
+            while (rs.next()) {
                 Reservation reservation = new Reservation();
 
                 reservation.setReservation_id(rs.getInt(1));
@@ -269,17 +236,15 @@ public class ReservationRepoImpl implements IReservationRepo
         boolean flag1;
         boolean flag2;
 
-        if (reservationsList.size()>0) {
-            for (Reservation R : reservationsList)
-            {
+        if (reservationsList.size() > 0) {
+            for (Reservation R : reservationsList) {
                 //TODO YO kan du ikke bare bruge ChronoUnit.DAYS.between(startDate, endDate) og se om den returner minus?
                 flag1 = R.getStartDate().isAfter(start) == R.getEndDate().isAfter(start);
                 flag2 = R.getEndDate().isAfter(end) == R.getEndDate().isAfter(end);
                 if (flag1 == flag2)
                     return true; // magic (made with a karnaugh map)
             }
-        }
-        else
+        } else
             return true;
         return false;
     }

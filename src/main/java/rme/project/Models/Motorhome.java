@@ -15,20 +15,20 @@ public class Motorhome {
     //private String imagePath;
 
     //Empty constructor
-    public Motorhome(){
+    public Motorhome() {
     }
 
     /**
      * Model for motorhome.
-     * @param id    motorhome unique ID is not null, unsigned, auto-incrementing in DB
-     * @param brand name of auto maker
-     * @param model type/model of auto
+     *
+     * @param id           motorhome unique ID is not null, unsigned, auto-incrementing in DB
+     * @param brand        name of auto maker
+     * @param model        type/model of auto
      * @param licensePlate Like "AB 12 123". MAX 9 chars (incl. spaces), UNIQUE but can't be primary key, because employees might set as null. Thankfully SQL allows multiple nulls.
-     * @param price Price per day. should be bigdecimal later.
-     * @param type Type of vehicle, e.g. 2p, 4p, 6p, convertible..
+     * @param price        Price per day. should be bigdecimal later.
+     * @param type         Type of vehicle, e.g. 2p, 4p, 6p, convertible..
      */
-    public Motorhome(int id, String brand, String model, String licensePlate, float price, String type)
-    {
+    public Motorhome(int id, String brand, String model, String licensePlate, float price, String type) {
         this.motorhome_id = id;
         this.model = model;
         this.brand = brand;
@@ -39,7 +39,7 @@ public class Motorhome {
 
 
     /**************************************
-      GETTERS AND SETTERS BELOW
+     GETTERS AND SETTERS BELOW
      **************************************/
 
     public int getMotorhome_id() {
@@ -70,7 +70,9 @@ public class Motorhome {
         return licensePlate;
     }
 
-    public void setLicensePlate(String licensePlate) { this.licensePlate = licensePlate; }
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
+    }
 
     public float getPrice() {
         return price;
@@ -80,7 +82,11 @@ public class Motorhome {
         this.price = price;
     }
 
-    public String getType() { return type; }
+    public String getType() {
+        return type;
+    }
 
-    public void setType(String type) { this.type = type; }
+    public void setType(String type) {
+        this.type = type;
+    }
 }

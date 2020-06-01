@@ -12,10 +12,11 @@ public class Accessory {
 
     /**
      * Accessory is related to motorhome and reservation thru junction tables in DB
+     *
      * @param accessory_id ID is not-null, unsigned and auto-incremented in DB
-     * @param name Item name
-     * @param price Price pr. day
-     * @param imagePath Filepath for image if any. leave null if none.
+     * @param name         Item name
+     * @param price        Price pr. day
+     * @param imagePath    Filepath for image if any. leave null if none.
      */
     public Accessory(int accessory_id, String name, float price, String imagePath) {
         this.accessory_id = accessory_id;

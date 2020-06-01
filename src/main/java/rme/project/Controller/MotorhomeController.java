@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import rme.project.Models.Motorhome;
 import rme.project.Repository.implementations.MotorhomeRepoImpl;
+
 import java.sql.SQLException;
 
 @Controller
@@ -14,13 +15,13 @@ public class MotorhomeController {
     private MotorhomeRepoImpl motorRepo = motorRepo = new MotorhomeRepoImpl();
 
     @GetMapping("")
-    public String motorhomes(Model model){
+    public String motorhomes(Model model) {
         model.addAttribute("motorhomes", motorRepo.readAll());
         return "motorhomes/motorhomes";
     }
 
     @GetMapping("/create")
-    public String showCreatePage(){
+    public String showCreatePage() {
 
         return "motorhomes/create";
     }
@@ -32,7 +33,7 @@ public class MotorhomeController {
     }
 
     @GetMapping("update")
-    public String showUpdatePage(){
+    public String showUpdatePage() {
 
         return "update";
     }
@@ -44,7 +45,7 @@ public class MotorhomeController {
     }
 
     @GetMapping("/delete/")
-    public String delete(@RequestParam("id") String id){
+    public String delete(@RequestParam("id") String id) {
         motorRepo.delete(Integer.parseInt(id));
 
         return "redirect:/motorhomes";

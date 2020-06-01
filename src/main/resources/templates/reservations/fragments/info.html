@@ -1,10 +1,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="info(reservation)">
-    <input type="button" style="color: dodgerblue;" data-toggle="modal" th:attr="data-target='#info' + ${reservation.reservation_id}" value="info"></input>
+    <input type="button" style="color: dodgerblue;" data-toggle="modal"
+           th:attr="data-target='#info' + ${reservation.reservation_id}" value="info"></input>
 
     <!-- ${reservation.location}, ${reservation.kmFromOffice}, ${reservation.startDate}, ${reservation.endDate}, ${reservation.motorhome_id}, ${reservation.reservation_id} -->
 
-    <div class="modal fade" th:id="info+${reservation.reservation_id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" th:id="info+${reservation.reservation_id}" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -14,163 +16,182 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table style="width:100%">
+                    <form action="/reservations/update">
+                        <table style="width:100%">
 
-                        <tr class="reservation-info">
-                            <th>First name</th>
-                            <th>
-                                <div class="form-group">
-                                    <input type="text" maxlength="45" name="fName" class="form-control" th:value="${reservation.contact.firstName}"
-                                           th:placeholder="${reservation.contact.firstName}" required>
-                                </div>
-                            </th>
-                        </tr>
+                            <tr class="reservation-info">
+                                <th>First name</th>
+                                <th>
+                                    <div class="form-group">
+                                        <input type="text" maxlength="45" name="firstName" class="form-control"
+                                               th:value="${reservation.contact.firstName}"
+                                               th:placeholder="${reservation.contact.firstName}" required>
+                                    </div>
+                                </th>
+                            </tr>
 
-                        <tr class="reservation-info-row">
-                            <th>Last name</th>
-                            <th>
-                                <div class="form-group">
-                                    <input type="text" maxlength="24" name="fName" class="form-control" th:value="${reservation.contact.lastName}"
-                                           th:placeholder="${reservation.contact.lastName}" required>
-                                </div>
-                            </th>
-                        </tr>
+                            <tr class="reservation-info-row">
+                                <th>Last name</th>
+                                <th>
+                                    <div class="form-group">
+                                        <input type="text" maxlength="24" name="lastName" class="form-control"
+                                               th:value="${reservation.contact.lastName}"
+                                               th:placeholder="${reservation.contact.lastName}" required>
+                                    </div>
+                                </th>
+                            </tr>
 
-                        <tr class="reservation-info-row">
-                            <th>Email</th>
-                            <th>
-                                <div class="form-group">
-                                    <input type="email" name="email" class="form-control" th:value="${reservation.contact.email}"
-                                           th:placeholder="${reservation.contact.email}" required>
-                                </div>
-                            </th>
-                        </tr>
+                            <tr class="reservation-info-row">
+                                <th>Email</th>
+                                <th>
+                                    <div class="form-group">
+                                        <input type="email" name="email" class="form-control"
+                                               th:value="${reservation.contact.email}"
+                                               th:placeholder="${reservation.contact.email}" required>
+                                    </div>
+                                </th>
+                            </tr>
 
-                        <tr class="reservation-info-row">
-                            <th>Phone number</th>
-                            <th>
-                                <div class="form-group">
-                                    <input type="text" maxlength="12" name="phone" class="form-control" th:value="${reservation.contact.phone}"
-                                           th:placeholder="${reservation.contact.phone}" required>
-                                </div>
-                            </th>
-                        </tr>
+                            <tr class="reservation-info-row">
+                                <th>Phone number</th>
+                                <th>
+                                    <div class="form-group">
+                                        <input type="text" maxlength="12" name="phone" class="form-control"
+                                               th:value="${reservation.contact.phone}"
+                                               th:placeholder="${reservation.contact.phone}" required>
+                                    </div>
+                                </th>
+                            </tr>
 
-                        <tr id="i'm-empty :)"> <!-- make a segment ish thing -->
+                            <tr id="i'm-empty :)"> <!-- make a segment ish thing -->
+                                <hr class="my-4"/>
+                            </tr>
+
+
+                            <!-- start date -->
+                            <tr class="reservation-info-row">
+                                <th>Start date</th>
+                                <th>
+                                    <div class="form-group">
+                                        <input type="date" name="startDate" class="form-control"
+                                               th:value="${reservation.startDate}"
+                                               th:placeholder="${reservation.startDate}" required>
+                                    </div>
+                                </th>
+                            </tr>
+
+                            <!-- end date TODO Make enddate only after start date again here-->
+                            <tr class="reservation-info-row">
+                                <th>End date</th>
+                                <th>
+                                    <div class="form-group">
+                                        <input type="date" name="endDate" class="form-control"
+                                               th:value="${reservation.endDate}"
+                                               th:placeholder="${reservation.endDate}" required>
+                                    </div>
+                                </th>
+                            </tr>
+
+                            <!-- number of days -->
+                            <tr class="reservation-info-row">
+                                <th>Total days</th>
+                                <th>
+                                    <div class="form-group">
+                                        <input type="text" name="numberOfDays" class="form-control"
+                                               th:value="${reservation.numberOfDays}"
+                                               th:placeholder="${reservation.numberOfDays}" required>
+                                    </div>
+                                </th>
+                            </tr>
+
+                            <tr class="reservation-info">
+                                <th>Price per day</th>
+                                <th>
+                                    <div class="form-group">
+                                        <input type="text" name="price" class="form-control"
+                                               th:value="${reservation.motorhome.price}"
+                                               th:placeholder="${reservation.motorhome.price}" required>
+                                    </div>
+                                </th>
+                            </tr>
+
+                            <!-- Total price -->
+                            <tr class="reservation-info">
+                                <th>Total price</th>
+                                <th>
+                                    <div class="form-group">
+                                        <p type="text" class="form-control"
+                                           th:text="${reservation.motorhome.price * reservation.numberOfDays}" required>
+                                    </div>
+                                </th>
+                            </tr>
+
+                            <!-- location -->
+                            <tr class="reservation-info">
+                                <th>Location</th>
+                                <th>
+                                    <div class="form-group">
+                                        <input type="text" name="location" class="form-control"
+                                               th:value="${reservation.location}"
+                                               th:placeholder="${reservation.location}" required>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr class="reservation-info">
+                                <th>KM from office</th>
+                                <th>
+                                    <div class="form-group">
+                                        <input type="text" name="kmFromOffice" class="form-control"
+                                               th:value="${reservation.kmFromOffice}"
+                                               th:placeholder="${reservation.kmFromOffice}" required>
+                                    </div>
+                                </th>
+                            </tr>
+
+                            <tr id="im-empty :)"> <!-- make a segment ish thing -->
+                            </tr>
                             <hr class="my-4"/>
-                        </tr>
+
+                            <tr class="reservation-info">
+                                <th>Brand</th>
+                                <th>
+                                    <div class="form-group">
+                                        <p th:text="${reservation.motorhome.brand}"/>
+                                    </div>
+                                </th>
+                            </tr>
+
+                            <tr class="reservation-info">
+                                <th>Model</th>
+                                <th>
+                                    <div class="form-group">
+                                        <p th:text="${reservation.motorhome.model}"/>
+                                    </div>
+                                </th>
+                            </tr>
+
+                            <tr class="reservation-info">
+                                <th>License Plate</th>
+                                <th>
+                                    <div class="form-group">
+                                        <p th:text="${reservation.motorhome.licensePlate}"/>
+                                    </div>
+                                </th>
+                            </tr>
 
 
-                        <!-- start date -->
-                        <tr class="reservation-info-row">
-                            <th>Start date</th>
-                            <th>
-                                <div class="form-group">
-                                    <input type="date" name="startDate" class="form-control" th:value="${reservation.startDate}"
-                                           th:placeholder="${reservation.startDate}" required>
-                                </div>
-                            </th>
-                        </tr>
+                        </table>
 
-                        <!-- end date TODO Make enddate only after start date again here-->
-                        <tr class="reservation-info-row">
-                            <th>End date</th>
-                            <th>
-                                <div class="form-group">
-                                    <input type="date" name="endDate" class="form-control" th:value="${reservation.endDate}"
-                                           th:placeholder="${reservation.endDate}" required>
-                                </div>
-                            </th>
-                        </tr>
+                        <input type="hidden" name="contact_id" th:value="${reservation.contact_id}">
+                        <input type="hidden" name="reservation_id" th:value="${reservation.reservation_id}">
 
-                        <!-- number of days -->
-                        <tr class="reservation-info-row">
-                            <th>Total days</th>
-                            <th>
-                                <div class="form-group">
-                                    <input type="text" name="numberOfDays" class="form-control" th:value="${reservation.numberOfDays}"
-                                           th:placeholder="${reservation.numberOfDays}" required>
-                                </div>
-                            </th>
-                        </tr>
-
-                        <tr class="reservation-info">
-                            <th>Price per day</th>
-                            <th>
-                                <div class="form-group">
-                                    <input type="text" name="price" class="form-control" th:value="${reservation.motorhome.price}"
-                                           th:placeholder="${reservation.motorhome.price}" required>
-                                </div>
-                            </th>
-                        </tr>
-
-                        <!-- Total price -->
-                        <tr class="reservation-info">
-                            <th>Total price</th>
-                            <th>
-                                <div class="form-group">
-                                    <p type="text"  class="form-control" th:text="${reservation.motorhome.price * reservation.numberOfDays}" required>
-                                </div>
-                            </th>
-                        </tr>
-
-                        <!-- location -->
-                        <tr class="reservation-info">
-                            <th>Location</th>
-                            <th>
-                                <div class="form-group">
-                                    <input type="text" name="location" class="form-control" th:value="${reservation.location}"
-                                           th:placeholder="${reservation.location}" required>
-                                </div>
-                            </th>
-                        </tr>
-                        <tr class="reservation-info">
-                            <th>KM from office</th>
-                            <th>
-                                <div class="form-group">
-                                    <input type="text" name="kmFromOffice" class="form-control" th:value="${reservation.kmFromOffice}"
-                                           th:placeholder="${reservation.kmFromOffice}" required>
-                                </div>
-                            </th>
-                        </tr>
-
-                        <tr id="im-empty :)"> <!-- make a segment ish thing -->
-                        </tr>
-                        <hr class="my-4"/>
-
-                        <tr class="reservation-info">
-                            <th>Brand</th>
-                            <th>
-                                <div class="form-group">
-                                    <p th:text="${reservation.motorhome.brand}"/>
-                                </div>
-                            </th>
-                        </tr>
-
-                        <tr class="reservation-info">
-                            <th>Model</th>
-                            <th>
-                                <div class="form-group">
-                                    <p th:text="${reservation.motorhome.model}"/>
-                                </div>
-                            </th>
-                        </tr>
-
-                        <tr class="reservation-info">
-                            <th>License Plate</th>
-                            <th>
-                                <div class="form-group">
-                                    <p  th:text="${reservation.motorhome.licensePlate}"/>
-                                </div>
-                            </th>
-                        </tr>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" value="Save" class="btn btn-primary"></input>
+                        </div>
 
 
-                    </table>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
