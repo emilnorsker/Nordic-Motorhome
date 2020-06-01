@@ -3,5 +3,5 @@
  */
 package rme.project.Repository.interfaces;
 
-public interface ISalesRepo{
+public interface ISalesRepo {
 }

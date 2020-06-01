@@ -24,20 +24,19 @@ public class Reservation {
     private LocalDate endDate;
     private Long numberOfDays;
     private int contact_id;
-    public Contact contact;
+    private Contact contact;
 
     //Empty constructor.
     public Reservation() {
     }
 
     /**
-     *
      * @param reservation_id ID
-     * @param location String address for drop-off
-     * @param kmFromOffice manually entered distance to dropoff, used to calculate price. Will be made automatic later.
-     * @param startDate Reservation starts at this date
-     * @param endDate   Reservation ends at this date
-     * @param motorhome_id  ID for motorhome used in this reservation
+     * @param location       String address for drop-off
+     * @param kmFromOffice   manually entered distance to dropoff, used to calculate price. Will be made automatic later.
+     * @param startDate      Reservation starts at this date
+     * @param endDate        Reservation ends at this date
+     * @param motorhome_id   ID for motorhome used in this reservation
      */
     public Reservation(int reservation_id, String location, double kmFromOffice, LocalDate startDate, LocalDate endDate, int motorhome_id, int contact_id) {
         this.reservation_id = reservation_id;
@@ -68,7 +67,9 @@ public class Reservation {
         return kmFromOffice;
     }
 
-    public void setKmFromOffice(double kmFromOffice) { this.kmFromOffice = kmFromOffice; }
+    public void setKmFromOffice(double kmFromOffice) {
+        this.kmFromOffice = kmFromOffice;
+    }
 
     public int getMotorhome_id() {
         return motorhome_id;
@@ -107,7 +108,7 @@ public class Reservation {
     }
 
     public void setNumberOfDays() {
-        this.numberOfDays = ChronoUnit.DAYS.between(startDate, endDate) +1 ;
+        this.numberOfDays = ChronoUnit.DAYS.between(startDate, endDate) + 1;
     }
 
     public int getContact_id() {

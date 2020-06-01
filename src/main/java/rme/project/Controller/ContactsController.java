@@ -5,14 +5,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import rme.project.Models.Contact;
 import rme.project.Repository.implementations.ContactRepoImpl;
-import rme.project.Repository.interfaces.IBookingRepo;
+import rme.project.Repository.interfaces.IContactRepo;
 
 import java.sql.SQLException;
 @Controller
 @RequestMapping("contacts")
-public class Contacts
+public class ContactsController
 {
-    private IBookingRepo contactRepo = new ContactRepoImpl();
+    private final IContactRepo contactRepo = new ContactRepoImpl();
 
     @GetMapping("")
     public String contacts(Model model){

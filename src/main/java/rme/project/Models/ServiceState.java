@@ -18,7 +18,6 @@ public class ServiceState {
     private int motorhome_id;
 
     /**
-     *
      * @param serviceState_id
      * @param damages
      * @param oil

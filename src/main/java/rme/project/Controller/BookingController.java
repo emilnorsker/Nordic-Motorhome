@@ -9,6 +9,7 @@ import rme.project.Models.Reservation;
 import rme.project.Repository.implementations.MotorhomeRepoImpl;
 import rme.project.Repository.implementations.ContactRepoImpl;
 import rme.project.Repository.implementations.ReservationRepoImpl;
+import rme.project.Repository.interfaces.IContactRepo;
 import rme.project.Repository.interfaces.IMotorhomeRepo;
 import rme.project.Repository.interfaces.IReservationRepo;
 
@@ -23,11 +24,11 @@ public class BookingController
 
     private IMotorhomeRepo motorhomesRepo = new MotorhomeRepoImpl();
     private IReservationRepo reservationRepo = new ReservationRepoImpl();
+    private IContactRepo contactRepo = new ContactRepoImpl();
 
     public int step = 0;
     Reservation reservation = new Reservation();
     List<Motorhome> motorhomes = null;
-
 
 
     @GetMapping(value = "") //todo step max/min
@@ -44,32 +45,43 @@ public class BookingController
     }
 
     @GetMapping(value = "/dates")
-    public String ChooseMotorhome(Model model, @RequestParam("start")String start, @RequestParam("end")String end)
-    {
+    public String ChooseMotorhome(Model model, @RequestParam("start") String start, @RequestParam("end") String end) {
         reservation.setStartDate(LocalDate.parse(start));
         reservation.setEndDate(LocalDate.parse(end));
 
         // todo calculate number of days
 
-        motorhomes =  reservationRepo.findAllAvailableMotorhomes(reservation.getStartDate(), reservation.getEndDate());
-        model.addAttribute("motorhomes", motorhomes );
+        motorhomes = reservationRepo.findAllAvailableMotorhomes(reservation.getStartDate(), reservation.getEndDate());
+        model.addAttribute("motorhomes", motorhomes);
 
         return "redirect:";
     }
-
+/**
     @GetMapping("/create")
-    public String create(@RequestParam("motorhome_id")String motorhome_id, @RequestParam("firstName") String fName, @RequestParam("lastName") String lName, @RequestParam("email") String email, @RequestParam("phone") String number, @RequestParam("location") String location)
-    {
+    public String showCreatePage(){
+        return "booking/create";
+    }
+    @PostMapping("/create")
+    public String create(@ModelAttribute Contact contact, Reservation reservation){
+        contactRepo.create(contact);
+
+        reservation.setContact_id(contactRepo.getLastInsertId());
+        reservationRepo.create(reservation);
+        return "redirect:/reservations";
+    }
+**/
+    @GetMapping("/create")
+    public String create(@RequestParam("motorhome_id") String motorhome_id, @RequestParam("firstName") String fName, @RequestParam("lastName") String lName, @RequestParam("email") String email, @RequestParam("phone") String number, @RequestParam("location") String location, @RequestParam("kmFromOffice") Float kmFromOffice) {
         Contact contact = new Contact();
         contact.setFirstName(fName);
         contact.setLastName(lName);
         contact.setEmail(email);
         contact.setPhone(number);
-        new ContactRepoImpl().create(contact); // todo !!! not proper way to do it... !!! plz change
+        contactRepo.create(contact); // todo !!! not proper way to do it... !!! plz change
 
-        reservation.setContact_id(contact.getContact_id());
+        reservation.setContact_id(contactRepo.getLastInsertId());
         reservation.setMotorhome_id(Integer.parseInt(motorhome_id));
-        reservation.setKmFromOffice(10d); // todo better calculation
+        reservation.setKmFromOffice(kmFromOffice);
         reservation.setLocation(location);
 
         System.out.println("create");
