@@ -8,7 +8,7 @@
 }
 
 .jumbotron {
-    overflow-y: auto;
+    overflow: auto;
     max-height:800px;
 }
 
@@ -39,9 +39,4 @@
     top: 100px;
 }
 
-.modal-dialog{
-    overflow-y: auto;
-    max-width:40%;
-
-}
 

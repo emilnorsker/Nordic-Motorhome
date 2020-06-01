@@ -1,4 +1,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="../filterlist.css">
+
+<script>
+    $("tr").click(function(){
+        $(this).addClass("selected").siblings().removeClass("selected");
+    });
+</script>
+
 <button type="button" id="filterlist_btn" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal" disabled>
     Motorhomes
 </button>
@@ -19,9 +27,10 @@
 
                 <table id="myTable">
                 <tr class="header">
-                    <th style="width:20%;">Model</th>
-                    <th style="width:20%;">Brand</th>
-                    <th style="width:20%;">Price</th>
+                    <th style="width:10%;">Model</th>
+                    <th style="width:10%;">Brand</th>
+                    <th style="width:10%;">Price</th>
+                    <th style="width:10%;">Type</th>
 
                 </tr>
                     <th:block th:each="motorhome : ${motorhomes}">
@@ -30,9 +39,12 @@
                             <td th:id="${motorhome.model}" class="row_with_model" th:text="${motorhome.model}">Model</td>
                             <td th:text="${motorhome.brand}">Brand</td>
                             <td th:text="${motorhome.price}">Price</td>
+                            <td th:text="${motorhome.type}">Type</td>
                     </tr>
                     </th:block>
                 </table>
+
+
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
