@@ -49,8 +49,6 @@ public class BookingController
         reservation.setStartDate(LocalDate.parse(start));
         reservation.setEndDate(LocalDate.parse(end));
 
-        // todo calculate number of days
-
         motorhomes = reservationRepo.findAllAvailableMotorhomes(reservation.getStartDate(), reservation.getEndDate());
         model.addAttribute("motorhomes", motorhomes);
 
@@ -61,6 +59,8 @@ public class BookingController
     public String showCreatePage(){
         return "booking/create";
     }
+
+    //TODO Correct solution if only @ModelAttribute allowed multiple params >:(
     @PostMapping("/create")
     public String create(@ModelAttribute Contact contact, Reservation reservation){
         contactRepo.create(contact);
@@ -77,17 +77,13 @@ public class BookingController
         contact.setLastName(lName);
         contact.setEmail(email);
         contact.setPhone(number);
-        contactRepo.create(contact); // todo !!! not proper way to do it... !!! plz change
+        contactRepo.create(contact);
 
         reservation.setContact_id(contactRepo.getLastInsertId());
         reservation.setMotorhome_id(Integer.parseInt(motorhome_id));
         reservation.setKmFromOffice(kmFromOffice);
         reservation.setLocation(location);
-
-        System.out.println("create");
         reservationRepo.create(reservation);
-        System.out.println("done");
-
 
         return "redirect:/reservations";
     }

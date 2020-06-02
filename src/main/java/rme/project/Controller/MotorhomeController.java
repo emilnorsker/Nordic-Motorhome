@@ -13,7 +13,7 @@ import java.sql.SQLException;
 @RequestMapping("/motorhomes")
 public class MotorhomeController {
 
-    private MotorhomeRepoImpl motorRepo = motorRepo = new MotorhomeRepoImpl();
+    private MotorhomeRepoImpl motorRepo = new MotorhomeRepoImpl();
 
     @GetMapping("")
     public String motorhomes(Model model) {
