@@ -12,7 +12,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ReservationRepoImplTest {
-
+    /**
+     * @Author Mikkel
+     */
     @Test
     void create() {
         //assign
@@ -34,9 +36,12 @@ class ReservationRepoImplTest {
         assertEquals(expected.getNumberOfDays(), actual.getNumberOfDays());
         assertEquals(expected.getContact_id(), actual.getContact_id());
 
-        repo.delete(lastId); //Cleanup
+        repo.delete(lastId); //Cleanup db
     }
 
+    /**
+     * @Author Emil
+     */
     @Test
     void findAllAvailableMotorhomes() {
         System.out.println("finding all available motorhomes");

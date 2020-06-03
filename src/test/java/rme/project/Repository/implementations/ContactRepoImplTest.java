@@ -6,6 +6,9 @@ import rme.project.Models.Contact;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @Author Mikkel Åxman
+ */
 class ContactRepoImplTest {
     ContactRepoImpl repo = new ContactRepoImpl();
     @Test
