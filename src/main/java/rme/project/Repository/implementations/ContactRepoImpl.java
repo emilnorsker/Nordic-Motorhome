@@ -1,8 +1,5 @@
 package rme.project.Repository.implementations;
 
-/**
- * @Responsibility Rasmus Wedelheim
- */
 import rme.project.Models.Contact;
 import rme.project.Repository.interfaces.IContactRepo;
 import rme.project.Util.DBConnection;
@@ -10,32 +7,38 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * @Author Rasmus Wedelheim
+ */
 public class ContactRepoImpl implements IContactRepo {
 
     Connection conn = DBConnection.getDatabaseConnection();
 
+    /**
+     * @Author Rasmus Wedelheim
+     * @param contact
+     */
     @Override
     public void create(Contact contact) {
         //TODO PLEASE CREATE TEST
         try {
             PreparedStatement createContact = conn.prepareStatement("INSERT INTO contact (firstName, lastName, email, phone) VALUES (?,?,?,?)");
-
             //MySQL will auto increment the ID
             createContact.setString(1, contact.getFirstName());
             createContact.setString(2, contact.getLastName());
             createContact.setString(3, contact.getEmail());
             createContact.setString(4, contact.getPhone());
-
             createContact.executeUpdate();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
-
+    /**
+     * @Author Rasmus Wedelheim
+     * @param id int
+     * @return
+     */
     @Override
     public Contact read(int id)
     {
@@ -65,7 +68,9 @@ public class ContactRepoImpl implements IContactRepo {
             return contact;
         }
     }
-
+    /**
+     * @Author Rasmus Wedelheim
+     */
     @Override
     public List<Contact> readAll() {
         List<Contact> contact = null;
@@ -97,6 +102,10 @@ public class ContactRepoImpl implements IContactRepo {
         }
     }
 
+    /**
+     * @Author Rasmus Wedelheim
+     * @param contact
+     */
     @Override
     public void update(Contact contact) {
         try {
@@ -114,6 +123,10 @@ public class ContactRepoImpl implements IContactRepo {
         }
     }
 
+    /**
+     * @Author Rasmus Wedelheim
+     * @param id
+     */
     @Override
     public void delete(int id) {
         try {
@@ -128,6 +141,7 @@ public class ContactRepoImpl implements IContactRepo {
     }
 
     /**
+     * @Author Mikkel Åxman
      * We need this to get ID from newly created entry, since DB makes it automatically
      * @return ID as int
      */

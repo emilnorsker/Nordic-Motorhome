@@ -1,14 +1,9 @@
 package rme.project.Repository.implementations;
 
-/**
- * @Responsibility Emil Norsker
- * @version 3.0 added type to model @author mikkel
- */
 
 import rme.project.Models.Motorhome;
 import rme.project.Repository.interfaces.IMotorhomeRepo;
 import rme.project.Util.DBConnection;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,11 +11,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * @Author Emil Norsker, Mikkel Åxman
+ */
 public class MotorhomeRepoImpl implements IMotorhomeRepo {
 
     Connection conn = DBConnection.getDatabaseConnection();
 
+    /**
+     * @Author Emil Norsker
+     * @param motorhome
+     */
     @Override
     public void create(Motorhome motorhome) {
 
@@ -43,6 +44,11 @@ public class MotorhomeRepoImpl implements IMotorhomeRepo {
     }
 
 
+    /**
+     * @Author Emil Norsker
+     * @param id int
+     * @return
+     */
     @Override
     public Motorhome read(int id) {
         Motorhome mh = null;
@@ -68,6 +74,10 @@ public class MotorhomeRepoImpl implements IMotorhomeRepo {
         }
     }
 
+    /**
+     * @Author Emil Norsker
+     * @return
+     */
     @Override
     public List<Motorhome> readAll() {
         List<Motorhome> motorhomes = null;
@@ -97,6 +107,10 @@ public class MotorhomeRepoImpl implements IMotorhomeRepo {
         }
     }
 
+    /**
+     * @Author Emil Norsker
+     * @param motorhome
+     */
     @Override
     public void update(Motorhome motorhome) {
         try {
@@ -115,6 +129,10 @@ public class MotorhomeRepoImpl implements IMotorhomeRepo {
         }
     }
 
+    /**
+     * @Author Emil Norsker
+     * @param id
+     */
     @Override
     public void delete(int id) {
         try {
@@ -128,6 +146,7 @@ public class MotorhomeRepoImpl implements IMotorhomeRepo {
     }
 
     /**
+     * @Author Mikkel Åxman
      * We need this to get ID from newly created entry, since DB makes it automatically
      * @return ID as int
      */
@@ -147,6 +166,11 @@ public class MotorhomeRepoImpl implements IMotorhomeRepo {
         return lastID;
     }
 
+    /**
+     * @Author Mikkel Åxman
+     * @param id
+     * @return
+     */
     @Override
     public int Search(int id) {
         return 0;

@@ -16,7 +16,7 @@ import rme.project.Repository.interfaces.IMotorhomeRepo;
 import rme.project.Repository.interfaces.IReservationRepo;
 
 /**
- * @author Mikkel Åxman
+ * @author Emil Norsker, Mikkel Åxman
  */
 @Controller
 @RequestMapping("/reservations")
@@ -25,22 +25,41 @@ public class ReservationController {
     private final IMotorhomeRepo motorhomeRepo = new MotorhomeRepoImpl();
     private final IContactRepo contactRepo = new ContactRepoImpl();
 
+    /**
+     * @Author Mikkel Åxman
+     * @param model
+     * @return
+     */
     @GetMapping()
     public String reservations(Model model) {
         model.addAttribute("reservations", reservationRepo.readAll());
         return "reservations/reservations";
     }
 
+    /**
+     * @Author Mikkel Åxman
+     * @return
+     */
     @GetMapping("/create")
     public String showCreatePage() {
         return "redirect:booking/";
     }
 
+    /**
+     * @Author Mikkel Åxman
+     * @return
+     */
     @PostMapping("/create")
     public String create() {
         return "redirect:booking/";
     }
 
+    /**
+     * @Author Emil Norsker
+     * @param params
+     * @return
+     * @throws SQLException
+     */
     @GetMapping("/update")
     public String update(@RequestParam Map<String, String> params) throws SQLException {
 
@@ -65,9 +84,13 @@ public class ReservationController {
     }
 
 
+    /**
+     * @Author Emil Norsker
+     * @param id
+     * @return
+     */
     @GetMapping("/delete/")
     public String delete(@RequestParam(value = "id", required = false) String id) {
-        System.out.println(id);
         reservationRepo.delete(Integer.parseInt(id));
         return "redirect:/reservations";
     }

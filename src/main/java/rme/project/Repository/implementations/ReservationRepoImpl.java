@@ -16,13 +16,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @version 4.0 added contact_id to reservation
+ * @Author All
  */
 public class ReservationRepoImpl implements IReservationRepo {
 
     //todo contact information
     Connection conn = DBConnection.getDatabaseConnection();
 
+    /**
+     * @Author Rasmus Wedelheim, Mikkel Åxman
+     * @param item is a generic object and will be assigned by the class implementing this interface.
+     */
     @Override
     public void create(Reservation item) {
         try {
@@ -45,6 +49,11 @@ public class ReservationRepoImpl implements IReservationRepo {
 
     }
 
+    /**
+     * @Author Rasmus Wedelheim
+     * @param id int
+     * @return
+     */
     @Override
     public Reservation read(int id) {
         Reservation reservation = null;
@@ -79,6 +88,10 @@ public class ReservationRepoImpl implements IReservationRepo {
         }
     }
 
+    /**
+     * @Author Rasmus Wedelheim
+     * @return
+     */
     @Override
     public List<Reservation> readAll() {
 
@@ -112,6 +125,10 @@ public class ReservationRepoImpl implements IReservationRepo {
         }
     }
 
+    /**
+     * @Author  Emil Norsker
+     * @param item is a generic object and will be assigned by the class implementing this interface.
+     */
     @Override
     public void update(Reservation item) {
         try {
@@ -144,44 +161,12 @@ public class ReservationRepoImpl implements IReservationRepo {
         }
     }
 
-    @Override
-    public List<Motorhome> findAvailableMotorhomes(LocalDate start, LocalDate end, String[] models) {
-
-
-        //generate evaluation data
-        List<Integer> availableMotorhomes_id = new ArrayList<Integer>();
-        IMotorhomeRepo motorhomes = new MotorhomeRepoImpl();
-        List<Motorhome> result = new ArrayList<Motorhome>();
-
-        try {
-            // for each model type in model
-            for (int i = 0; i < models.length; i++) {
-                System.out.println("#######################################");
-                System.out.println(models[i]);
-                //find all motorhomes where model == model
-                PreparedStatement findModelId = conn.prepareStatement("SELECT motorhome_id FROM motorhomes where model = ?");
-                findModelId.setString(1, models[i]);
-                ResultSet rs = findModelId.executeQuery();
-                //check if the motorhome is available
-                while (rs.next()) {
-                    availableMotorhomes_id.add(rs.getInt(1));
-                    System.out.println("from sql" + rs.getInt(1));
-                }
-                //subtract all motorhomes that are occupied in time period
-                for (int j : availableMotorhomes_id) {
-                    if (Available(start, end, j)) ;
-                    {
-                        System.out.println("before passing fina;  " + j);
-                        result.add(motorhomes.read(j)); //todo fix error here
-                    }
-                }
-            }
-        } catch (Exception e) {
-        }
-
-        return result;
-    }
-
+    /**
+     * @Author  Emil Norsker
+     * @param start
+     * @param end
+     * @return
+     */
     @Override
     public List<Motorhome> findAllAvailableMotorhomes(LocalDate start, LocalDate end) {
         List<Motorhome> result = new ArrayList<Motorhome>();
@@ -202,6 +187,13 @@ public class ReservationRepoImpl implements IReservationRepo {
         return result;
     }
 
+    /**
+     * @Author  Emil Norsker
+     * @param start
+     * @param end
+     * @param id
+     * @return
+     */
     private boolean Available(LocalDate start, LocalDate end, int id) // todo make test
     {
         List<Reservation> reservationsList = new ArrayList<Reservation>();
@@ -247,6 +239,7 @@ public class ReservationRepoImpl implements IReservationRepo {
     }
 
     /**
+     * @Author Mikkel Åxman
      * We need this to get ID from newly created entry, since DB makes it automatically
      * @return ID as int
      */
