@@ -1,7 +1,6 @@
 package rme.project.Repository.implementations;
 
 
-import rme.project.Models.Contact;
 import rme.project.Models.Motorhome;
 import rme.project.Models.Reservation;
 import rme.project.Repository.interfaces.IMotorhomeRepo;
@@ -170,7 +169,7 @@ public class ReservationRepoImpl implements IReservationRepo {
                 }
                 //subtract all motorhomes that are occupied in time period
                 for (int j : availableMotorhomes_id) {
-                    if (available(start, end, j)) ;
+                    if (Available(start, end, j)) ;
                     {
                         System.out.println("before passing fina;  " + j);
                         result.add(motorhomes.read(j)); //todo fix error here
@@ -192,7 +191,7 @@ public class ReservationRepoImpl implements IReservationRepo {
             System.out.println("read all size" + motorhomes.readAll().size());
             for (int i = 0; i < motorhomes.readAll().size(); i++) {
                 int motorhome_id = motorhomes.readAll().get(i).getMotorhome_id();
-                if (available(start, end, motorhome_id)) {
+                if (Available(start, end, motorhome_id)) {
                     result.add(motorhomes.read(motorhome_id));
                 }
             }
@@ -203,7 +202,7 @@ public class ReservationRepoImpl implements IReservationRepo {
         return result;
     }
 
-    private boolean available(LocalDate start, LocalDate end, int id) // todo make test
+    private boolean Available(LocalDate start, LocalDate end, int id) // todo make test
     {
         List<Reservation> reservationsList = new ArrayList<Reservation>();
         // reservations with that motorhome id
@@ -237,7 +236,6 @@ public class ReservationRepoImpl implements IReservationRepo {
 
         if (reservationsList.size() > 0) {
             for (Reservation R : reservationsList) {
-                //TODO YO kan du ikke bare bruge ChronoUnit.DAYS.between(startDate, endDate) og se om den returner minus?
                 flag1 = R.getStartDate().isAfter(start) == R.getEndDate().isAfter(start);
                 flag2 = R.getEndDate().isAfter(end) == R.getEndDate().isAfter(end);
                 if (flag1 == flag2)

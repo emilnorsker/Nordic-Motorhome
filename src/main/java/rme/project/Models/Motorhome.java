@@ -1,5 +1,7 @@
 package rme.project.Models;
 
+import rme.project.Repository.interfaces.CRUD;
+
 /**
  * @author Mikkel Åxman
  * @version 2.0 cleaned up to mirror fields in DB. removed image filepath for now.

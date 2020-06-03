@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface CRUD<T> {
 
-
     void create(T item);
 
     T read(int id);

@@ -23,7 +23,7 @@ public class DBConnection {
         String name, pass, url;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            url = "jdbc:mysql://den1.mysql5.gear.host:3306/motorhomedb";
+            url = "jdbc:mysql://den1.mysql5.gear.host:3306/motorhomedb?autoReconnect=true";
             name = "motorhomedb";
             pass = "Tw00?vT9X?C9";
             conn = DriverManager.getConnection(url, name, pass);
