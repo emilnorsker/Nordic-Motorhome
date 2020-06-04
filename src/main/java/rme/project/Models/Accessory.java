@@ -7,7 +7,7 @@ package rme.project.Models;
 public class Accessory {
     private int accessory_id;
     private String name;
-    private float price;  //TODO Should be BigDecimal in later iteration
+    private float price;
     private String imagePath;
 
     /**
