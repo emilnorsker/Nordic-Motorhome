@@ -20,7 +20,6 @@ public class ContactRepoImpl implements IContactRepo {
      */
     @Override
     public void create(Contact contact) {
-        //TODO PLEASE CREATE TEST
         try {
             PreparedStatement createContact = conn.prepareStatement("INSERT INTO contact (firstName, lastName, email, phone) VALUES (?,?,?,?)");
             //MySQL will auto increment the ID
@@ -84,7 +83,6 @@ public class ContactRepoImpl implements IContactRepo {
             while (rs.next())
             {
                 Contact ct = new Contact();
-                // todo assign ID:
                 ct.setContact_id(rs.getInt(1));
                 ct.setFirstName(rs.getString(2));
                 ct.setLastName(rs.getString(3));

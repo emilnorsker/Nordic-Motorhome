@@ -75,7 +75,6 @@ public class ReservationRepoImpl implements IReservationRepo {
                 reservation.setMotorhome_id(rs.getInt(7));
                 reservation.setContact_id(rs.getInt(8));
 
-                // todo use propperly, a.k.a. with interface
                 reservation.setMotorhome(new MotorhomeRepoImpl().read(rs.getInt(7)));
                 reservation.setContact(new ContactRepoImpl().read(rs.getInt(8)));
 
@@ -112,7 +111,6 @@ public class ReservationRepoImpl implements IReservationRepo {
                 reservation.setMotorhome_id(rs.getInt(7));
                 reservation.setContact_id(rs.getInt(8));
 
-                //todo use propperly format, a.k.a. with interface IMotorhomeRepo...
                 reservation.setMotorhome(new MotorhomeRepoImpl().read(rs.getInt(7)));
                 reservation.setContact(new ContactRepoImpl().read(rs.getInt(8)));
 
