@@ -1,20 +1,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta name="author" content="Emil Norsker">
+
 <div th:fragment="info(reservation)">
+    <!-- This is the part that gives you the button to toggle the modal on the website.
+         It uses thymeleaf to be able to include the current reservation_id as a part of the data-target -->
     <input type="button" style="color: #1e90ff;" data-toggle="modal"
            th:attr="data-target='#info' + ${reservation.reservation_id}" value="info"></input>
 
-    <!-- ${reservation.location}, ${reservation.kmFromOffice}, ${reservation.startDate}, ${reservation.endDate}, ${reservation.motorhome_id}, ${reservation.reservation_id} -->
-
+    <!-- This one of our Modals which functions as a sort of pop up
+          Thymeleaf here is used to set the id equal to the current reservation_id-->
     <div class="modal fade" th:id="info+${reservation.reservation_id}" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+
+
                 <div class="modal-header">
                     <h5 style="color: black" class="modal-title" id="exampleModalLabel">Update Reservation</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
                     <form action="/reservations/update">
                         <table style="width:100%">

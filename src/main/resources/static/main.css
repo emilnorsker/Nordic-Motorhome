@@ -1,6 +1,9 @@
 #noscroll {
     overflow-y: hidden;
 }
+/* Overwrites the jumbotron CSS from Bootstrap to create a more fitting style for our website.
+   This is what our website mainly consists of to give it the modern look
+ */
 .indexjumbotron {
     background: url('background.png') no-repeat center center; /* Source: https://dwpfufk2krixz.cloudfront.net/sites/default/files/2019-03/small_motorhome_driving_on_a_road_as_sun_is_rising.jpg*/
     background-size: auto;

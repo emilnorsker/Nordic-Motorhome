@@ -1,33 +1,58 @@
+<!--
+Index page for the website.
+-->
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
-    <title>Frontpage</title>
+    <meta name="author" content="Rasmus Wedelheim">
+
+    <!--
+    The project uses Bootstrap 4 which is an open-source CSS Framework which uses Javascript and the JQuery which is a library for Javascript.
+    It's used to create responsive front-end development.
+
+    Since the stylesheet order of HTML is cascading, we put our main.css under the bootstrap stylesheet in case we have to overwrite any CSS from Bootstrap.
+    -->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="main.css">
+    <title>Frontpage</title>
+
 </head>
 
+<!-- The body here takes use of an id from the main.css.
+     id's are marked with a "#" in the stylesheet while classes are marked with a "."
+     -->
 <body id="noscroll">
 
+<!-- Here the div uses the class indexjumbotron which is based on the "jumbotron" CSS from Bootstrap
+     With a few elements added ourselves in the main.css stylesheet-->
 <div class="indexjumbotron" align="center">
+
     <div class="movedown">
         <h1 class="display-4">Welcome to Nordic Motorhomes</h1>
         <hr class="my-4">
         <p class="lead">Please login to proceed</p>
         <div th:replace="fragments/login_modal"/>
     </div>
+
 </div>
 
-
+<!-- These 3 scripts will be seen on nearly all our HTML files.
+     They are scripts which supports the implementation of Bootstrap 4.
+      -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+
 </body>
+
 </html>

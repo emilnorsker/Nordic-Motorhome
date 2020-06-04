@@ -1,25 +1,15 @@
-
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
 <head>
     <meta charset="utf-8">
+    <meta name="author" content="Rasmus Wedelheim & Emil Norsker">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../main.css">
     <link rel="stylesheet" href="../filterlist.css">
-    <script type="text/javascript">
-        function GetDays(){
-            var dropdt = new Date(document.getElementById("drop_date").value);
-            var pickdt = new Date(document.getElementById("pick_date").value);
-            return parseInt((dropdt - pickdt) / (24 * 3600 * 1000));
-        }
 
-        function cal(){
-            if(document.getElementById("drop_date")){
-                document.getElementById("numdays2").value=GetDays(); //+1 because start date isn't counted
-            }
-        }
-    </script>
-
+    <!-- Code From https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
     <script>
         function search() {
             // Declare variables
@@ -44,6 +34,7 @@
         }
     </script>
 
+    <meta name="author" content="Emil Norsker">
     <script>
         document.addEventListener("DOMContentLoaded", () =>
             {
@@ -64,6 +55,8 @@
             }
         )
     </script>
+
+    <meta name="author" content="Emil Norsker">
     <script>
         function OnDatesEntered() {
             const start = document.getElementById("start").value;
@@ -94,6 +87,8 @@
 
         }
     </script>
+
+    <!-- Code from: https://www.youtube.com/watch?v=6BdKUO2QbA0 -->
     <script>
         document.addEventListener("DOMContentLoaded", () =>
             {
@@ -111,6 +106,7 @@
             }
         )
     </script>
+
 </head>
 
 <body>
@@ -125,8 +121,10 @@
             <div class="jumbotron">
                 <h3 id="headline">Booking</h3>
                 <hr class="my-4"/>
+
                 <!-- DATE AND MODEL -->
                 <form action="/booking/dates" method="get" id="dates-form">
+
                     <h5>Choose Date and Model</h5>
                     <div id="pickup_date">
                         <p>
@@ -190,17 +188,25 @@
 
                     <input type="submit" class="btn btn-primary" form="add_booking"> <!--todo add check here -->
                     <br>
+
                 </form>
+
             </div>
+
         </div>
+
     </div>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
 </body>
+
 <footer>
     <div th:replace="fragments/footer"/>
 </footer>
+
 </html>

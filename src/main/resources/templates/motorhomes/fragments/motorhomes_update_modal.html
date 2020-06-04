@@ -1,50 +1,64 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta name="author" content="Rasmus Wedelheim">
+<!-- One of the 3 types of Update modals which makes us able to update the data in the database -->
+
 <div th:fragment="updateModal(motorhome)">
 
         <input type="button" style="color: dodgerblue;" data-toggle="modal" th:attr="data-target='#update' + ${motorhome.motorhome_id}" th:href="@{'/update/' + ${motorhome.motorhome_id}}" value="Update">
 
-
-
     <div class="modal fade" th:id="update+${motorhome.motorhome_id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+
                 <div class="modal-header">
                     <h5 style="color: black" class="modal-title" id="exampleModalLabel">Update Motorhome</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
                     <div class="container">
-
+                        <!-- Here we give the form an action which tells the form data when form is submitted" -->
+                        <!-- The method attribute specifies how to send the form-data, in this case it's set to "post" which makes the data a HTTP Post transaction -->
                         <form action="/motorhomes/update" method="post">
+
                             <div class="form-group">
                                 <input type="text" name="model" maxlength="24" class="form-control" th:value="${motorhome.model}" th:placeholder="${motorhome.model}" required>
                             </div>
+
                             <div class="form-group">
                                 <input type="text" name="brand" maxlength="16" class="form-control" th:value="${motorhome.brand}" th:placeholder="${motorhome.brand}" required>
                             </div>
+
                             <div class="form-group">
                                 <input type="number" maxlength="12" step="0.01" name="price" min="0" class="form-control" th:value="${motorhome.price}" th:placeholder="${motorhome.price}" required>
                             </div>
+
                             <div class="form-group">
                                 <input type="text" name="licensePlate" maxlength="9" ass="form-control" th:value="${motorhome.licensePlate}" th:placeholder="${motorhome.licensePlate}" required>
                             </div>
+
                             <div class="form-group">
                                 <input type="text" name="type" maxlength=16 ass="form-control" th:value="${motorhome.type}" th:placeholder="${motorhome.type}" required>
                             </div>
+
                             <input type="hidden" name="motorhome_id" th:value="${motorhome.motorhome_id}">
-
-
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </form>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
 </div>
