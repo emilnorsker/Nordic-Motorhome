@@ -20,7 +20,6 @@ import java.util.List;
  */
 public class ReservationRepoImpl implements IReservationRepo {
 
-    //todo contact information
     Connection conn = DBConnection.getDatabaseConnection();
 
     /**
@@ -192,7 +191,7 @@ public class ReservationRepoImpl implements IReservationRepo {
      * @param id
      * @return
      */
-    private boolean Available(LocalDate start, LocalDate end, int id) // todo make test
+    private boolean Available(LocalDate start, LocalDate end, int id)
     {
         List<Reservation> reservationsList = new ArrayList<Reservation>();
         // reservations with that motorhome id

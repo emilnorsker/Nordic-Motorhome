@@ -44,7 +44,7 @@ public class BookingController
      * @return
      */
 
-    @GetMapping(value = "") //todo step max/min
+    @GetMapping(value = "")
     public String ChooseDateAndModel(Model model, @RequestParam(value = "reset", required = false) String reset)
     {
         if (reset!= null && reset.equalsIgnoreCase("true"))
